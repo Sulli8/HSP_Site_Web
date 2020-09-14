@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 14 sep. 2020 à 12:05
+-- Généré le :  lun. 14 sep. 2020 à 13:07
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -68,6 +68,25 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `date` date NOT NULL,
   `mutuelle` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(60) NOT NULL,
+  `prenom` varchar(60) NOT NULL,
+  `mail` varchar(255) NOT NULL,
+  `mutuelle` varchar(40) DEFAULT NULL,
+  `admin` tinyint(1) DEFAULT NULL,
+  `mdp` varchar(60) NOT NULL,
+  `adresse` varchar(60) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 COMMIT;
