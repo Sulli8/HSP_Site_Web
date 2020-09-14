@@ -2,7 +2,7 @@
 <html lang="en">
 
   <?php include "../include/import.php"; ?>
-
+<title>HSP | Acceuil</title>
 <body>
     <!--::header part start::-->
   <?php include "../include/header.php"; ?>

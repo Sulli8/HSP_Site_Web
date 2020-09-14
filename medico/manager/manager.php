@@ -1,6 +1,4 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/traitement/traitement_formulaire_inscription.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/model/inscription.php");
 
 class manager {
 
@@ -30,13 +28,35 @@ class manager {
                    'mdp' => $inscription->getMdp(),
                    'adresse'=>$inscription->getAdresse()));
     if($request == true){
-      echo "inscrit";
+      header_location("../../view/index.php");
 
     }
 
 
 
   }
+
+  function connexion($mail,$mdp){
+
+    if(isset($mail) && isset($mdp)){
+      $request = $this->connexion_bd()->prepare('SELECT * FROM user WHERE mail=:mail and mdp=:mdp');
+       $request->execute(array('mdp'=>$mdp, 'mail'=>$mail));
+       $response = $request->fetch();
+       if ($response == true)
+       {
+         session_start();
+         header('Location: ../view/index.php');
+       }
+       else
+       {
+           header('Location: ../../view/formulaire/formulaire_connexion.php');
+       }
+    }
+
+  }
+
+
+
 }
 
 

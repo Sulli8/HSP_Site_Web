@@ -11,4 +11,6 @@ $inscription = new Inscription(["nom"=>$_POST["nom"],
 "adresse"=>$_POST["adresse"]]);
 $manager = new manager();
 $manager->inscription($inscription);
+
+
  ?>

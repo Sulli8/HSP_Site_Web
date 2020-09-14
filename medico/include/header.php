@@ -14,13 +14,13 @@
                         id="navbarSupportedContent">
                         <ul class="navbar-nav align-items-center">
                             <li class="nav-item active">
-                                <a class="nav-link" href="index.php">Home</a>
+                                <a class="nav-link" href="index.php">Accueil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.php">about</a>
+                                <a class="nav-link" href="about.php">Autres</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Doctor.php">Doctors</a>
+                                <a class="nav-link" href="Doctor.php">Doctolib</a>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -29,7 +29,7 @@
                                     Pages
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="services.php">services</a>
+                                    <a class="dropdown-item" href="services.php">Services</a>
                                     <a class="dropdown-item" href="dep.php">depertments</a>
                                     <a class="dropdown-item" href="elements.php">Elements</a>
                                 </div>
@@ -46,11 +46,12 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.php">Contact</a>
+                                <a class="nav-link" href="../view/formulaire/formulaire_contact.php">Contact</a>
                             </li>
                         </ul>
                     </div>
-                    <a class="btn_2 d-none d-lg-block" href="#">HOT LINE- 09856</a>
+
+                    <a class="btn_2 d-none d-lg-block" href="../view/formulaire/formulaire_connexion.php">Espace Client</a>
                 </nav>
             </div>
         </div>
