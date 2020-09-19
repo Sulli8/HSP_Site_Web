@@ -28,7 +28,7 @@ class manager {
                    'mdp' => $inscription->getMdp(),
                    'adresse'=>$inscription->getAdresse()));
     if($request == true){
-      header_location("../../view/index.php");
+      header('Location:../view/index.php');
 
     }
 
@@ -54,6 +54,58 @@ class manager {
     }
 
   }
+
+function include_forms(){
+  $script = '<head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>medical</title>
+      <link rel="icon" href="img/favicon.png">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="../../css/bootstrap.min.css">
+      <!-- animate CSS -->
+      <link rel="stylesheet" href="../../css/animate.css">
+      <!-- owl carousel CSS -->
+      <link rel="stylesheet" href="../../css/owl.carousel.min.css">
+      <!-- themify CSS -->
+      <link rel="stylesheet" href="../../css/themify-icons.css">
+      <!-- flaticon CSS -->
+      <link rel="stylesheet" href="../../css/flaticon.css">
+      <!-- magnific popup CSS -->
+      <link rel="stylesheet" href="../../css/magnific-popup.css">
+      <!-- nice select CSS -->
+      <link rel="stylesheet" href="../../css/nice-select.css">
+      <!-- swiper CSS -->
+      <link rel="stylesheet" href="../../css/slick.css">
+      <!-- style CSS -->
+      <link rel="stylesheet" href="../../css/style.css">
+  </head>
+
+';
+  echo $script;
+}
+function include_header(){
+  $script = include "../../include/header.php";
+  echo $script;
+}
+
+function epars(){
+
+
+
+}
+
+
+function css_forms(){
+  $script = 'style="width:400px;height:400px;margin-top:200px;margin-left:500px;"';
+  echo $script;
+}
+function css_a(){
+  $script = 'style="text-align:center;margin-top:100px;"';
+  echo $script;
+}
+
 
 
 

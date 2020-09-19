@@ -1,3 +1,16 @@
+<?php
+$new_path = [];
+$path = ["about.php","blog.php","contact_process.php","contact.php","dep.php","doctor.php","elements.php","index.php","services.php","single-blog.php"];
+if($_SERVER['REQUEST_URI'] == "/HSP_Site_Web/medico/view/formulaire/formulaire_connexion.php"){
+  for ($i=0; $i < sizeof($path) ; $i++) {
+      $path[$i] = "../".$path[$i]." ";
+      array_push($new_path,$path[$i]);
+  }
+}
+else {
+  $new_path = $path;
+}
+?>
 <header class="main_menu home_menu">
     <div class="container">
         <div class="row align-items-center">
@@ -14,34 +27,35 @@
                         id="navbarSupportedContent">
                         <ul class="navbar-nav align-items-center">
                             <li class="nav-item active">
-                                <a class="nav-link" href="index.php">Accueil</a>
+                                <a class="nav-link" href="<?php echo $new_path[7]; ?>">Accueil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.php">Autres</a>
+                                <a class="nav-link" href="<?php echo $new_path[0]; ?>">Autres</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Doctor.php">Doctolib</a>
+                                <a class="nav-link" href="<?php echo $new_path[5]; ?>">Doctolib</a>
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown"
+                                <a class="nav-link dropdown-toggle" href="<?php echo $new_path[1]; ?>" id="navbarDropdown"
                                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Pages
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="services.php">Services</a>
-                                    <a class="dropdown-item" href="dep.php">depertments</a>
+
+                                    <a class="dropdown-item" href="<?php echo $new_path[8]; ?>" >Services</a>
+                                    <a class="dropdown-item" href="<?php echo $new_path[4]; ?>">depertments</a>
                                     <a class="dropdown-item" href="elements.php">Elements</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_1"
+                                <a class="nav-link dropdown-toggle" href="<?php echo $new_path[1]; ?>" id="navbarDropdown_1"
                                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     blog
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                     <a class="dropdown-item" href="blog.php">blog</a>
-                                    <a class="dropdown-item" href="single-blog.php">Single blog</a>
+                                    <a class="dropdown-item" href="<?php echo $new_path[9]; ?>">Single blog</a>
                                 </div>
                             </li>
 
