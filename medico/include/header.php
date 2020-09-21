@@ -1,4 +1,5 @@
 <?php
+session_start();
 $new_path = [];
 $path = ["about.php","blog.php","contact_process.php","contact.php","dep.php","doctor.php","elements.php","index.php","services.php","single-blog.php"];
 if($_SERVER['REQUEST_URI'] == "/HSP_Site_Web/medico/view/formulaire/formulaire_connexion.php"){
@@ -65,7 +66,16 @@ else {
                         </ul>
                     </div>
 
-                    <a class="btn_2 d-none d-lg-block" href="../view/formulaire/formulaire_connexion.php">Espace Client</a>
+                    <?php
+                    if(isset($_SESSION["mail"])){    ?>
+                        <a class="btn_2 d-none d-lg-block" href="formulaire/formulaire_modification.php">Update Client</a>
+                        <a class="btn_2 d-none d-lg-block" href="../traitement/traitement_deconnexion.php">Déconnexion</a>
+                    <?php  } else {?>
+
+                        <a class="btn_2 d-none d-lg-block" href="../view/formulaire/formulaire_connexion.php">Espace Client</a>
+                    <?php } ?>
+
+
                 </nav>
             </div>
         </div>

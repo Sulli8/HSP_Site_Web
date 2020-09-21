@@ -45,6 +45,8 @@ class manager {
        if ($response == true)
        {
          session_start();
+         $_SESSION["mdp"] = $mdp;
+         $_SESSION["mail"] = $mail;
          header('Location: ../view/index.php');
        }
        else
@@ -54,6 +56,7 @@ class manager {
     }
 
   }
+
 
 function include_forms(){
   $script = '<head>
@@ -88,6 +91,39 @@ function include_forms(){
 function include_header(){
   $script = include "../../include/header.php";
   echo $script;
+
+}
+
+function select_button($mail,$mdp){
+    $db = $this->connexion_bd();
+    $request = $this->connexion_bd()->prepare('SELECT * FROM user WHERE mail=:mail and mdp=:mdp');
+    $request->execute(array('mdp'=>$mdp, 'mail'=>$mail));
+    $response = $request->fetch();
+    $unique = array_unique($response);
+    unset($unique['id']);
+    var_dump($unique);
+    if(empty($unique['admin'])){
+      unset($unique['admin']);
+
+    }
+    else{
+      $unique = array_unique($response);
+    }
+    foreach ($unique as $key => $value) {
+      echo $value."<a class='btn btn-primary' href='../modif.php?modifier=$key'>Modifier</a>"."\n";
+    }
+
+
+}
+
+function update_user($val,$mail,$mdp){
+  $db = $this->connexion_bd();
+  $updating = "UPDATE user set'.$val.'WHERE'.$mail.'and'.$mdp'";
+  $request = $this->connexion_bd()->prepare($updating);
+  if($request = true){
+    header("Location:../view/index.php");
+
+  }
 }
 
 
