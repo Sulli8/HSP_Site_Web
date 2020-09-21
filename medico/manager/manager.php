@@ -90,21 +90,7 @@ function include_header(){
   echo $script;
 }
 
-function epars(){
 
-
-
-}
-
-
-function css_forms(){
-  $script = 'style="width:400px;height:400px;margin-top:200px;margin-left:500px;"';
-  echo $script;
-}
-function css_a(){
-  $script = 'style="text-align:center;margin-top:100px;"';
-  echo $script;
-}
 
 
 
