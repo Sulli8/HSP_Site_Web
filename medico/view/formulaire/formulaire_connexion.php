@@ -12,8 +12,6 @@
 
 <body>
 
-  <?php $manager->include_header();?>
-
   <form action="../../traitement/traitement_formulaire_connexion.php" method="post">
 
     <div class="form-group">
