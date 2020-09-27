@@ -16,16 +16,11 @@
 
     <div class="form-group">
       <label for="exampleInputEmail1" >Entrez votre adresse e-mail</label>
-      <input type="email" name="mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse e-mail">
-      <label for="exampleInputPassword1">Entrez votre mot de passe</label>
-      <input type="password"  name="mdp" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+      <input type="email" name="mail_reset" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse e-mail">
 
 
-      <a href="formulaire_password_reset.php">Mot de passe oublié ?</a>
 
-      <a href="formulaire_inscription.php">Vous n'avez pas de compte ?</a>
-
-      <button type="submit" class="btn btn-primary">Connexion</button>
+      <input type="submit" name="submit" value="Sent password reset mail" class="btn btn-primary"></input>
 
       <a class="return-home" href="../index.php">Retour à l'accueil</a>
 

@@ -2,7 +2,7 @@
 session_start();
 $new_path = [];
 $path = ["about.php","blog.php","contact_process.php","contact.php","dep.php","doctor.php","elements.php","index.php","services.php","single-blog.php"];
-if($_SERVER['REQUEST_URI'] == "/HSP_Site_Web/medico/view/formulaire/formulaire_connexion.php"){
+if($_SERVER['REQUEST_URI'] == "/HSP_Site_Web/medico/view/formulaire/formulaire_connexion.php" || "/HSP_Site_Web/medico/view/formulaire/formulaire_modification.php" || "/HSP_Site_Web/medico/view/formulaire/formulaire_inscription.php"){
   for ($i=0; $i < sizeof($path) ; $i++) {
       $path[$i] = "../".$path[$i]." ";
       array_push($new_path,$path[$i]);

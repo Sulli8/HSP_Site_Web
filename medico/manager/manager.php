@@ -5,7 +5,7 @@ class manager {
   function connexion_bd(){
     try
         {
-            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','');
+            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','root');
         }
         catch(Exception $e)
         {
@@ -103,7 +103,6 @@ function select_button($mail,$mdp){
     $response = $request->fetch();
     $unique = array_unique($response);
     unset($unique['id']);
-    var_dump($unique);
     if(empty($unique['admin'])){
       unset($unique['admin']);
 
