@@ -47,6 +47,7 @@ class manager {
          session_start();
          $_SESSION["mdp"] = $mdp;
          $_SESSION["mail"] = $mail;
+         $_SESSION['id'] = $response["id"];
          header('Location: ../view/index.php');
        }
        else
@@ -94,6 +95,7 @@ function include_header(){
 
 }
 
+
 function select_button($mail,$mdp){
     $db = $this->connexion_bd();
     $request = $this->connexion_bd()->prepare('SELECT * FROM user WHERE mail=:mail and mdp=:mdp');
@@ -116,17 +118,15 @@ function select_button($mail,$mdp){
 
 }
 
-function update_user($val,$mail,$mdp){
+function update_user($New_val,$val,$id){
   $db = $this->connexion_bd();
-  $updating = "UPDATE user set'.$val.'WHERE'.$mail.'and'.$mdp'";
+  $updating = "UPDATE user set $val='$New_val' WHERE id='$id'";
   $request = $this->connexion_bd()->prepare($updating);
-  if($request = true){
-    header("Location:../view/index.php");
+  $update_tab = $request->execute(array(
+    $val => $New_val));
+    header('Location: ../view/index.php');
 
-  }
 }
-
-
 
 
 
