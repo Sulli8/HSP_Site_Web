@@ -12,7 +12,7 @@
 
 <body>
 
-  <form action="../../traitement/traitement_password_reset.php" method="post">
+  <form action="../../traitement/traitement_formulaire_connexion.php" method="post">
 
     <div class="form-group">
       <label for="exampleInputEmail1" >Entrez votre adresse e-mail</label>

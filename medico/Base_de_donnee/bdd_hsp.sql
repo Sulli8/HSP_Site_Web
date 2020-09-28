@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 14 sep. 2020 à 13:07
+-- Généré le :  lun. 28 sep. 2020 à 15:18
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -52,7 +52,17 @@ CREATE TABLE IF NOT EXISTS `medecin` (
   `specialite` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `medecin`
+--
+
+INSERT INTO `medecin` (`id`, `nom`, `prenom`, `departement`, `specialite`, `email`) VALUES
+(1, 'Dr.Vasone', 'Antoine', '933770', 'Othopédie', 'a.vasone@lprs.fr'),
+(2, 'Dr.Vasone', 'Antoine', '933770', 'Othopédie', 'a.vasone@lprs.fr'),
+(3, 'Dr.Sextius', 'Sullivan', '75', 'Orthophonie', 'sullivan.sextius@gmail.com'),
+(4, 'Dr.Sextius', 'Sullivan', '75', 'Orthophonie', 'sullivan.sextius@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -74,6 +84,24 @@ CREATE TABLE IF NOT EXISTS `patient` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `rdv`
+--
+
+DROP TABLE IF EXISTS `rdv`;
+CREATE TABLE IF NOT EXISTS `rdv` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_medecin` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `heure` time(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_medecin` (`id_medecin`),
+  KEY `id_user` (`id_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `user`
 --
 
@@ -88,7 +116,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `mdp` varchar(60) NOT NULL,
   `adresse` varchar(60) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `nom`, `prenom`, `mail`, `mutuelle`, `admin`, `mdp`, `adresse`) VALUES
+(1, 'sextius', 'sulllivan', 'sullivan.sextius@gmail.com', '1234567', NULL, 'mmmmmmmm', '19 avenue jean jaures '),
+(2, 'sextius', 'sulllivan', 'sullivan.sextius@gmail.com', '1234567', NULL, 'mljmljmlj', '19 avenue jean jaures '),
+(3, 'sextius', 'az', 'sullivan.sextius@gmail.com', '456UI', NULL, 'lkjlmkjsfdùljzkf', '2 avenue du jean ');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

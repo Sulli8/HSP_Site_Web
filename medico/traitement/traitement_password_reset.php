@@ -35,7 +35,7 @@ $mail = new PHPMailer(true);
     if(isset($mail)){
       $mail->isHTML(true);                                  // Set email format to HTML
       $mail->Subject = 'Message HSP Site Web ';
-      $mail->Body    = "<a href='http://localhost:8888/HSP_Site_Web/medico/view/formulaire/formulaire_update_password.php'>Réinitialiser Mot de passe !</a>";
+      $mail->Body    = "<a href='http://localhost/HSP_Site_Web/medico/view/formulaire/formulaire_update_password.php'>Réinitialiser Mot de passe !</a>";
       $mail->AltBody = 'This is the body in plain text for non-HTML mail client';
       $mail->send();
       //on redririge

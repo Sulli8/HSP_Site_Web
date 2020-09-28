@@ -5,7 +5,7 @@ class manager {
   function connexion_bd(){
     try
         {
-            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','root');
+            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','');
         }
         catch(Exception $e)
         {
@@ -126,6 +126,45 @@ function update_user($New_val,$val,$id){
     header('Location: ../view/index.php');
 
 }
+function barre_de_recherche($recherche){
+    $db = $this->connexion_bd();
+    $search = "SELECT * from medecin Where nom Like '%$recherche'";
+    $request = $db->query($search);
+    $tableau = $request->fetch();
+    for ($i=1; $i < 6 ; $i++) {
+    echo "<button type='submit' class='btn btn-primary'>".$tableau[$i]."</button>";
+    }
+  }
+function prise_rdv(){
+  $db = $this->connexion_bd();
+  $select = "SELECT specialite from medecin";
+  $request = $db->query($select);
+  $tableau = $request->fetchall();
+  for ($i=0; $i < count($tableau)  ; $i++) {
+    $val = serialize($tableau[$i][0]);
+    $update_val = substr($val, 6,-2);
+      echo "<br />"."<a type='submit' href='traitement/traitement_affiche_medecin.php?affiche=$update_val' class='btn btn-primary'>".$tableau[$i][0]."</a>";
+  }
+
+}
+
+function affiche_medecin(){
+
+}
+
+function links_rdv($id_medecin,$id_user){
+  $db = $this->connexion_bd();
+  $request = $db->prepare('INSERT INTO rdv(nom, prenom, mail, mutuelle ,admin, mdp,adresse) VALUES(:nom, :prenom, :mail, :mutuelle ,:admin, :mdp,:adresse)');
+             $insert_utilisateur = $request->execute(array(
+                 'nom' => $inscription->getNom(),
+                 'prenom' => $inscription->getPrenom(),
+                 'mail' => $inscription->getMail(),
+                 'mutuelle' => $inscription->getMutuelle(),
+                 'admin' => $inscription->getAdmin(),
+                 'mdp' => $inscription->getMdp(),
+                 'adresse'=>$inscription->getAdresse()));
+
+}
 
 
 
@@ -134,6 +173,4 @@ function update_user($New_val,$val,$id){
 
 
 
-
-
- ?>
+?>
