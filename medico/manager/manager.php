@@ -5,7 +5,7 @@ class manager {
   function connexion_bd(){
     try
         {
-            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','');
+            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','root');
         }
         catch(Exception $e)
         {
@@ -31,11 +31,25 @@ class manager {
       header('Location:../view/index.php');
 
     }
+}
 
+function inscription_medecin(Insert_medecin $medecin){
+  $db = $this->connexion_bd();
+  $request = $db->prepare('INSERT INTO medecin(nom, prenom, departement, specialite, mail,mdp) VALUES(:nom, :prenom, :departement, :specialite ,:mail, :mdp)');
+             $insert_medecin = $request->execute(array(
+                 'nom' => $medecin->getNom(),
+                 'prenom' => $medecin->getPrenom(),
+                 'departement' => $medecin->getDepartement(),
+                 'specialite' => $medecin->getSpecialite(),
+                 'mail' => $medecin->getMail(),
+                 'mdp' => $medecin->getMdp()
+               ));
 
+               if($insert_medecin == true){
+                 header("Location:../view/index.php");
+               }
 
-  }
-
+}
   function connexion($mail,$mdp){
 
     if(isset($mail) && isset($mdp)){
@@ -48,11 +62,22 @@ class manager {
          $_SESSION["mdp"] = $mdp;
          $_SESSION["mail"] = $mail;
          $_SESSION['id'] = $response["id"];
+         $_SESSION['nom'] = $response['nom'];
+         $_SESSION['admin'] = "";
+
+         if(isset($response['admin'])){
+           $_SESSION["admin"] = "root";
+           //faire apparaître pop up admin
+           echo $_SESSION['admin'];
+         }
+         //faire apparaitre pop up user
          header('Location: ../view/index.php');
+
+
        }
        else
        {
-           header('Location: ../../view/formulaire/formulaire_connexion.php');
+           header('Location: ../view/formulaire/formulaire_connexion.php');
        }
     }
 
@@ -143,28 +168,63 @@ function prise_rdv(){
   for ($i=0; $i < count($tableau)  ; $i++) {
     $val = serialize($tableau[$i][0]);
     $update_val = substr($val, 6,-2);
-      echo "<br />"."<a type='submit' href='traitement/traitement_affiche_medecin.php?affiche=$update_val' class='btn btn-primary'>".$tableau[$i][0]."</a>";
+      echo "<br />"."<a type='submit' class='btn btn-primary' href='../traitement/traitement_affiche_medecin.php?affiche=$update_val' class='btn btn-primary'>".$tableau[$i][0]."</a>";
   }
 
 }
 
-function affiche_medecin(){
-
-}
-
-function links_rdv($id_medecin,$id_user){
+function affiche_medecin($specialite){
   $db = $this->connexion_bd();
-  $request = $db->prepare('INSERT INTO rdv(nom, prenom, mail, mutuelle ,admin, mdp,adresse) VALUES(:nom, :prenom, :mail, :mutuelle ,:admin, :mdp,:adresse)');
-             $insert_utilisateur = $request->execute(array(
-                 'nom' => $inscription->getNom(),
-                 'prenom' => $inscription->getPrenom(),
-                 'mail' => $inscription->getMail(),
-                 'mutuelle' => $inscription->getMutuelle(),
-                 'admin' => $inscription->getAdmin(),
-                 'mdp' => $inscription->getMdp(),
-                 'adresse'=>$inscription->getAdresse()));
+  $affiche = "SELECT * from medecin Where specialite='$specialite'";
+  $request = $db->query($affiche);
+  $tableau = $request->fetch();
+
+  $_SESSION["nom_medecin"] = $tableau['nom'];
+  $_SESSION["medecin_email"] = $tableau["email"];
+  $_SESSION["id_medecin"] = $tableau["id"];
+  $rdv = "<a href='../view/formulaire/formulaire_rdv.php' class='btn btn-success'> Prendre un rdv avec ce médecin ?</a>";
+  echo $rdv;
+  for ($i=1; $i < 6 ; $i++) {
+  echo "</br>".$tableau[$i];
+}
+
+
 
 }
+function recapitulatif_medecin(){
+  session_start();
+  echo "Nom de votre médecin : ".$_SESSION["medecin"]."</br>"."Mail du médecin : ".$_SESSION["mededin_email"];
+}
+
+function gestion_rdv($id_medecin,$id_user,$date,$heure,$nom_medecin,$nom_patient){
+  $db = $this->connexion_bd();
+  $request = $db->prepare('INSERT INTO rdv(id_medecin, id_user, date, heure ,nom_medecin,nom_patient) VALUES(:id_medecin, :id_user, :date, :heure ,:nom_medecin,:nom_patient)');
+             $insert_rdv = $request->execute(array(
+                 'id_medecin' => $id_medecin,
+                 'id_user' => $id_user,
+                 'date' => $date,
+                 'heure' => $heure,
+                 'nom_medecin' => $nom_medecin,
+                 'nom_patient'=> $nom_patient
+               ));
+  $tableau = $request->fetch();
+  if(isset($tableau)){
+    header("Location:../view/index.php");
+  }
+
+}
+
+function index_bg(){
+  echo "style='height: 935px;
+    position: relative;
+    overflow: hidden;
+    background-image: url(../img/index_bg.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;'";
+}
+
+
 
 
 

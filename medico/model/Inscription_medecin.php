@@ -1,8 +1,9 @@
 <?php
+
+
 require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/traitement/traitement_formulaire_inscription.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/model/inscription.php");
-class inscription {
-  public $id,$nom,$prenom,$mail,$mutuelle,$admin,$mdp,$adresse;
+class Insert_medecin{
+  public $id,$nom,$prenom,$departement,$specialite,$mail,$mdp;
 
 
     /**
@@ -91,39 +92,22 @@ class inscription {
         return $this;
     }
 
-    public function getMutuelle()
+    public function getDepartement()
     {
-        return $this->mutuelle;
+        return $this->departement;
     }
 
     /**
      * @param string $adresse
      * @return Utilisateur
      */
-    public function setMutuelle($mutuelle)
+    public function setDepartement($departement)
     {
-        $this->mutuelle = $mutuelle;
+        $this->departement = $departement;
         return $this;
     }
     /**
-     * @return string
-     */
-    public function getAdresse()
-    {
-        return $this->adresse;
-    }
 
-    /**
-     * @param string $adresse
-     * @return Utilisateur
-     */
-    public function setAdresse($adresse)
-    {
-        $this->adresse = $adresse;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getMdp()
@@ -140,25 +124,21 @@ class inscription {
         $this->mdp = $mdp;
         return $this;
     }
-
     /**
-     * @return string
+     * @return string $specialite
      */
-    public function getAdmin()
+    public function getSpecialite()
     {
-        return $this->admin;
+        return $this->specialite;
     }
 
     /**
-     * @param string $admin
-     * @return Utilisateur
+     * @param int $id
      */
-    public function setAdmin($admin)
+    public function setSpecialite($specialite)
     {
-        $this->admin = $admin;
-        return $this;
+        $this->specialite = $specialite;
     }
-
     /**
      * @return int
      */
@@ -166,6 +146,7 @@ class inscription {
     {
         return $this->id;
     }
+
     /**
      * @param int $id
      */
@@ -177,6 +158,5 @@ class inscription {
 
 
 }
-
 
  ?>

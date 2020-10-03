@@ -5,20 +5,24 @@
 <title>HSP | Acceuil</title>
 <body>
     <!--::header part start::-->
-  <?php include "../include/header.php"; ?>
+
     <!-- Header part end-->
 
     <!-- banner part start-->
-    <section class="banner_part">
+    <section <?php require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
+$manager = new Manager();
+    echo $manager->index_bg(); ?> class="banner_part">
+      <?php include "../include/header.php"; ?>
       <div style="height:300px;">
 
       </div>
       <a href="prise_rdv.php"style="width:300px;height:200px;font-size:20px;margin-left:500px;"type="button" class="btn btn-success">Prise de Rendez-vous </a>
+
     </section>
     <!-- banner part start-->
 
     <!-- about us part start-->
-    <section class="about_us padding_top">
+    <!--  <section class="about_us padding_top">
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-md-6 col-lg-6">
@@ -53,9 +57,8 @@
             </div>
         </div>
     </section>
-    <!-- about us part end-->
 
-    <!-- feature_part start-->
+
     <section class="feature_part">
         <div class="container">
             <div class="row justify-content-center">
@@ -110,9 +113,7 @@
             </div>
         </div>
     </section>
-    <!-- feature_part start-->
 
-    <!-- our depertment part start-->
     <section class="our_depertment section_padding">
         <div class="container">
             <div class="row justify-content-center text-center">
@@ -167,9 +168,7 @@
             </div>
         </div>
     </section>
-    <!-- our depertment part end-->
 
-    <!--::doctor_part start::-->
     <section class="doctor_part section_padding">
         <div class="container">
             <div class="row justify-content-center">
@@ -268,9 +267,7 @@
             </div>
         </div>
     </section>
-    <!--::doctor_part end::-->
 
-    <!--::regervation_part start::-->
     <section class="regervation_part section_padding">
         <div class="container">
             <div class="row align-items-center regervation_content">
@@ -327,9 +324,7 @@
             </div>
         </div>
     </section>
-    <!--::regervation_part end::-->
 
-    <!--::blog_part start::-->
     <section class="blog_part section_padding">
         <div class="container">
             <div class="row justify-content-center">
@@ -377,7 +372,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
     <!--::blog_part end::-->
 
     <!-- footer part start-->
