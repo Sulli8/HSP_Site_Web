@@ -3,6 +3,7 @@
 
   <?php include "../include/import.php"; ?>
 <title>HSP | Acceuil</title>
+  <link rel="stylesheet" type="text/css" href="../css/bouton_prise_rdv.css">
 <body>
     <!--::header part start::-->
 
@@ -16,8 +17,28 @@ $manager = new Manager();
       <div style="height:300px;">
 
       </div>
-      <a href="prise_rdv.php"style="width:300px;height:200px;font-size:20px;margin-left:500px;"type="button" class="btn btn-success">Prise de Rendez-vous </a>
+<div class="block">
+  <p class="conter">Profil Administratif</p>
+      <div class="middle">
+      <a href="prise_rdv.php" type="button" class="btn1 btn2 ">Prise de Rendez-vous </a>
 
+
+</div>
+<div class="middle2">
+      <a href="visibilite_rdv.php" type="button" class="btn1 btn2">Visibilité des Rendez-vous </a>
+
+</div>
+
+<div class="middle3">
+      <a href="visibilite_rdv.php" type="button" class="btn1 btn2">Exportation des dossier d'admission </a>
+
+</div>
+
+<div class="middle4">
+      <a href="visibilite_rdv.php" type="button" class="btn1 btn2">Exportation des données des rendez-vous </a>
+
+</div>
+</div>
     </section>
     <!-- banner part start-->
 
