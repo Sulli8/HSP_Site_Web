@@ -6,7 +6,11 @@ include "../include/import.php";
 include "../include/header.php";
  ?>
 
- <div style="margin-left:200px;margin-top:100px;">
-<?php $manager->prise_rdv(); ?>
+ <link rel='stylesheet' type='text/css' href='prise_rdv.css'>
 
-</div>
+<?php if(isset($_SESSION["mail"])){ ?>
+
+<?php $manager->prise_rdv(); } else{ ?>
+
+<!-- POP UP -->
+<?php } ?>

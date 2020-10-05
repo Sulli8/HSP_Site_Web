@@ -1,9 +1,8 @@
 <?php
-
-
 require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/traitement/traitement_formulaire_inscription.php");
-class Insert_medecin{
-  public $id,$nom,$prenom,$departement,$specialite,$mail,$mdp;
+require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/model/user.php");
+class user {
+  private $id,$nom,$prenom,$mail,$mutuelle,$admin,$mdp,$adresse;
 
 
     /**
@@ -92,22 +91,39 @@ class Insert_medecin{
         return $this;
     }
 
-    public function getDepartement()
+    public function getMutuelle()
     {
-        return $this->departement;
+        return $this->mutuelle;
     }
 
     /**
      * @param string $adresse
      * @return Utilisateur
      */
-    public function setDepartement($departement)
+    public function setMutuelle($mutuelle)
     {
-        $this->departement = $departement;
+        $this->mutuelle = $mutuelle;
         return $this;
     }
     /**
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
 
+    /**
+     * @param string $adresse
+     * @return Utilisateur
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getMdp()
@@ -124,21 +140,25 @@ class Insert_medecin{
         $this->mdp = $mdp;
         return $this;
     }
+
     /**
-     * @return string $specialite
+     * @return string
      */
-    public function getSpecialite()
+    public function getAdmin()
     {
-        return $this->specialite;
+        return $this->admin;
     }
 
     /**
-     * @param int $id
+     * @param string $admin
+     * @return Utilisateur
      */
-    public function setSpecialite($specialite)
+    public function setAdmin($admin)
     {
-        $this->specialite = $specialite;
+        $this->admin = $admin;
+        return $this;
     }
+
     /**
      * @return int
      */
@@ -146,7 +166,6 @@ class Insert_medecin{
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      */
@@ -158,5 +177,10 @@ class Insert_medecin{
 
 
 }
+
+
+
+
+
 
  ?>

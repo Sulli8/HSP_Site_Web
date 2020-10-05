@@ -5,7 +5,7 @@ class manager {
   function connexion_bd(){
     try
         {
-            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','root');
+            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','');
         }
         catch(Exception $e)
         {
@@ -16,7 +16,7 @@ class manager {
   }
 
 
-  function inscription(Inscription $inscription){
+  function inscription(User $inscription){
     $db = $this->connexion_bd();
     $request = $db->prepare('INSERT INTO user(nom, prenom, mail, mutuelle ,admin, mdp,adresse) VALUES(:nom, :prenom, :mail, :mutuelle ,:admin, :mdp,:adresse)');
                $insert_utilisateur = $request->execute(array(
@@ -33,7 +33,7 @@ class manager {
     }
 }
 
-function inscription_medecin(Insert_medecin $medecin){
+function inscription_medecin(Medecin $medecin){
   $db = $this->connexion_bd();
   $request = $db->prepare('INSERT INTO medecin(nom, prenom, departement, specialite, mail,mdp) VALUES(:nom, :prenom, :departement, :specialite ,:mail, :mdp)');
              $insert_medecin = $request->execute(array(
@@ -44,6 +44,8 @@ function inscription_medecin(Insert_medecin $medecin){
                  'mail' => $medecin->getMail(),
                  'mdp' => $medecin->getMdp()
                ));
+               $tableau = $request->fetch();
+               var_dump($tableau);
 
                if($insert_medecin == true){
                  header("Location:../view/index.php");
@@ -168,7 +170,8 @@ function prise_rdv(){
   for ($i=0; $i < count($tableau)  ; $i++) {
     $val = serialize($tableau[$i][0]);
     $update_val = substr($val, 6,-2);
-      echo "<br />"."<a type='submit' class='btn btn-primary' href='../traitement/traitement_affiche_medecin.php?affiche=$update_val' class='btn btn-primary'>".$tableau[$i][0]."</a>";
+
+    echo "<br />"."<a type='submit' class='bloc'  href='../traitement/traitement_affiche_medecin.php?affiche=$update_val'>".$tableau[$i][0]."</a>";
   }
 
 }
@@ -180,7 +183,7 @@ function affiche_medecin($specialite){
   $tableau = $request->fetch();
 
   $_SESSION["nom_medecin"] = $tableau['nom'];
-  $_SESSION["medecin_email"] = $tableau["email"];
+  $_SESSION["medecin_email"] = $tableau["mail"];
   $_SESSION["id_medecin"] = $tableau["id"];
   $rdv = "<a href='../view/formulaire/formulaire_rdv.php' class='btn btn-success'> Prendre un rdv avec ce médecin ?</a>";
   echo $rdv;
