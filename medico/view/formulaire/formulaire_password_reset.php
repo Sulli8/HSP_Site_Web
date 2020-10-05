@@ -20,7 +20,7 @@
 
 
 
-      <input type="submit" name="submit" value="Sent password reset mail" class="btn btn-primary"></input>
+      <input type="submit" name="submit" value="Envoyer le lien de récupération" class="btn btn-primary"></input>
 
       <a class="return-home" href="../index.php">Retour à l'accueil</a>
 
