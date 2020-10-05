@@ -190,11 +190,11 @@
                             <h2>Contact</h2>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <input type="email" class="form-control" id="inputEmail4" placeholder="Name">
+                                    <input type="email" class="form-control" id="inputEmail4" placeholder="Nom">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <input type="password" class="form-control" id="inputPassword4"
-                                        placeholder="Email address">
+                                        placeholder="Adresse mail">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <select class="form-control" id="Select">
