@@ -171,7 +171,7 @@ function prise_rdv(){
     $val = serialize($tableau[$i][0]);
     $update_val = substr($val, 6,-2);
 
-    echo "<br />"."<a type='submit' class='bloc'  href='../traitement/traitement_affiche_medecin.php?affiche=$update_val'>".$tableau[$i][0]."</a>";
+    echo "<br />"."<a type='submit' class='bloc' href='../traitement/traitement_affiche_medecin.php?affiche=$update_val'>".$tableau[$i][0]."</a>";
   }
 
 }
