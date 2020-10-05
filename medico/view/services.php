@@ -30,7 +30,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-8">
                     <div class="section_tittle text-center">
-                        <h2>Our services</h2>
+                        <h2>Nos services</h2>
                     </div>
                 </div>
             </div>
@@ -39,17 +39,15 @@
                     <div class="single_feature">
                         <div class="single_feature_part">
                             <span class="single_feature_icon"><img src="img/icon/feature_1.svg" alt=""></span>
-                            <h4>Better Future</h4>
-                            <p>Darkness multiply rule Which from without life creature blessed
-                                give moveth moveth seas make day which divided our have.</p>
+                            <h4>Prise de RDV</h4>
+                            <p>Prenez rendez-vous avec nos medecin, choix de date et de l'heure.</p>
                         </div>
                     </div>
                     <div class="single_feature">
                         <div class="single_feature_part">
                             <span class="single_feature_icon"><img src="img/icon/feature_2.svg" alt=""></span>
-                            <h4>Better Future</h4>
-                            <p>Darkness multiply rule Which from without life creature blessed
-                                give moveth moveth seas make day which divided our have.</p>
+                            <h4>Date déjà Occuper</h4>
+                            <p>Visiualisez les rendez-vous déjà occuper afin de vous organiser pour choisir votre date.</p>
                         </div>
                     </div>
                 </div>
@@ -62,17 +60,16 @@
                     <div class="single_feature">
                         <div class="single_feature_part">
                             <span class="single_feature_icon"><img src="img/icon/feature_1.svg" alt=""></span>
-                            <h4>Better Future</h4>
-                            <p>Darkness multiply rule Which from without life creature blessed
-                                give moveth moveth seas make day which divided our have.</p>
+                            <h4>Un contact permanent</h4>
+                            <p>Vous pouvez nous contacter quand vous le voulez, une équipe est mobiliser pour
+                              répondre à vos questions.</p>
                         </div>
                     </div>
                     <div class="single_feature">
                         <div class="single_feature_part">
                             <span class="single_feature_icon"><img src="img/icon/feature_2.svg" alt=""></span>
-                            <h4>Better Future</h4>
-                            <p>Darkness multiply rule Which from without life creature blessed
-                                give moveth moveth seas make day which divided our have.</p>
+                            <h4>Médecin de différent domaines</h4>
+                            <p> différents choix de catégoirie de nos médecins  .</p>
                         </div>
                     </div>
                 </div>
@@ -87,8 +84,9 @@
             <div class="row justify-content-center">
                 <div class="col-xl-8">
                     <div class="section_tittle text-center">
-                        <h2> Experienced Doctors</h2>
-                        <p>Face replenish sea good winged bearing years air divide wasHave night male also</p>
+                        <h2> Des médecins experimenter</h2>
+                        <p>Des spécialiste dans chaque domaines pour vous aider, votre sécuriter et bien être est
+                          notre priorité</p>
                     </div>
                 </div>
             </div>
@@ -96,7 +94,7 @@
                 <div class="col-sm-6 col-lg-3">
                     <div class="single_blog_item">
                         <div class="single_blog_img">
-                            <img src="img/doctor/doctor_1.png" alt="doctor">
+                            <img src="img/doctor/doctor_1.png" alt="docteur">
                             <div class="social_icon">
                                 <ul>
                                     <li><a href="#"> <i class="ti-facebook"></i> </a></li>
@@ -108,8 +106,8 @@
                         </div>
                         <div class="single_text">
                             <div class="single_blog_text">
-                                <h3>DR Adam Billiard</h3>
-                                <p>Heart specialist</p>
+                                <h3>DR Sextius</h3>
+                                <p>rhumatologue</p>
                             </div>
                         </div>
                     </div>
@@ -117,7 +115,7 @@
                 <div class="col-sm-6 col-lg-3">
                     <div class="single_blog_item">
                         <div class="single_blog_img">
-                            <img src="img/doctor/doctor_4.png" alt="doctor">
+                            <img src="img/doctor/doctor_4.png" alt="docteur">
                             <div class="social_icon">
                                 <ul>
                                     <li><a href="#"> <i class="ti-facebook"></i> </a></li>
@@ -129,8 +127,8 @@
                         </div>
                         <div class="single_text">
                             <div class="single_blog_text">
-                                <h3>DR Adam Billiard</h3>
-                                <p>Medicine specialist</p>
+                                <h3>DR Vasone</h3>
+                                <p>Neurologue</p>
                             </div>
                         </div>
                     </div>
@@ -138,7 +136,7 @@
                 <div class="col-sm-6 col-lg-3">
                     <div class="single_blog_item">
                         <div class="single_blog_img">
-                            <img src="img/doctor/doctor_2.png" alt="doctor">
+                            <img src="img/doctor/doctor_2.png" alt="docteur">
                             <div class="social_icon">
                                 <ul>
                                     <li><a href="#"> <i class="ti-facebook"></i> </a></li>
@@ -150,8 +148,8 @@
                         </div>
                         <div class="single_text">
                             <div class="single_blog_text">
-                                <h3>DR Fred Macyard</h3>
-                                <p>CHeart specialist</p>
+                                <h3>DR Bernard</h3>
+                                <p>Dermatologue</p>
                             </div>
                         </div>
                     </div>
@@ -159,7 +157,7 @@
                 <div class="col-sm-6 col-lg-3">
                     <div class="single_blog_item">
                         <div class="single_blog_img">
-                            <img src="img/doctor/doctor_3.png" alt="doctor">
+                            <img src="img/doctor/doctor_3.png" alt="docteur">
                             <div class="social_icon">
                                 <ul>
                                     <li><a href="#"> <i class="ti-facebook"></i> </a></li>
@@ -171,8 +169,8 @@
                         </div>
                         <div class="single_text">
                             <div class="single_blog_text">
-                                <h3>DR Justin Stuard</h3>
-                                <p>Heart specialist</p>
+                                <h3>DR Dauwe</h3>
+                                <p>Cardiologue</p>
                             </div>
                         </div>
                     </div>
@@ -189,7 +187,7 @@
                 <div class="col-lg-7">
                     <div class="regervation_part_iner">
                         <form>
-                            <h2>Make an Appointment</h2>
+                            <h2>Contact</h2>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <input type="email" class="form-control" id="inputEmail4" placeholder="Name">
@@ -200,33 +198,31 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <select class="form-control" id="Select">
-                                        <option value="1" selected>Select service</option>
-                                        <option value="2">Name of service</option>
-                                        <option value="3">Name of service</option>
-                                        <option value="4">Name of service</option>
-                                        <option value="5">Name of service</option>
+                                        <option value="1" selected>Selection du service</option>
+                                        <option value="2">rhumatologue</option>
+                                        <option value="3">Neurologue</option>
+                                        <option value="4">Dermatologue</option>
+                                        <option value="5">Cardiologue</option>
                                     </select>
                                 </div>
                                 <div class="form-group time_icon col-md-6">
                                     <select class="form-control" id="Select2">
-                                        <option value="" selected>Time</option>
-                                        <option value="1">8 AM TO 10AM</option>
-                                        <option value="1">10 AM TO 12PM</option>
-                                        <option value="1">12PM TO 2PM</option>
-                                        <option value="1">2PM TO 4PM</option>
-                                        <option value="1">4PM TO 6PM</option>
-                                        <option value="1">6PM TO 8PM</option>
-                                        <option value="1">4PM TO 10PM</option>
-                                        <option value="1">10PM TO 12PM</option>
+                                        <option value="" selected>Horaires</option>
+                                        <option value="1">8H00 A 10H00</option>
+                                        <option value="1">10H00 A 12H00</option>
+                                        <option value="1">12H00 A 14H00</option>
+                                        <option value="1">14H00 A 16H00</option>
+                                        <option value="1">16H00 A 18H00</option>
+                                        <option value="1">18H00 A 20H00</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <textarea class="form-control" id="Textarea" rows="4"
-                                        placeholder="Your Note "></textarea>
+                                        placeholder="Votre message "></textarea>
                                 </div>
                             </div>
                             <div class="regerv_btn">
-                                <a href="#" class="btn_2">Make an Appointment</a>
+                                <a href="#" class="btn_2">Envoyer</a>
                             </div>
                         </form>
                     </div>
