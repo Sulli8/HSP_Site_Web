@@ -1,0 +1,682 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.header {
+    background: #0596de;
+    height: auto;
+}
+#connection{
+  color:#fff;
+}
+li small{
+  color:white;
+}
+.container {
+    padding-right: 28px;
+    padding-left: 28px;
+    padding-top: 18px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    width: auto;
+    margin: 0 25px;
+}
+
+.navbar ul {
+    display: inline-flex;
+    justify-content: flex-end;
+}
+
+.navbar #logo a {
+    text-decoration: none;
+    margin-left: 25px;
+    color: white;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+li#button-pro {
+    color: #0596de;
+}
+
+li#button-pro a {
+    text-decoration: none;
+    border: 1px solid white;
+    background: white;
+    color: #0596de;
+    padding: 8px;
+    border-radius: 6px;
+    letter-spacing: -1px;
+    font-weight: 600;
+}
+
+li#our-services a {
+    text-decoration: none;
+    color: white;
+}
+
+li#our-services i {
+    color: white;
+}
+
+li#connection {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+
+li a {
+  text-decoration: none;
+  color: white;
+}
+
+li#connection i {
+    color: white;
+}
+
+
+}
+li small {
+    margin-left: 18px;
+}
+
+.menu-toggler {
+    background: none;
+    width: 30px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    z-index: 999;
+    display: none;
+}
+
+.menu-toggler span {
+    display: block;
+    height: 3px;
+    background-color: white;
+    margin: 6px 0;
+    position: relative;
+    transition: .3s linear;
+}
+
+.menu-toggler.active span {
+    background: black;
+}
+
+.menu-toggler.active {
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin-top: 18px;
+    margin-right: 28px;
+}
+
+.small-screen-links {
+    position: fixed;
+        border: 1px solid #171c24;
+        z-index: 980;
+        height: 100vh;
+        width: 80%;
+        background-color: #0596de;
+        text-align: center;
+        top: 0;
+        padding: 24px;
+        max-width: 400px;
+        transition: .3s linear;
+        right: -100%;
+}
+
+.small-screen-links li {
+    list-style: none;
+}
+
+.small-screen-links li {
+    margin-top: 18px;
+}
+
+.small-screen-links li#button-pro {
+    margin-top: 80px;
+}
+
+.small-screen-links li#our-services {
+    margin-top: 40px;
+}
+
+.small-screen-links li#connection {
+    margin-top: 40px;
+}
+
+.small-screen-links.active {
+    right: 0;
+}
+
+/** ******************************* SECTION HEADER  ******************************* **/
+
+.search-section {
+    display: flex;
+    margin-top: 80px;
+}
+
+.search-section .column-one {
+    margin-left: 120px;
+    flex-basis: 65%;
+    margin-bottom: 18px;
+}
+
+.search-section .column-one h2 {
+    color: white;
+    font-size: 32px;
+}
+
+.search-section .column-one input {
+    padding: 8px;
+    border: 1px solid white;
+    border-radius: 6px;
+}
+
+.search-section .column-one input:focus {
+    outline: none;
+}
+
+.search-section .column-one input#search {
+    width: 350px;
+    margin-top: 18px;
+}
+
+.search-section .column-one select {
+    margin-top: 18px;
+    padding: 8px;
+    width: 350px;
+    border: 1px solid white;
+    border-radius: 6px;
+}
+
+.search-section .column-one select:focus {
+    outline: none;
+}
+
+.search-section .column-one input[type=submit] {
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(180deg, #ffc164 0%, #f59300 46.12%, #f59300 97.02%);
+    border: linear-gradient(180deg, #ffc164 0%, #f59300 46.12%, #f59300 97.02%);
+    width: 120px;
+    padding: 8px;
+}
+
+.search-section .column-two img {
+    width: 100%;
+    height: 100%;
+}
+
+.search-section .column-two {
+    flex-basis: 45%;
+}
+
+/** ******************************* EXPLAIN  ******************************* **/
+
+#title-of-explain-div {
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+.explain {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin-bottom: 80px;
+}
+
+.images img {
+    width: 200px;
+    height: 200px;
+}
+
+.explain .first-div {
+    text-align: center;
+}
+
+.explain .second-div {
+    text-align: center;
+}
+
+.explain .third-div {
+    text-align: center;
+}
+
+/** ******************************* SERVICES  ******************************* **/
+
+#title-of-services-div {
+    text-align: center;
+    color: white;
+    letter-spacing: 2px;
+}
+
+.services {
+    background: #0596de ;
+    margin-bottom: 80px;
+    padding: 24px;
+}
+
+.categories {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding: 24px;
+    margin-top: 40px;
+}
+
+.categorie-one img{
+    width: 150px;
+    height: 150px;
+}
+
+.categorie-one  {
+    text-align: center;
+}
+
+.categorie-two {
+    text-align: center;
+}
+
+.categorie-three {
+    text-align: center;
+}
+
+.categorie-four {
+    text-align: center;
+}
+
+.categorie-two img{
+    width: 150px;
+    height: 150px;
+}
+
+.categorie-three img{
+    width: 150px;
+    height: 150px;
+}
+
+.categorie-four img{
+    width: 150px;
+    height: 150px;
+}
+
+
+/** ******************************* POP-UP CONNECTION ******************************* **/
+
+.pop-up-connection {
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+    height: 400px;
+    border: 3px solid black;
+    border-radius: 6px;
+    background:white;
+    padding: 18px;
+    margin-top: 80px;
+    transition: .3s linear;
+    display: none;
+}
+
+.pop-up-connection .close {
+    text-align: center;
+}
+
+.pop-up-connection .close span {
+    border: 1px solid red;
+    width: 60px;
+    height: 60px;
+    padding: 8px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.pop-up-connection h2 {
+    text-align: center;
+    letter-spacing: 2px;
+    margin-top: 18px;
+}
+
+.pop-up-connection form#connexion {
+    display: flex;
+    flex-direction: column;
+    margin-top: 28px;
+}
+
+.pop-up-connection input {
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 6px;
+    margin-top: 8px;
+}
+
+.pop-up-connection input:focus {
+    outline: none;
+}
+
+.pop-up-connection input[type=submit] {
+    cursor: pointer;
+    border: none;
+    background: #fdc400;
+    margin-bottom: 18px;
+    margin-top: 32px;
+    text-transform: uppercase;
+}
+
+.pop-up-connection a {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.pop-up-connection hr {
+    width: 180px;
+    margin-top: 4px;
+}
+
+.pop-up-connection .new {
+    margin-top: 24px;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 8px;
+}
+
+.pop-up-connection .new {
+    text-align: center;
+}
+
+.pop-up-connection .new p#p-c-inscription {
+    color: #0596de;
+    cursor: pointer;
+}
+
+/** ******************************* POP-UP INSCRIPTION ******************************* **/
+
+.pop-up-inscription {
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+    height: 540px;
+    border: 3px solid black;
+    border-radius: 6px;
+    background:white;
+    padding: 18px;
+    margin-top: 80px;
+    transition: .3s linear;
+    display: none;
+}
+
+.pop-up-inscription .close-inscription {
+    text-align: center;
+}
+
+.pop-up-inscription .close-inscription span {
+    border: 1px solid red;
+    width: 60px;
+    height: 60px;
+    padding: 8px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.pop-up-inscription {
+    text-align: center;
+    letter-spacing: 2px;
+    margin-top: 18px;
+}
+
+.pop-up-inscription h2 {
+    text-align: center;
+    letter-spacing: 2px;
+    margin-top: 18px;
+}
+
+.pop-up-inscription form#inscription {
+    display: flex;
+    flex-direction: column;
+    margin-top: 28px;
+}
+
+.pop-up-inscription input {
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 6px;
+    margin-top: 8px;
+}
+
+.pop-up-inscription input:focus {
+    outline: none;
+}
+
+.pop-up-inscription input[type=submit] {
+    cursor: pointer;
+    border: none;
+    background: #fdc400;
+    margin-bottom: 18px;
+    margin-top: 32px;
+    text-transform: uppercase;
+}
+
+.pop-up-inscription .not-new {
+    margin-top: 24px;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 8px;
+    letter-spacing: 0px;
+}
+
+.pop-up-inscription .not-new {
+    text-align: center;
+}
+
+.pop-up-inscription .not-new p#p-i-connexion {
+    color: #0596de;
+    cursor: pointer;
+}
+
+
+/** ******************************* OVERLAY ******************************* **/
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 900;
+    cursor: pointer;
+}
+
+/** ******************************* VISIO ******************************* **/
+
+.small-container {
+    padding-right: 120px;
+    padding-left: 120px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.visio {
+    margin-bottom: 80px;
+    text-align: center;
+    height: 314px;
+    border-radius: 6px;
+    background: url(visio.png) no-repeat;
+    background-color: #0596de;
+    padding-top: 18px;
+}
+
+.visio h4 {
+    font-size: 22px;
+    margin-bottom: 18px;
+    text-align: end;
+    margin-right: 18px;
+    color: white;
+}
+
+.visio p {
+    line-height: 22px;
+    margin-bottom: 18px;
+    text-align: end;
+    margin-right: 18px;
+    color: white;
+}
+
+.visio p#text-absolute {
+    position: absolute;
+    background: #f99a0d;
+    padding: 4px;
+    border-radius: 6px;
+    width: 93px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    margin-top: -32px;
+}
+
+/** ******************************* FOOTER ******************************* **/
+
+/** ******************************* @MEDIA ******************************* **/
+
+@media screen and (max-width: 1100px) {
+    .search-section .column-two {
+        display: none;
+    }
+
+    .search-section .column-one {
+        flex-basis: 100%;
+    }
+
+    #links {
+        display: none;
+    }
+
+    .menu-toggler {
+        display: block;
+    }
+
+    .menu-toggler.active span:nth-child(1) {
+        transform: rotate(-45deg);
+        top: 4px;
+    }
+
+    .menu-toggler.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggler.active span:nth-child(3) {
+        transform: rotate(45deg);
+        bottom: 14px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .categorie-one {
+        margin-top: 18px;
+    }
+
+    .categorie-two {
+        margin-top: 18px;
+    }
+
+    .categorie-three {
+        margin-top: 18px;
+    }
+
+    .categorie-four {
+        margin-top: 18px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .navbar #logo a {
+        margin-left: 0px;
+    }
+
+    .search-section .column-one {
+        margin-left: 0px;
+    }
+
+    .search-section .column-one h2 {
+        color: white;
+        font-size: 18px;
+    }
+
+    .search-section .column-one input#search {
+        width: 250px;
+    }
+
+    .search-section .column-one select {
+        width: 250px;
+    }
+
+    .search-section .column-one input[type=submit] {
+        margin-top: 8px;
+    }
+
+    .small-container {
+        padding-right: 25px;
+        padding-left: 25px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .visio h4 {
+        color: black;
+    }
+
+    .visio p {
+        color: black;
+    }
+
+    li#button-pro a {
+        background: none;
+        color: white;
+        border: none;
+    }
+
+}

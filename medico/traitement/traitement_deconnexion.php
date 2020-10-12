@@ -1,5 +1,5 @@
 <?php
 session_start();
 session_destroy();
-header("Location:../view/index.php");
+header("Location:../view/nav_hsp/index.php");
  ?>

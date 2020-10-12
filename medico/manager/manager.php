@@ -28,7 +28,7 @@ class manager {
                    'mdp' => $inscription->getMdp(),
                    'adresse'=>$inscription->getAdresse()));
     if($request == true){
-      header('Location:../view/index.php');
+      header('Location:../view/nav_hsp/index.php');
 
     }
 }
@@ -48,7 +48,7 @@ function inscription_medecin(Medecin $medecin){
                var_dump($tableau);
 
                if($insert_medecin == true){
-                 header("Location:../view/index.php");
+                  header('Location:../view/nav_hsp/index.php');
                }
 
 }
@@ -73,13 +73,13 @@ function inscription_medecin(Medecin $medecin){
            echo $_SESSION['admin'];
          }
          //faire apparaitre pop up user
-         header('Location: ../view/index.php');
+             header('Location:../view/nav_hsp/index.php');
 
 
        }
        else
        {
-           header('Location: ../view/formulaire/formulaire_connexion.php');
+               header('Location:../view/nav_hsp/index.php');
        }
     }
 
@@ -150,7 +150,7 @@ function update_user($New_val,$val,$id){
   $request = $this->connexion_bd()->prepare($updating);
   $update_tab = $request->execute(array(
     $val => $New_val));
-    header('Location: ../view/index.php');
+        header('Location:../view/nav_hsp/index.php');
 
 }
 function barre_de_recherche($recherche){
@@ -167,12 +167,25 @@ function prise_rdv(){
   $select = "SELECT specialite from medecin";
   $request = $db->query($select);
   $tableau = $request->fetchall();
-  for ($i=0; $i < count($tableau)  ; $i++) {
-    $val = serialize($tableau[$i][0]);
-    $update_val = substr($val, 6,-2);
+//  $tab = array_unique($tableau[0]);
 
-    echo "<br />"."<a type='submit' class='bloc' href='../traitement/traitement_affiche_medecin.php?affiche=$update_val'>".$tableau[$i][0]."</a>";
-  }
+  $new_tab = [];
+  for ($i=0; $i < count($tableau) ; $i++) {
+    array_push($new_tab,$tableau[$i][0]);
+  //  $val = serialize($tableau[$i][0]);
+    //$update_val = substr($val, 6,-2);
+  //  echo "<a type='submit' class='div' href='../traitement/traitement_affiche_medecin.php?affiche=$update_val'>".$tab[$i][0]."<p class='croix'>+</p></a>";
+}
+$tab = array_unique($new_tab);
+$specialite = [];
+foreach ($tab as $key => $value) {
+  //Specialité des medecins
+  array_push($specialite,$value);
+}
+
+for ($i=0; $i <count($specialite) ; $i++) {
+  echo '<option value="">'.$specialite[$i].'</option>';
+}
 
 }
 
@@ -190,8 +203,6 @@ function affiche_medecin($specialite){
   for ($i=1; $i < 6 ; $i++) {
   echo "</br>".$tableau[$i];
 }
-
-
 
 }
 function recapitulatif_medecin(){
@@ -212,7 +223,7 @@ function gestion_rdv($id_medecin,$id_user,$date,$heure,$nom_medecin,$nom_patient
                ));
   $tableau = $request->fetch();
   if(isset($tableau)){
-    header("Location:../view/index.php");
+        header('Location:../view/nav_hsp/index.php');
   }
 
 }
