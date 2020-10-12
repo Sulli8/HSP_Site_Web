@@ -24,8 +24,13 @@
                       <ul>
                           <li id="button-pro"><a href="">Vous êtes professionnel de santé ?</a></li>
                           <li id="our-services"><i class="fas fa-list-ul"></i> <a href="#title-of-services-div">Nos services</a></li>
-                          <li id="deconnection"><i class="fas fa-user"></i><a href="../../traitement/traitement_deconnexion.php"> Se Déconnecter </a><br> <a href="../view/prise_rdv.php">Gérer mes RDV</a></li>
-
+                          <li id="deconnection"><i class="fas fa-user"></i><a href="../../traitement/traitement_deconnexion.php"> Se Déconnecter </a></li>
+                          <li>
+                             <a href="../prise_rdv.php">Prendre rdv</a>
+                          </li>
+<li>
+   <a href="../../traitement/traitement_affiche_rdv.php">Gérer mes RDV</a>
+</li>
                       </ul>
                   </div>
             <?php } ?>
@@ -42,8 +47,8 @@
 
                 <div class="column-one">
                     <h2>Réservez une consultation <br> chez un professionnel de santé</h2>
-                    <form action="">
-                        <input type="search" placeholder="Chercher un medecin" id="search">
+                    <form action="../../traitement/traitement_recherche_medecin.php" method="post">
+                        <input type="search"name="recherche" placeholder="Chercher un medecin" id="search">
                         <input type="submit" value="Rechercher">
                     </form>
                     <form action="../traitement/traitement_recherche_specialite.php" method="post">
@@ -52,7 +57,7 @@
                             <?php require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
                             $manager = new Manager();
 
-                            if($_SESSION['mail']){
+                            if(isset($_SESSION['mail'])){
                                 $manager->prise_rdv();
                             }else{
                               echo "WARNING! You must be logged in";

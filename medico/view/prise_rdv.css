@@ -10,50 +10,10 @@ body{
   height:100%;
 }
 
-table{
-  border-collapse: collapse;
-}
-td, th{
-  border:1px solid black;
-}
-.croix{
-    transition: 0.3s;
-  margin-top: 20px;
-  color:white;
-  font-size: 40px;
-  transform: rotateZ(45deg);
-}
-.back{
-  background-image: url("../img/prise_rdv.jpeg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 
-
-}
-.div{
-    color:white;
-    padding: 20px 30px;
-    background-color:blue;
-    width:200px;
-    height:200px;
-    border-radius: 25px;
-    margin: 1.5rem 1.5rem;
-    box-shadow: 15px 15px #1e3799;
-
-
-}
-
-.croix:hover{
-  transition: 0.3s;
-  transform: rotateZ(90deg);
-}
-.div:hover{
-  transform:translateY(3px);
-  box-shadow: 15px 12px #1e3799;
-
-}
-.div:active{
-    transform: translateY(7px);
-    box-shadow: 15px 6px #1e3799;
+a{
+  background-color:green;
+  width:200px;
+  height:50px;
+  
 }

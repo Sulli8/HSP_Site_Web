@@ -157,11 +157,31 @@ function barre_de_recherche($recherche){
     $db = $this->connexion_bd();
     $search = "SELECT * from medecin Where nom Like '%$recherche'";
     $request = $db->query($search);
-    $tableau = $request->fetch();
-    for ($i=1; $i < 6 ; $i++) {
-    echo "<button type='submit' class='btn btn-primary'>".$tableau[$i]."</button>";
+    $tableau = $request->fetchall();
+    $index_key = ['nom','prenom','mail','departement','specialite'];
+    session_start();
+    if(isset($tableau[0])){
+      foreach (array_unique($tableau[0]) as $key => $value) {
+        if(strlen($_SESSION['admin']) != 0){
+            echo $key.": ".$value.'<br />';
+        } else {
+          for ($i=0; $i < count($index_key) ; $i++) {
+            if($key == $index_key[$i]){
+              echo $key.": ".$value.'<br />';
+            }
+          }
+
+        }
+      }
+    }else{
+      echo "WARNING: ce médecin n'existe pas";
     }
+
+
   }
+
+
+
 function prise_rdv(){
   $db = $this->connexion_bd();
   $select = "SELECT specialite from medecin";
@@ -184,7 +204,7 @@ foreach ($tab as $key => $value) {
 }
 
 for ($i=0; $i <count($specialite) ; $i++) {
-  echo '<option value="">'.$specialite[$i].'</option>';
+  echo '<option value='.$specialite[$i].'>'.$specialite[$i].'</option>';
 }
 
 }
@@ -204,10 +224,6 @@ function affiche_medecin($specialite){
   echo "</br>".$tableau[$i];
 }
 
-}
-function recapitulatif_medecin(){
-  session_start();
-  echo "Nom de votre médecin : ".$_SESSION["medecin"]."</br>"."Mail du médecin : ".$_SESSION["mededin_email"];
 }
 
 function gestion_rdv($id_medecin,$id_user,$date,$heure,$nom_medecin,$nom_patient){
@@ -238,10 +254,61 @@ function index_bg(){
     background-position: center;'";
 }
 
+function gerer_rdv(){
+  $db = $this->connexion_bd();
+  $affiche = "SELECT * from medecin Where specialite='$specialite'";
+  $request = $db->query($affiche);
+  $tableau = $request->fetch();
+
+  $_SESSION["nom_medecin"] = $tableau['nom'];
+  $_SESSION["medecin_email"] = $tableau["mail"];
+  $_SESSION["id_medecin"] = $tableau["id"];
+  $rdv = "<a href='../view/formulaire/formulaire_rdv.php' class='btn btn-success'> Prendre un rdv avec ce médecin ?</a>";
+  echo $rdv;
+  for ($i=1; $i < 6 ; $i++) {
+  echo "</br>".$tableau[$i];
+}
+//faire un bouton suprimer dans rdv
+
+
+}
+function affiche_rdv($id_medecin){
+  $db = $this->connexion_bd();
+  $affiche = "SELECT * from rdv Where id_medecin='$idmedecin'";
+  $request = $db->query($affiche);
+  $tableau = $request->fetch();
+  if(isset($tableau)){
+    for ($i=1; $i < count($tableau); $i++) {
+      echo "voici vos rdv";
+      echo "</br>".$tableau[$i];
+  }
+}
+  else{
+    echo "Warning vous n'avez pas de rdv";
+  }
 
 
 
+}
+function links_rdv(){
+  $db = $this->connexion_bd();
+  $affiche = "SELECT nom,prenom,departement,specialite,mail from medecin";
+  $request = $db->query($affiche);
+  $tableau = $request->fetchall();
+  $variable = 'Disponible';
+  $disponibilite = "<a href='href=''>.$variable.</a>"."<br/>";
 
+  for ($i=0; $i < count($tableau) ; $i++) {
+    foreach(array_unique($tableau[$i]) as $key => $value){
+      echo $value.'<br />';
+    }
+  }
+  $rdv = "SELECT COUNT(id_medecin) from rdv WHERE date >= '10:12:00'";
+  $meeting = $db->query($rdv);
+  $prise = $meeting->fetchall();
+  var_dump($prise);
+
+}
 
 }
 
