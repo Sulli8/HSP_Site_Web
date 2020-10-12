@@ -96,6 +96,10 @@ li#connection i {
     color: white;
 }
 
+li#deconnection i {
+  color: white;
+}
+
 
 }
 li small {
@@ -324,6 +328,10 @@ li small {
 .categorie-four img{
     width: 150px;
     height: 150px;
+}
+
+p#explain-categories {
+  color: white;
 }
 
 

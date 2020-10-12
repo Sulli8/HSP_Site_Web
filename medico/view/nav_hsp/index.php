@@ -122,7 +122,7 @@
 
             <div class="categorie-three">
                 <img src="psychiatrist.png" alt="">
-                <p id="explain-cateogires">Nos psychiatres sont là <br> pour diagnostic,
+                <p id="explain-categories">Nos psychiatres sont là <br> pour diagnostic,
                  prévention et <br> aux traitements des maladies mentales.</p>
             </div>
 
