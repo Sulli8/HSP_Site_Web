@@ -1,11 +1,14 @@
-<?php session_start(); ?>
+<?php session_start();
+require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
+$manager = new Manager;?>
+
     <div class="header">
 
         <div class="container">
 <?php if(empty($_SESSION)){ ?>
             <div class="navbar">
 
-                <div id="logo"><a href="index.php">HSP Sulli9</a></div>
+                <div id="logo"><a href="../view/">HSP Sulli9</a></div>
                 <div id="links">
                     <ul>
                         <li id="button-pro"><a href="">Vous êtes professionnel de santé ?</a></li>
@@ -24,12 +27,12 @@
                       <ul>
                           <li id="button-pro"><a href="">Vous êtes professionnel de santé ?</a></li>
                           <li id="our-services"><i class="fas fa-list-ul"></i> <a href="#title-of-services-div">Nos services</a></li>
-                          <li id="deconnection"><i class="fas fa-user"></i><a href="../../traitement/traitement_deconnexion.php"> Se Déconnecter </a></li>
+                          <li id="deconnection"><i class="fas fa-user"></i><a href="../traitement/traitement_deconnexion.php"> Se Déconnecter </a></li>
                           <li>
-                             <a href="../prise_rdv.php">Prendre rdv</a>
+                             <a href="../view/prise_rdv.php">Prendre rdv</a>
                           </li>
 <li>
-   <a href="../../traitement/traitement_affiche_rdv.php">Gérer mes RDV</a>
+   <a href="../traitement/traitement_affiche_rdv.php">Gérer mes RDV</a>
 </li>
                       </ul>
                   </div>
@@ -58,7 +61,7 @@
                             $manager = new Manager();
 
                             if(isset($_SESSION['mail'])){
-                                $manager->prise_rdv();
+                                $manager->specialite_medecin();
                             }else{
                               echo "WARNING! You must be logged in";
                             }
@@ -71,7 +74,7 @@
                 </div>
 
                 <div class="column-two">
-                    <img src="nav-bg.png" alt="">
+                    <img src="../img/nav-bg.png" alt="">
                 </div>
 
              </div>

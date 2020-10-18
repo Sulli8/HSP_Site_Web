@@ -66,6 +66,7 @@ function inscription_medecin(Medecin $medecin){
          $_SESSION['id'] = $response["id"];
          $_SESSION['nom'] = $response['nom'];
          $_SESSION['admin'] = "";
+         $_SESSION['rdv_indispo'] = "1";
 
          if(isset($response['admin'])){
            $_SESSION["admin"] = "root";
@@ -84,43 +85,6 @@ function inscription_medecin(Medecin $medecin){
     }
 
   }
-
-
-function include_forms(){
-  $script = '<head>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>medical</title>
-      <link rel="icon" href="img/favicon.png">
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="../../css/bootstrap.min.css">
-      <!-- animate CSS -->
-      <link rel="stylesheet" href="../../css/animate.css">
-      <!-- owl carousel CSS -->
-      <link rel="stylesheet" href="../../css/owl.carousel.min.css">
-      <!-- themify CSS -->
-      <link rel="stylesheet" href="../../css/themify-icons.css">
-      <!-- flaticon CSS -->
-      <link rel="stylesheet" href="../../css/flaticon.css">
-      <!-- magnific popup CSS -->
-      <link rel="stylesheet" href="../../css/magnific-popup.css">
-      <!-- nice select CSS -->
-      <link rel="stylesheet" href="../../css/nice-select.css">
-      <!-- swiper CSS -->
-      <link rel="stylesheet" href="../../css/slick.css">
-      <!-- style CSS -->
-      <link rel="stylesheet" href="../../css/style.css">
-  </head>
-
-';
-  echo $script;
-}
-function include_header(){
-  $script = include "../../include/header.php";
-  echo $script;
-
-}
 
 
 function select_button($mail,$mdp){
@@ -182,19 +146,15 @@ function barre_de_recherche($recherche){
 
 
 
-function prise_rdv(){
+function specialite_medecin(){
+  //Permet d'afficher la spécialité des médecins
   $db = $this->connexion_bd();
   $select = "SELECT specialite from medecin";
   $request = $db->query($select);
   $tableau = $request->fetchall();
-//  $tab = array_unique($tableau[0]);
-
   $new_tab = [];
   for ($i=0; $i < count($tableau) ; $i++) {
     array_push($new_tab,$tableau[$i][0]);
-  //  $val = serialize($tableau[$i][0]);
-    //$update_val = substr($val, 6,-2);
-  //  echo "<a type='submit' class='div' href='../traitement/traitement_affiche_medecin.php?affiche=$update_val'>".$tab[$i][0]."<p class='croix'>+</p></a>";
 }
 $tab = array_unique($new_tab);
 $specialite = [];
@@ -244,16 +204,6 @@ function gestion_rdv($id_medecin,$id_user,$date,$heure,$nom_medecin,$nom_patient
 
 }
 
-function index_bg(){
-  echo "style='height: 935px;
-    position: relative;
-    overflow: hidden;
-    background-image: url(../img/index_bg.jpeg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-position: center;'";
-}
-
 function gerer_rdv(){
   $db = $this->connexion_bd();
   $affiche = "SELECT * from medecin Where specialite='$specialite'";
@@ -263,50 +213,126 @@ function gerer_rdv(){
   $_SESSION["nom_medecin"] = $tableau['nom'];
   $_SESSION["medecin_email"] = $tableau["mail"];
   $_SESSION["id_medecin"] = $tableau["id"];
-  $rdv = "<a href='../view/formulaire/formulaire_rdv.php' class='btn btn-success'> Prendre un rdv avec ce médecin ?</a>";
   echo $rdv;
   for ($i=1; $i < 6 ; $i++) {
   echo "</br>".$tableau[$i];
 }
-//faire un bouton suprimer dans rdv
+//faire un bouton supprimer dans rdv
 
 
 }
 function affiche_rdv($id_medecin){
   $db = $this->connexion_bd();
-  $affiche = "SELECT * from rdv Where id_medecin='$idmedecin'";
+  $affiche = "SELECT * from rdv Where id_medecin='$id_medecin'";
   $request = $db->query($affiche);
   $tableau = $request->fetch();
+  var_dump($tableau);
   if(isset($tableau)){
+    echo "voici vos rdv";
     for ($i=1; $i < count($tableau); $i++) {
-      echo "voici vos rdv";
+
       echo "</br>".$tableau[$i];
   }
 }
   else{
     echo "Warning vous n'avez pas de rdv";
   }
-
-
-
 }
-function links_rdv(){
-  $db = $this->connexion_bd();
-  $affiche = "SELECT nom,prenom,departement,specialite,mail from medecin";
-  $request = $db->query($affiche);
-  $tableau = $request->fetchall();
-  $variable = 'Disponible';
-  $disponibilite = "<a href='href=''>.$variable.</a>"."<br/>";
 
-  for ($i=0; $i < count($tableau) ; $i++) {
-    foreach(array_unique($tableau[$i]) as $key => $value){
-      echo $value.'<br />';
+function heure($rdv){
+  //heure
+  $db = $this->connexion_bd();
+  $affiche = "SELECT heure,date from horaire";
+  $information_medecin = "SELECT id,nom from medecin Where mail='$rdv'";
+  //tableau des horaire
+  $information_nombre_medecin = "SELECT heure from rdv where heure in (select heure from horaire)" ;
+  $nbrmed = $db->query($information_nombre_medecin);
+  $nombre_medecin = $nbrmed->fetchall();
+  $somme = 0;
+  $somme_2 = 0;
+  $somme_3 = 0;
+
+  for ($i=0; $i < count($nombre_medecin); $i++) {
+    foreach (array_unique($nombre_medecin[$i]) as $key => $value) {
+
+        $somme  += substr_count($value, '11:10:00');
+        $somme_2  += substr_count($value, '12:20:00');
+        $somme_3  += substr_count($value, '15:10:00');
+
     }
   }
-  $rdv = "SELECT COUNT(id_medecin) from rdv WHERE date >= '10:12:00'";
-  $meeting = $db->query($rdv);
-  $prise = $meeting->fetchall();
-  var_dump($prise);
+  $path = '../traitement/traitement_gestion_rdv.php';
+  if($somme + $somme_2 + $somme_3 > 40){
+      $path = "../view/pop_up_horaire.php";
+  }
+  else{
+    $path = '../traitement/traitement_gestion_rdv.php';
+  }
+  $med = $db->query($information_medecin);
+  $coord_medecin = $med->fetch();
+  $reserver = array_unique($coord_medecin);
+  $_SESSION["nom_medecin"] = $reserver['nom'];
+  $_SESSION["medecin_email"] = $rdv;
+  $_SESSION["id_medecin"] = $reserver["id"];
+
+  $request = $db->query($affiche);
+  $horaire = $request->fetchall();
+$annee = ['2020','2021','2022'];
+$heure = ['11:10:00','12:20:00','15:10:00'];
+$jours = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+$mois = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Décembre'];
+echo '<div class="form">';
+echo '<h3>Docteur '.$_SESSION["nom_medecin"].'</h3>';
+echo '<form  action='.$path.' method=post>';
+
+//Annee
+
+  echo '<select name="annee">';
+  for ($i=0; $i < count($annee); $i++) {
+      echo '<option value='.$i.'>'.$annee[$i].'</option>';
+
+  }
+  echo '</select>';
+//mois
+
+  echo '<select name="mois">';
+  for ($i=0; $i < count($mois); $i++) {
+      echo '<option value='.$i.'>'.$mois[$i].'</option>';
+
+  }
+  echo '</select>';
+
+
+//Jours
+echo '<select name="jours">';
+for ($i=0; $i < count($jours); $i++) {
+    echo '<option value='.$i.'>'.$jours[$i].'</option>';
+
+}
+echo '</select>';
+
+//Date
+  echo '<select name="date">';
+  for ($i=1; $i < 32; $i++) {
+      echo '<option value='.$i.'>'.$i.'</option>';
+
+  }
+  echo '</select>';
+
+    //heure
+    echo '<select name="heure">';
+    for ($i=0; $i < count($heure); $i++) {
+        echo '<option value='.$heure[$i].'>'.$heure[$i].'</option>';
+
+    }
+    echo '</select>';
+
+
+    echo '<input class="btn" type="submit"></input>';
+
+    echo '</form>';
+    echo '</div>';
+
 
 }
 

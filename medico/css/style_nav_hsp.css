@@ -552,7 +552,7 @@ p#explain-categories {
     text-align: center;
     height: 314px;
     border-radius: 6px;
-    background: url(visio.png) no-repeat;
+    background: url(../img/visio.png) no-repeat;
     background-color: #0596de;
     padding-top: 18px;
 }
