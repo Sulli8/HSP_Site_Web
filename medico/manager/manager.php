@@ -28,7 +28,7 @@ class manager {
                    'mdp' => $inscription->getMdp(),
                    'adresse'=>$inscription->getAdresse()));
     if($request == true){
-      header('Location:../view/nav_hsp/index.php');
+      header('Location:../view/index.php');
 
     }
 }
@@ -45,10 +45,8 @@ function inscription_medecin(Medecin $medecin){
                  'mdp' => $medecin->getMdp()
                ));
                $tableau = $request->fetch();
-               var_dump($tableau);
-
                if($insert_medecin == true){
-                  header('Location:../view/nav_hsp/index.php');
+                  header('Location:../view/index.php');
                }
 
 }
@@ -70,20 +68,39 @@ function inscription_medecin(Medecin $medecin){
 
          if(isset($response['admin'])){
            $_SESSION["admin"] = "root";
-           //faire apparaître pop up admin
-           echo $_SESSION['admin'];
          }
          //faire apparaitre pop up user
-             header('Location:../view/nav_hsp/index.php');
-
-
+             header('Location:../view/index.php');
        }
        else
        {
-               header('Location:../view/nav_hsp/index.php');
+         //Vérifie si le user connectéest un médecin
+         $this->connexion_medecin($mail,$mdp);
        }
     }
+  }
+  function connexion_medecin($mail,$mdp){
+    if(isset($mail) && isset($mdp)){
+      $request = $this->connexion_bd()->prepare('SELECT * FROM medecin WHERE mail=:mail and mdp=:mdp');
+       $request->execute(array('mdp'=>$mdp, 'mail'=>$mail));
+       $response = $request->fetch();
+       if ($response == true)
+       {
+         session_start();
+         $_SESSION["mdp_medecin"] = $mdp;
+         $_SESSION["mail_medecin"] = $mail;
+         $_SESSION['id_medecin'] = $response["id"];
+         $_SESSION['nom_medecin'] = $response['nom'];
 
+         //faire apparaitre pop up user
+            header("Location: ../interface_medecin/index_medecin.php");
+       }
+       else
+       {
+         // Affiche une erreur de connexion
+         echo "Vous n'êtes pas authentifier sur ce site inscriver vous avant !";
+       }
+    }
   }
 
 
@@ -108,15 +125,29 @@ function select_button($mail,$mdp){
 
 }
 
-function update_user($New_val,$val,$id){
+function update_user(medecin $tab_medecin,$id){
   $db = $this->connexion_bd();
-  $updating = "UPDATE user set $val='$New_val' WHERE id='$id'";
-  $request = $this->connexion_bd()->prepare($updating);
+  $updating = "UPDATE medecin set nom= :nom, prenom= :prenom, departement= :departement, specialite= :specialite, mail= :mail, mdp= :mdp WHERE id='$id'";
+  $request = $db->prepare($updating);
   $update_tab = $request->execute(array(
-    $val => $New_val));
-        header('Location:../view/nav_hsp/index.php');
+    'nom'=>$tab_medecin->getNom(),
+    'prenom'=>$tab_medecin->getPrenom(),
+    'departement'=>$tab_medecin->getDepartement(),
+    'specialite'=>$tab_medecin->getSpecialite(),
+    'mail'=>$tab_medecin->getMail(),
+    'mdp'=>$tab_medecin->getMdp()
+  ));
 
+  if($update_tab == true){
+    header('Location:../interface_medecin/index_medecin.php');
+
+       }
+       else {
+                                   echo "erreur de modification";
+               }
 }
+
+
 function barre_de_recherche($recherche){
     $db = $this->connexion_bd();
     $search = "SELECT * from medecin Where nom Like '%$recherche'";
@@ -199,11 +230,12 @@ function gestion_rdv($id_medecin,$id_user,$date,$heure,$nom_medecin,$nom_patient
                ));
   $tableau = $request->fetch();
   if(isset($tableau)){
-        header('Location:../view/nav_hsp/index.php');
+        header('Location:../view/index.php');
   }
 
 }
 
+//Fonction interface medecin
 function gerer_rdv(){
   $db = $this->connexion_bd();
   $affiche = "SELECT * from medecin Where specialite='$specialite'";
@@ -221,18 +253,84 @@ function gerer_rdv(){
 
 
 }
-function affiche_rdv($id_medecin){
+function ajout_rdv($array){
   $db = $this->connexion_bd();
-  $affiche = "SELECT * from rdv Where id_medecin='$id_medecin'";
+  $nom_patient = $array['nom_patient'];
+  $affiche = "SELECT id from user Where nom='$nom_patient'";
   $request = $db->query($affiche);
-  $tableau = $request->fetch();
-  var_dump($tableau);
-  if(isset($tableau)){
-    echo "voici vos rdv";
-    for ($i=1; $i < count($tableau); $i++) {
-
-      echo "</br>".$tableau[$i];
+  $id_user = $request->fetch();
+  session_start();
+  $request = $db->prepare('INSERT INTO rdv(id_medecin, id_user, date, heure ,nom_medecin,nom_patient) VALUES(:id_medecin, :id_user, :date, :heure ,:nom_medecin,:nom_patient)');
+             $insert_rdv = $request->execute(array(
+                 'id_medecin' => $_SESSION['id_medecin'],
+                 'id_user' => $id_user['id'],
+                 'date' => $array['date'],
+                 'heure' => $array['heure'],
+                 'nom_medecin' => $_SESSION['nom_medecin'],
+                 'nom_patient'=> $array['nom_patient']
+               ));
+  $insert_rdv = $request->fetch();
+  if(isset($insert_rdv)){
+    //pop up ajout rendez -vous
+      header("Location:../interface_medecin/index_medecin.php");
   }
+  else{
+    echo "erreur d'ajout";
+  }
+}
+
+
+function affiche_rdv($id_user){
+  $db = $this->connexion_bd();
+  $affiche = "SELECT date,heure,nom_medecin,nom_patient,id from rdv Where id_user='$id_user'";
+  $request = $db->query($affiche);
+  $tableau = $request->fetchall();
+  $nbr = 0;
+  $new_id = [];
+  $num = "SELECT id from rdv Where id_user='$id_user'";
+  $request_id = $db->query($num);
+  $id_tableau = $request_id->fetchall();
+  for ($i=0; $i < count($id_tableau) ; $i++) {
+    foreach (array_unique($id_tableau[$i]) as $key => $value) {
+      $variable = $value;
+      array_push($new_id,$variable);
+    }
+}
+  if(isset($tableau)){
+    echo "<table>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th>Date</th>";
+    echo "<th>Heure</th>";
+    echo "<th>Nom du Docteur</th>";
+    echo "<th>Nom du patient</th>";
+    echo "<th>Numéro rdv</th>";
+    echo "<th>Supprimer rdv</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    echo "<tr>";
+$id_tableau = [];
+$valeur = array_values($tableau);
+for ($i=2; $i < count($valeur); $i++) {
+if(count($valeur)%5== 0){
+      echo "<tr></tr>";
+  }
+  foreach(array_unique($valeur[$i]) as $key => $value){
+      echo "<td>";
+      echo $value;
+      echo "</td>";
+      if($key == 'id'){
+        echo "<td>";
+        echo "<a href='traitement_suppression_rdv.php?delete=$value'>Supprimer</a>";
+        echo "</td>";
+      }
+    }
+  }
+
+  echo "</tr>";
+  echo "</tbody>";
+  echo "</table>";
 }
   else{
     echo "Warning vous n'avez pas de rdv";
@@ -333,6 +431,30 @@ echo '</select>';
     echo '</form>';
     echo '</div>';
 
+
+}
+function delete($delete){
+  $db = $this->connexion_bd();
+  $suppression = "DELETE from rdv Where id='$delete'";
+  $request = $db->query($suppression);
+  $tableau = $request->fetchall();
+  if(isset($tableau)){
+    header("Location:../view/index.php");
+  }else{
+    echo "Erreur lors de la suppression";
+  }
+
+}
+function delete_patient($delete){
+  $db = $this->connexion_bd();
+  $suppression = "DELETE from rdv Where id='$delete'";
+  $request = $db->query($suppression);
+  $tableau = $request->fetchall();
+  if(isset($tableau)){
+    header("Location:../interface_medecin/index_medecin.php");
+  }else{
+    echo "Erreur lors de la suppression";
+  }
 
 }
 

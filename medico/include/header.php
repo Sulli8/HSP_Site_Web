@@ -8,13 +8,11 @@ $manager = new Manager;?>
 <?php if(empty($_SESSION)){ ?>
             <div class="navbar">
 
-                <div id="logo"><a href="../view/">HSP Sulli9</a></div>
+                <div id="logo"><a href="../view/index.php">HSP Sulli9</a></div>
                 <div id="links">
                     <ul>
-                        <li id="button-pro"><a href="">Vous êtes professionnel de santé ?</a></li>
                         <li id="our-services"><i class="fas fa-list-ul"></i> <a href="#title-of-services-div">Nos services</a></li>
                         <li id="connection"><i class="fas fa-user"></i> Se connecter <br> </li>
-
                     </ul>
                 </div>
 
@@ -22,10 +20,9 @@ $manager = new Manager;?>
 
               <div class="navbar">
 
-                  <div id="logo"><a href="index.php">HSP Sulli9</a></div>
+                  <div id="logo"><a href="../view/index.php">HSP Sulli9</a></div>
                   <div id="links">
                       <ul>
-                          <li id="button-pro"><a href="">Vous êtes professionnel de santé ?</a></li>
                           <li id="our-services"><i class="fas fa-list-ul"></i> <a href="#title-of-services-div">Nos services</a></li>
                           <li id="deconnection"><i class="fas fa-user"></i><a href="../traitement/traitement_deconnexion.php"> Se Déconnecter </a></li>
                           <li>

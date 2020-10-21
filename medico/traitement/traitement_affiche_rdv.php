@@ -1,13 +1,25 @@
-<?php
+<?php include '../include/import.php'; ?>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>medical</title>
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel='stylesheet' type='text/css' href='../css/style_nav_hsp.css'>
+          <link rel='stylesheet' type='text/css' href='../css/style_affiche_rdv.css'>
+          <link rel='stylesheet' type='text/css' href='../css/style_affiche_horaire.css'>
+
+</head>
+
+<?php
+include '../include/header.php';
 require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
 $manager = new Manager();
-session_start();
-if(isset($_SESSION['id_medecin'])){
-  $manager->affiche_rdv($_SESSION['id_medecin']);
+if(isset($_SESSION['id'])){
+  $manager->affiche_rdv($_SESSION['id']);
 }else {
   echo "WARNING: Vous n'avez pas de rdv ";
 }
-
-
- ?>
+?>

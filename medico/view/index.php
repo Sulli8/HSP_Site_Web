@@ -13,31 +13,33 @@
 </head>
 <body>
 
-    <div id="overlay"></div>
+  <div id="overlay"></div>
 
-    <div class="pop-up-connection">
+  <div class="pop-up-connection">
 
-        <div class="close">
-            <span>X</span>
-        </div>
+      <div class="close">
+          <span>X</span>
+      </div>
 
-        <h2>Connexion</h2>
+      <h2>Connexion </h2>
 
-        <form action="../traitement/traitement_formulaire_connexion.php" method="post" id="connexion">
-            <input name="mail" type="email" placeholder="Saisir votre adresse e-mail">
-            <input name="mdp" type="password" placeholder="Saisir votre mot de passe">
-            <input type="submit" value="Se connecter">
-        </form>
+      <form action="../traitement/traitement_formulaire_connexion.php" method="post" id="connexion">
+          <input name="mail" type="email" placeholder="Saisir votre adresse e-mail">
+          <input name="mdp" type="password" placeholder="Saisir votre mot de passe">
+          <input type="submit" value="Se connecter">
+      </form>
 
-        <a href="../formulaire/formulaire_password_reset.php">Mot de passe oublié ?</a>
-        <hr>
+      <a href="../formulaire/formulaire_password_reset.php">Mot de passe oublié ?</a>
+      <hr>
 
-        <div class="new">
-            <h4>Nouveau sur HSP Sulli9 ?</h4>
-            <p id="p-c-inscription">S'inscrire</p>
-        </div>
+      <div class="new">
+          <h4>Nouveau sur HSP Sulli9 ?</h4>
+          <p id="p-c-inscription">S'inscrire</p>
+      </div>
 
-    </div>
+  </div>
+
+  
 
     <div class="pop-up-inscription">
 

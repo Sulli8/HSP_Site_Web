@@ -59,7 +59,7 @@ li a {
 
 li#presentation {
     color: white;
-    
+
 }
 
 li#deconnection i {
@@ -92,7 +92,7 @@ li#deconnection i {
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid white;
-    background-color: #0596de; 
+    background-color: #0596de;
     margin-bottom: 28px;
 }
 
@@ -133,9 +133,9 @@ h1#my-appointments {
 /** ************************ PROFIL SECTION ************************ **/
 
 .account-part {
-    height: auto;
+    height:auto;
     background: #0596de;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     padding-bottom: 18px;
 }
 
