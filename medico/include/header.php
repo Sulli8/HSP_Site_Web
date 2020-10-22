@@ -1,7 +1,6 @@
 <?php session_start();
 require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
 $manager = new Manager;?>
-
     <div class="header">
 
         <div class="container">
@@ -34,19 +33,13 @@ $manager = new Manager;?>
                       </ul>
                   </div>
             <?php } ?>
-
-                <button class="menu-toggler">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-
              </div>
 
              <div class="search-section">
 
                 <div class="column-one">
                     <h2>Réservez une consultation <br> chez un professionnel de santé</h2>
+
                     <form action="../../traitement/traitement_recherche_medecin.php" method="post">
                         <input type="search"name="recherche" placeholder="Chercher un medecin" id="search">
                         <input type="submit" value="Rechercher">
@@ -60,7 +53,7 @@ $manager = new Manager;?>
                             if(isset($_SESSION['mail'])){
                                 $manager->specialite_medecin();
                             }else{
-                              echo "WARNING! You must be logged in";
+                              echo '<option>WARNING! You must be logged in</option>';
                             }
                           ?>
 
