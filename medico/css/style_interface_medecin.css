@@ -9,6 +9,71 @@ html {
     scroll-behavior: smooth;
 }
 
+.form {
+  height:400px;
+  color:#fff;
+
+}
+input{
+    margin-top: 20px;
+}
+
+table td a {
+  color:red;
+  text-decoration: none;
+}
+table tr th{
+  padding:20px;
+}
+
+.form input {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(180deg, #ffc164 0%, #f59300 46.12%, #f59300 97.02%);
+  border: linear-gradient(180deg, #ffc164 0%, #f59300 46.12%, #f59300 97.02%);
+  width:600px;
+  height:50px;
+  border:3px solid #fff;
+  border-radius: 15px;
+  margin-bottom: -10px;
+  color:#fff;
+}
+select{
+  color:#000000;
+}
+
+input[type="file"] {
+    display: none;
+
+
+}
+
+.custom-file-upload {
+    margin-top: 20px;
+    background: linear-gradient(180deg, #ffc164 0%, #f59300 46.12%, #f59300 97.02%);
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+input:focus {
+  color: #fff;
+}
+#input::placeholder{
+  color: #fff;
+
+}
+input[type="submit"]{
+  color:#fff;
+}
+input[type="submit"]:hover{
+  transition-duration: 0.5s;
+  color:orange;
+  background:#0596de;
+}
 .header {
     background: #0596de;
     height: auto;
@@ -133,14 +198,14 @@ h1#my-appointments {
 /** ************************ PROFIL SECTION ************************ **/
 
 .account-part {
-    height:auto;
+    height:900px;
     background: #0596de;
     margin-bottom: 30px;
     padding-bottom: 18px;
 }
 
 h1#account-title {
-    margin-top: 18px;
+    margin-top: 0px;
     text-align: center;
     font-size: 24px;
     color: white;
@@ -151,7 +216,7 @@ h1#account-title {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
-    margin-top: 28px;
+    margin-top: 8px;
 }
 
 .profil .images {

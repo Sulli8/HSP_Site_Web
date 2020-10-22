@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interface Medecin</title>
-    <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="style_interface_medecin.css">
+    <link rel="stylesheet" href="../css/style_interface_medecin.css">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/8a3192b16c.js" crossorigin="anonymous"></script>
@@ -31,15 +30,15 @@ $information_patient= $request_patient->fetchall();
 
             <div class="managment-button">
                 <a href="#new-app"><button id="add-appointments">
-                    <img src="add.png" alt="">
+                    <img src="../img/add.png" alt="">
                     <p>Ajouter un rendez-vous</p>
                 </button></a>
                 <a href="#account-title"><button id="m-account">
-                    <img src="feather-pen.png" alt="">
+                    <img src="../img/feather-pen.png" alt="">
                     <p>Modifier mon profil</p>
                 </button></a>
                 <a href="#my-appointments"><button id="see-appointments">
-                    <img src="eye-scan.png" alt="">
+                    <img src="../img/eye-scan.png" alt="">
                     <p>Voir mes rendez-vous</p>
                 </button></a>
             </div>
@@ -95,10 +94,30 @@ $information_medecin = $request_medecin->fetchall();
             <div class="profil">
 
                 <div class="images">
-                    <img src="profil-images.jpg" alt="">
+<?php
+$affiche_information_image = "SELECT image_profil from medecin Where id='$id_medecin'";
+$request_image = $db->query($affiche_information_image);
+$information_image = $request_image->fetchall();
+for ($i=0; $i < count($information_image); $i++) {
+  foreach (array_unique($information_image[$i]) as $key => $value) {?>
+
+
+
+                    <img src="../img/images_profils/<?php echo $value;?>" alt="">
+          <?php         }
+                }
+                 ?>
                 </div>
 
-                  <form class="form" method="post" action="../traitement/traitement_modification.php">
+                  <form name="formulaire" enctype="multipart/form-data" class="form" method="post" action="../traitement/traitement_modification.php">
+                    <label for="file" class="label-file">Choisir une image</label>
+                    <label class="custom-file-upload"><i class="fas fa-upload"></i>
+                      <input type="file"  class="file" name="photo" id="photo" />
+                      <input type="hidden" value="b" name="env"/>
+                    </label>
+
+
+
                     <?php for ($i=0; $i < count($information_medecin); $i++) {?>
 
                       <?php foreach (array_unique($information_medecin[$i]) as $key => $value){?>

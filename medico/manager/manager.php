@@ -35,14 +35,15 @@ class manager {
 
 function inscription_medecin(Medecin $medecin){
   $db = $this->connexion_bd();
-  $request = $db->prepare('INSERT INTO medecin(nom, prenom, departement, specialite, mail,mdp) VALUES(:nom, :prenom, :departement, :specialite ,:mail, :mdp)');
+  $request = $db->prepare('INSERT INTO medecin(nom, prenom, departement, specialite, mail,mdp,image_profil) VALUES(:nom, :prenom, :departement, :specialite ,:mail, :mdp, :image_profil)');
              $insert_medecin = $request->execute(array(
                  'nom' => $medecin->getNom(),
                  'prenom' => $medecin->getPrenom(),
                  'departement' => $medecin->getDepartement(),
                  'specialite' => $medecin->getSpecialite(),
                  'mail' => $medecin->getMail(),
-                 'mdp' => $medecin->getMdp()
+                 'mdp' => $medecin->getMdp(),
+                 'image_profil' => $medecin->getImage_profil()
                ));
                $tableau = $request->fetch();
                if($insert_medecin == true){
@@ -93,7 +94,7 @@ function inscription_medecin(Medecin $medecin){
          $_SESSION['nom_medecin'] = $response['nom'];
 
          //faire apparaitre pop up user
-            header("Location: ../interface_medecin/index_medecin.php");
+            header("Location: ../view/index_medecin.php");
        }
        else
        {
@@ -127,7 +128,7 @@ function select_button($mail,$mdp){
 
 function update_user(medecin $tab_medecin,$id){
   $db = $this->connexion_bd();
-  $updating = "UPDATE medecin set nom= :nom, prenom= :prenom, departement= :departement, specialite= :specialite, mail= :mail, mdp= :mdp WHERE id='$id'";
+  $updating = "UPDATE medecin set nom= :nom, prenom= :prenom, departement= :departement, specialite= :specialite, mail= :mail, mdp= :mdp, image_profil= :image_profil WHERE id='$id'";
   $request = $db->prepare($updating);
   $update_tab = $request->execute(array(
     'nom'=>$tab_medecin->getNom(),
@@ -135,11 +136,12 @@ function update_user(medecin $tab_medecin,$id){
     'departement'=>$tab_medecin->getDepartement(),
     'specialite'=>$tab_medecin->getSpecialite(),
     'mail'=>$tab_medecin->getMail(),
-    'mdp'=>$tab_medecin->getMdp()
+    'mdp'=>$tab_medecin->getMdp(),
+    'image_profil'=>$tab_medecin->getImage_profil()
   ));
 
   if($update_tab == true){
-    header('Location:../interface_medecin/index_medecin.php');
+    header('Location:../view/index_medecin.php');
 
        }
        else {
@@ -272,7 +274,7 @@ function ajout_rdv($array){
   $insert_rdv = $request->fetch();
   if(isset($insert_rdv)){
     //pop up ajout rendez -vous
-      header("Location:../interface_medecin/index_medecin.php");
+      header("Location:../view/index_medecin.php");
   }
   else{
     echo "erreur d'ajout";
@@ -451,7 +453,7 @@ function delete_patient($delete){
   $request = $db->query($suppression);
   $tableau = $request->fetchall();
   if(isset($tableau)){
-    header("Location:../interface_medecin/index_medecin.php");
+    header("Location:../view/index_medecin.php");
   }else{
     echo "Erreur lors de la suppression";
   }
