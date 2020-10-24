@@ -73,7 +73,11 @@ $information_patient= $request_patient->fetchall();
         if($i%3==0){
             echo "<tr></tr>";
           }
+          else {
+            echo "<tr></tr>";
+          }
         }
+        echo "<tr><td></td></tr>";
            ?>
            </tr>
           </table>
