@@ -286,8 +286,7 @@ function affiche_rdv($id_user){
   $db = $this->connexion_bd();
   $affiche = "SELECT date,heure,nom_medecin,nom_patient,id from rdv Where id_user='$id_user'";
   $request = $db->query($affiche);
-  $tableau = $request->fetchall();
-  $nbr = 0;
+  $tab_bdd = $request->fetchall();
   $new_id = [];
   $num = "SELECT id from rdv Where id_user='$id_user'";
   $request_id = $db->query($num);
@@ -298,45 +297,42 @@ function affiche_rdv($id_user){
       array_push($new_id,$variable);
     }
 }
-  if(isset($tableau)){
+  if(isset($tab_bdd)){
     echo "<table>";
-    echo "<thead>";
-    echo "<tr>";
-    echo "<th>Date</th>";
-    echo "<th>Heure</th>";
-    echo "<th>Nom du Docteur</th>";
-    echo "<th>Nom du patient</th>";
-    echo "<th>Numéro rdv</th>";
-    echo "<th>Supprimer rdv</th>";
-    echo "</tr>";
-    echo "</thead>";
-    echo "<tbody>";
-    echo "<tr>";
+     echo "<thead>";
+     echo "<tr>";
+     echo "<th>Date</th>";
+     echo "<th>Heure</th>";
+     echo "<th>Nom du Docteur</th>";
+     echo "<th>Nom du patient</th>";
+     echo "<th>Numéro rdv</th>";
+     echo "<th>Supprimer rdv</th>";
+     echo "</tr>";
+     echo "</thead>";
+     echo "<tbody>";
+
 $id_tableau = [];
-$valeur = array_values($tableau);
-for ($i=2; $i < count($valeur); $i++) {
-if(count($valeur)%5== 0){
-      echo "<tr></tr>";
-  }
+$valeur = array_values($tab_bdd);
+for ($i=0; $i < count($valeur); $i++) {
+  echo "<tr>";
   foreach(array_unique($valeur[$i]) as $key => $value){
+    echo "<td>";
+    echo $value;
+    echo "</td>";
+    if($key == 'id'){
       echo "<td>";
-      echo $value;
+      echo "<a href='traitement_suppression_rdv.php?delete=$value'>Supprimer</a>";
       echo "</td>";
-      if($key == 'id'){
-        echo "<td>";
-        echo "<a href='traitement_suppression_rdv.php?delete=$value'>Supprimer</a>";
-        echo "</td>";
-      }
     }
   }
-
   echo "</tr>";
-  echo "</tbody>";
-  echo "</table>";
 }
-  else{
-    echo "Warning vous n'avez pas de rdv";
-  }
+echo "</tbody>";
+echo "</table>";
+}
+else{
+  echo "Warning vous n'avez pas de rdv";
+}
 }
 
 function heure($rdv){

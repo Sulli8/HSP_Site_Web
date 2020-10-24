@@ -5,7 +5,7 @@ body{
 table{
   border-radius: 15px;
   position:absolute;
-  top:150%;
+  top:70%;
   left:50%;
   transform: translate(-50%,-50%);
   border-collapse: collapse;
@@ -34,14 +34,11 @@ th,td {
     text-align: center;
 }
 
-td {
+td a{
   background-color:red;
   width:100px;
   height:30px;
-  margin-left: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-left: 10%;
   border:3px solid #fff;
   border-radius: 15px;
   text-decoration: none;
