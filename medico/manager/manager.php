@@ -18,7 +18,7 @@ class manager {
 
   function inscription(User $inscription){
     $db = $this->connexion_bd();
-    $request = $db->prepare('INSERT INTO user(nom, prenom, mail, mutuelle ,admin, mdp,adresse) VALUES(:nom, :prenom, :mail, :mutuelle ,:admin, :mdp,:adresse)');
+    $request = $db->prepare('INSERT INTO user(nom, prenom, mail, mutuelle ,admin, mdp,adresse,image_profil) VALUES(:nom, :prenom, :mail, :mutuelle ,:admin, :mdp,:adresse,:image_profil)');
                $insert_utilisateur = $request->execute(array(
                    'nom' => $inscription->getNom(),
                    'prenom' => $inscription->getPrenom(),
@@ -26,7 +26,9 @@ class manager {
                    'mutuelle' => $inscription->getMutuelle(),
                    'admin' => $inscription->getAdmin(),
                    'mdp' => $inscription->getMdp(),
-                   'adresse'=>$inscription->getAdresse()));
+                   'adresse'=>$inscription->getAdresse(),
+                   'image_profil'=>$inscription->getImage_profil()
+                 ));
     if($request == true){
       header('Location:../view/index.php');
 
@@ -105,26 +107,6 @@ function inscription_medecin(Medecin $medecin){
   }
 
 
-function select_button($mail,$mdp){
-    $db = $this->connexion_bd();
-    $request = $this->connexion_bd()->prepare('SELECT * FROM user WHERE mail=:mail and mdp=:mdp');
-    $request->execute(array('mdp'=>$mdp, 'mail'=>$mail));
-    $response = $request->fetch();
-    $unique = array_unique($response);
-    unset($unique['id']);
-    if(empty($unique['admin'])){
-      unset($unique['admin']);
-
-    }
-    else{
-      $unique = array_unique($response);
-    }
-    foreach ($unique as $key => $value) {
-      echo $value."<a class='btn btn-primary' href='../modif.php?modifier=$key'>Modifier</a>"."\n";
-    }
-
-
-}
 
 function update_user(medecin $tab_medecin,$id){
   $db = $this->connexion_bd();
@@ -151,7 +133,7 @@ function update_user(medecin $tab_medecin,$id){
 
 function update_real_user(user $tab_user,$id){
   $db = $this->connexion_bd();
-  $updating = "UPDATE user set nom= :nom, prenom= :prenom, mail= :mail, mutuelle= :mutuelle, mdp=:mdp, adresse=:adresse WHERE id='$id'";
+  $updating = "UPDATE user set nom= :nom, prenom= :prenom, mail= :mail, mutuelle= :mutuelle, mdp=:mdp, adresse=:adresse, image_profil=:image_profil WHERE id='$id'";
   $request = $db->prepare($updating);
   $update_tab = $request->execute(array(
     'nom'=>$tab_user->getNom(),
@@ -160,6 +142,7 @@ function update_real_user(user $tab_user,$id){
     'mutuelle'=>$tab_user->getMutuelle(),
     'mdp'=>$tab_user->getMdp(),
     'adresse'=>$tab_user->getAdresse(),
+    'image_profil'=>$tab_user->getImage_profil()
   ));
 
   if($update_tab == true){

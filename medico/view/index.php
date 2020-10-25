@@ -49,19 +49,25 @@
 
         <h2>Inscription</h2>
 
-        <form action="../traitement/traitement_formulaire_inscription.php" method="post" id="inscription">
+        <form action="../traitement/traitement_formulaire_inscription.php" enctype="multipart/form-data" method="post" id="inscription">
             <input name="nom" type="text" placeholder="Entrez votre nom">
             <input name="prenom" type="text" placeholder="Entrez votre prénom">
             <input name="mail"type="email" placeholder="Entrez votre adresse e-mail">
             <input name="mutuelle" type="text" placeholder="Entrez votre numéro de mutuelle">
             <input name="adresse" type="text" placeholder="Entrez votre adresse">
             <input name="mdp" type="password" placeholder="Entrez un mot de passe">
+
+            <label for="file" class="label-file">Choisir une image</label>
+            <label class="custom-file-upload"><i class="fas fa-upload"></i>
+              <input type="file"  class="file" name="photo" id="photo" />
+              <input type="hidden" value="b" name="env"/>
+            </label>
             <input type="submit" value="S'inscrire">
         </form>
 
         <div class="not-new">
-            <h4>Vous avez déjà un compte ?</h4>
-            <p id="p-i-connexion">S'inscrire</p>
+
+            <p id="p-i-connexion"></p>
         </div>
 
     </div>

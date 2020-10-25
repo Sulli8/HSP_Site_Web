@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title></title>
      <link rel="stylesheet" href="../../css/formulaire_modification_style.css">
+     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/8a3192b16c.js" crossorigin="anonymous"></script>
   </head>
   <?php session_start();
   $id_user = $_SESSION['id'];
@@ -24,7 +27,11 @@ for ($i=0; $i < count($information_user); $i++) {
           <input name="<?php echo $key; ?>" value="<?php echo $value;?>" type="text" id="input" placeholder="<?php echo ucfirst($key); ?> : <?php echo ucfirst($value);?>"></input>
  <?php  }
  } ?>
-
+ <label for="file" class="label">Choisir une image</label>
+ <label class="custom-file-upload"><i class="fas fa-upload"></i>
+   <input type="file"  class="file" name="photo" id="photo" />
+   <input type="hidden" value="b" name="env"/>
+ </label>
 <input type="submit" value="Modifier mes informations" ></input>
 <a href="../index.php">Retour à l'accueil</a>
 

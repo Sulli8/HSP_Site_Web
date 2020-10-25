@@ -17,6 +17,10 @@ body{
   border-radius: 12px;
 
 }
+.box label{
+  color:white;
+
+}
 .box h1{
   color: white;
   font-size:16px;

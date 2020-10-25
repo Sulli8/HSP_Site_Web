@@ -10,9 +10,7 @@ $typeimages_ok = array(2,3);
 $taille_ko = 3072;
 $taille_max = $taille_ko*3072;
 
-//require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
-//$manager = new Manager();
-//$manager->connexion_bd();
+
 
 $dest_dossier = '../img/images_profils/'; //nom du dossier ou vous allez stocké vos images
 $dest_fichier="";

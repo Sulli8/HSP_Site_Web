@@ -2,7 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/traitement/traitement_formulaire_inscription.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/model/user.php");
 class user {
-  private $id,$nom,$prenom,$mail,$mutuelle,$admin,$mdp,$adresse;
+  private $id,$nom,$prenom,$mail,$mutuelle,$admin,$mdp,$adresse,$image_profil;
 
 
     /**
@@ -172,6 +172,12 @@ class user {
     public function setId($id)
     {
         $this->id = $id;
+    }
+    public function setImage_profil($image_profil){
+      return $this->image_profil = $image_profil;
+    }
+    public function getImage_profil(){
+      return $this->image_profil;
     }
 
 
