@@ -133,7 +133,7 @@ function update_user(medecin $tab_medecin,$id){
 
 function update_real_user(user $tab_user,$id){
   $db = $this->connexion_bd();
-  $updating = "UPDATE user set nom= :nom, prenom= :prenom, mail= :mail, mutuelle= :mutuelle, mdp=:mdp, adresse=:adresse, image_profil=:image_profil WHERE id='$id'";
+  $updating = "UPDATE user set nom= :nom, prenom= :prenom, mail= :mail, mutuelle= :mutuelle, mdp= :mdp, adresse= :adresse, image_profil= :image_profil WHERE id='$id'";
   $request = $db->prepare($updating);
   $update_tab = $request->execute(array(
     'nom'=>$tab_user->getNom(),
