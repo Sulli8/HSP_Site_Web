@@ -5,7 +5,7 @@ body{
 table{
   border-radius: 15px;
   position:absolute;
-  top:70%;
+  top:85%;
   left:50%;
   transform: translate(-50%,-50%);
   border-collapse: collapse;

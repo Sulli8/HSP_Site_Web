@@ -29,7 +29,7 @@
           <input type="submit" value="Se connecter">
       </form>
 
-      <a href="../formulaire/formulaire_password_reset.php">Mot de passe oublié ?</a>
+      <a href="formulaire/formulaire_password_reset.php">Mot de passe oublié ?</a>
       <hr>
 
       <div class="new">
@@ -39,7 +39,7 @@
 
   </div>
 
-  
+
 
     <div class="pop-up-inscription">
 

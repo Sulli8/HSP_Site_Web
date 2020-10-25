@@ -145,10 +145,31 @@ function update_user(medecin $tab_medecin,$id){
 
        }
        else {
-                                   echo "erreur de modification";
+         echo "erreur de modification";
                }
 }
 
+function update_real_user(user $tab_user,$id){
+  $db = $this->connexion_bd();
+  $updating = "UPDATE user set nom= :nom, prenom= :prenom, mail= :mail, mutuelle= :mutuelle, mdp=:mdp, adresse=:adresse WHERE id='$id'";
+  $request = $db->prepare($updating);
+  $update_tab = $request->execute(array(
+    'nom'=>$tab_user->getNom(),
+    'prenom'=>$tab_user->getPrenom(),
+    'mail'=>$tab_user->getMail(),
+    'mutuelle'=>$tab_user->getMutuelle(),
+    'mdp'=>$tab_user->getMdp(),
+    'adresse'=>$tab_user->getAdresse(),
+  ));
+
+  if($update_tab == true){
+    header('Location:../view/index.php');
+
+       }
+       else {
+         echo "erreur de modification";
+               }
+}
 
 function barre_de_recherche($recherche){
     $db = $this->connexion_bd();
@@ -373,13 +394,13 @@ function heure($rdv){
 
   $request = $db->query($affiche);
   $horaire = $request->fetchall();
-$annee = ['2020','2021','2022'];
-$heure = ['11:10:00','12:20:00','15:10:00'];
-$jours = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
-$mois = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Décembre'];
-echo '<div class="form">';
-echo '<h3>Docteur '.$_SESSION["nom_medecin"].'</h3>';
-echo '<form  action='.$path.' method=post>';
+  $annee = ['2020','2021','2022'];
+  $heure = ['11:10:00','12:20:00','15:10:00'];
+  $jours = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  $mois = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Décembre'];
+  echo '<div class="form">';
+  echo '<h3>Docteur '.$_SESSION["nom_medecin"].'</h3>';
+  echo '<form  action='.$path.' method=post>';
 
 //Annee
 

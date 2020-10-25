@@ -22,14 +22,13 @@ $manager = new Manager;?>
                   <div id="logo"><a href="../view/index.php">HSP Sulli9</a></div>
                   <div id="links">
                       <ul>
-                          <li id="our-services"><i class="fas fa-list-ul"></i> <a href="#title-of-services-div">Nos services</a></li>
-                          <li id="deconnection"><i class="fas fa-user"></i><a href="../traitement/traitement_deconnexion.php"> Se Déconnecter </a></li>
-                          <li>
-                             <a href="../view/prise_rdv.php">Prendre rdv</a>
-                          </li>
+                        <li id="our-services"><i class="fas fa-list-ul"></i> <a href="#title-of-services-div">Nos services</a></li><li>
+                        <li><a href="../view/formulaire/formulaire_modification.php">Modification de mes informations</a></li>
+<li><a href="../view/prise_rdv.php">Prendre rdv</a></li>
 <li>
    <a href="../traitement/traitement_affiche_rdv.php">Gérer mes RDV</a>
 </li>
+    <li id="deconnection"><i class="fas fa-user"></i><a href="../traitement/traitement_deconnexion.php"> Se Déconnecter </a></li>
                       </ul>
                   </div>
             <?php } ?>

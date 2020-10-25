@@ -2,16 +2,10 @@
 <!doctype html>
 <html lang="fr">
 
-<?php
-require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
-$manager = new Manager();
-$manager->include_forms();
- ?>
 
  <link rel="stylesheet" href="formulaire_inscription_style.css">
 <body>
 
-  <!--<?php $manager->include_header();?>-->
 <form action="../../traitement/traitement_formulaire_inscription.php" method="post">
 
   <div class="form-group">
