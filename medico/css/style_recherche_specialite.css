@@ -1,0 +1,30 @@
+.search{
+  display: block;
+  text-align: center;
+  margin: auto;
+  color: white;
+  background-color: #0596de;
+  width:600px;
+  height:300px;
+  border:3px solid orange;
+  border-radius: 15px;
+  margin-top:10px;
+
+}
+p{
+  margin-top: 10px;
+}
+a{
+    margin-top: 10px;
+    text-decoration: none;
+    color: white
+}
+a:hover{
+  color: orange
+}
+.search p:hover{
+  color: orange
+}
+.search a{
+  margin-top: 30px
+}

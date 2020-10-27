@@ -208,17 +208,17 @@ for ($i=0; $i <count($specialite) ; $i++) {
 
 function affiche_medecin($specialite){
   $db = $this->connexion_bd();
-  $affiche = "SELECT * from medecin Where specialite='$specialite'";
+  $affiche = "SELECT nom,prenom,departement,specialite,mail from medecin Where specialite='$specialite'";
   $request = $db->query($affiche);
   $tableau = $request->fetch();
 
   $_SESSION["nom_medecin"] = $tableau['nom'];
   $_SESSION["medecin_email"] = $tableau["mail"];
-  $_SESSION["id_medecin"] = $tableau["id"];
-  $rdv = "<a href='../view/formulaire/formulaire_rdv.php' class='btn btn-success'> Prendre un rdv avec ce médecin ?</a>";
-  echo $rdv;
-  for ($i=1; $i < 6 ; $i++) {
-  echo "</br>".$tableau[$i];
+//  $_SESSION["id_medecin"] = $tableau["id"];
+  $icone = ['fas fa-signature','fas fa-fingerprint','fas fa-house-user','fas fa-stethoscope','fas fa-at'];
+  for ($i=0; $i < 5; $i++) {
+    $new_icone = $icone[$i];
+  echo "</br><p><i class='$new_icone'></i>".$tableau[$i]."</p>";
 }
 
 }
@@ -237,6 +237,8 @@ function gestion_rdv($id_medecin,$id_user,$date,$heure,$nom_medecin,$nom_patient
   $tableau = $request->fetch();
   if(isset($tableau)){
         header('Location:../view/index.php');
+  }else{
+    echo "erreur";
   }
 
 }
