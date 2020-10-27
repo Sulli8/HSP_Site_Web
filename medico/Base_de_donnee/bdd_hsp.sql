@@ -1,14 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:8889
--- Généré le :  lun. 26 oct. 2020 à 21:02
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  mar. 27 oct. 2020 à 16:23
 -- Version du serveur :  5.7.26
--- Version de PHP :  7.3.8
+-- Version de PHP :  7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données :  `bdd_hsp`
@@ -20,11 +28,13 @@ SET time_zone = "+00:00";
 -- Structure de la table `administrateur`
 --
 
-CREATE TABLE `administrateur` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `administrateur`;
+CREATE TABLE IF NOT EXISTS `administrateur` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `pseudo` varchar(40) NOT NULL,
   `mdp` varchar(40) NOT NULL,
-  `email` varchar(40) NOT NULL
+  `email` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -33,11 +43,13 @@ CREATE TABLE `administrateur` (
 -- Structure de la table `horaire`
 --
 
-CREATE TABLE `horaire` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `horaire`;
+CREATE TABLE IF NOT EXISTS `horaire` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `heure` time NOT NULL,
-  `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `horaire`
@@ -55,16 +67,18 @@ INSERT INTO `horaire` (`id`, `heure`, `date`) VALUES
 -- Structure de la table `medecin`
 --
 
-CREATE TABLE `medecin` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `medecin`;
+CREATE TABLE IF NOT EXISTS `medecin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(40) NOT NULL,
   `prenom` varchar(40) NOT NULL,
   `departement` varchar(40) NOT NULL,
   `specialite` varchar(40) NOT NULL,
   `mail` varchar(40) NOT NULL,
   `mdp` varchar(40) NOT NULL,
-  `image_profil` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `image_profil` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `medecin`
@@ -84,26 +98,43 @@ INSERT INTO `medecin` (`id`, `nom`, `prenom`, `departement`, `specialite`, `mail
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `message`
+--
+
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE IF NOT EXISTS `message` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `message` varchar(1000) NOT NULL,
+  `mail_medecin` varchar(40) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `rdv`
 --
 
-CREATE TABLE `rdv` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `rdv`;
+CREATE TABLE IF NOT EXISTS `rdv` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_medecin` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `date` date NOT NULL,
   `heure` time NOT NULL,
   `nom_medecin` varchar(40) NOT NULL,
-  `nom_patient` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `nom_patient` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_medecin` (`id_medecin`),
+  KEY `id_user` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `rdv`
 --
 
 INSERT INTO `rdv` (`id`, `id_medecin`, `id_user`, `date`, `heure`, `nom_medecin`, `nom_patient`) VALUES
-(13, 1, 1, '2020-10-05', '11:10:00', 'Dr.Vasone', 'sextius'),
-(23, 1, 1, '2020-10-05', '11:10:00', 'Dr.Vasone', 'sextius'),
 (29, 1, 1, '2020-10-05', '11:10:00', 'Dr.Vasone', 'sextius'),
 (30, 1, 1, '2020-10-05', '11:10:00', 'Dr.Vasone', 'sextius'),
 (31, 1, 1, '2020-10-05', '11:10:00', 'Dr.Vasone', 'sextius'),
@@ -124,7 +155,9 @@ INSERT INTO `rdv` (`id`, `id_medecin`, `id_user`, `date`, `heure`, `nom_medecin`
 (80, 8, 4, '2020-10-29', '12:20:00', 'Dr.Serva', 'Admin'),
 (81, 8, 4, '2020-10-21', '12:20:00', 'Dr.Serva', 'Admin'),
 (83, 8, 1, '2020-10-28', '11:10:00', 'Dr.Serva', 'sextius'),
-(84, 1, 27, '0000-01-01', '11:10:00', 'Dr.Vasone', 'Sextiusmodification');
+(84, 1, 27, '0000-01-01', '11:10:00', 'Dr.Vasone', 'Sextiusmodification'),
+(85, 1, 1, '0000-01-01', '11:10:00', 'Dr.Vasone', 'sextius'),
+(86, 1, 1, '0000-01-01', '11:10:00', 'Dr.Vasone', 'sextius');
 
 -- --------------------------------------------------------
 
@@ -132,8 +165,9 @@ INSERT INTO `rdv` (`id`, `id_medecin`, `id_user`, `date`, `heure`, `nom_medecin`
 -- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(60) NOT NULL,
   `prenom` varchar(60) NOT NULL,
   `mail` varchar(255) NOT NULL,
@@ -141,15 +175,16 @@ CREATE TABLE `user` (
   `admin` int(4) DEFAULT NULL,
   `mdp` varchar(60) NOT NULL,
   `adresse` varchar(60) NOT NULL,
-  `image_profil` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `image_profil` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `nom`, `prenom`, `mail`, `mutuelle`, `admin`, `mdp`, `adresse`, `image_profil`) VALUES
-(1, 'sextius', 'sulllivan', 'sullivan.sextius@gmail.com', '1234567', NULL, 'testnouveaupassword', '19 avenue jean jaures ', ''),
+(1, 'sextius', 'sulllivan', 'sullivan.sextius@gmail.com', '1234567', NULL, 'testnouveaupassword', '19 avenue jean jaures ', 'mii.jpg'),
 (4, 'Admin', 'null', 'sullivan.sextius@gmail.com', '0', NULL, 'testnouveaupassword', '19 avenue jean jaurès', ''),
 (3, 'sextius', 'az', 'sullivan.sextius@gmail.com', '456UI', NULL, 'testnouveaupassword', '2 avenue du jean ', ''),
 (5, 'sullivan.sextius@gmail.com', 'Sullivan', 'sullivan.sextius@gmail.com', '0', NULL, 'testnouveaupassword', '19 avenue jean jaurès', ''),
@@ -173,74 +208,10 @@ INSERT INTO `user` (`id`, `nom`, `prenom`, `mail`, `mutuelle`, `admin`, `mdp`, `
 (24, 'Sextius', 'Sullivantest', 'sullivan.sextius@gmail.com', '12345679', NULL, 'azertyuiop', '19 avenue jean jaurès, studio', 'doctor_1.png'),
 (25, 'Sextius', 'Sullivanimage', 'sullivan.sextius@gmail.com', '12345679', NULL, 'azertyuiopqsdfgh', '19 avenue jean jaurès, studio', 'IMG_20190618_091820.jpg'),
 (26, 'azert', 'Sullivan', 'sullivan.sextius@gmail.com', '1234567', NULL, 'azertyuiopqsdcvb', '19 avenue jean jaurès, studio', 'Capture d’écran 2020-10-15 à 16.37.17.png'),
-(27, 'Sextiusmodification', 'Sullivan', 'sullivan.sextius@gmail.com', '12345679', NULL, 'hhhhhhhhhh', '19 avenue jean jaurès, studio', 'miboin');
+(27, 'Sextiusmodification', 'Sullivan', 'sullivan.sextius@gmail.com', '12345679', NULL, 'hhhhhhhhhh', '19 avenue jean jaurès, studio', 'miboin'),
+(28, 'test', 'matteÏ', 'sullivan.sextius@gmail.com', '1234567', NULL, 'oooooooooo', '19 allée des autistes', 'aliunix-0S1XOkS3Yig-unsplash.jpg');
+COMMIT;
 
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `administrateur`
---
-ALTER TABLE `administrateur`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `horaire`
---
-ALTER TABLE `horaire`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `medecin`
---
-ALTER TABLE `medecin`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `rdv`
---
-ALTER TABLE `rdv`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_medecin` (`id_medecin`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `administrateur`
---
-ALTER TABLE `administrateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `horaire`
---
-ALTER TABLE `horaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT pour la table `medecin`
---
-ALTER TABLE `medecin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT pour la table `rdv`
---
-ALTER TABLE `rdv`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
-
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

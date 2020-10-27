@@ -5,6 +5,7 @@
     table-layout: fixed;
     width: 100%;
 }
+
 .mail-box aside {
     display: table-cell;
     float: none;
@@ -23,7 +24,7 @@
     width: 75%;
 }
 .mail-box .sm-side .user-head {
-    background: none repeat scroll 0 0 #fff;
+    background: none repeat scroll 0 0 #0596de;
     border-radius: 4px 0 0;
     color: blue;
     min-height: 80px;
@@ -47,10 +48,10 @@
     margin-top: 15px;
 }
 .user-head .user-name h5 a {
-    color: #0596de;
+    color: #fff;
 }
 .user-head .user-name span a {
-    color: #0596de;
+    color: #fff;
     font-size: 12px;
 }
 a.mail-dropdown {
@@ -62,7 +63,7 @@ a.mail-dropdown {
     padding: 3px 5px;
 }
 .inbox-body {
-    padding: 20px;
+    padding: 30px;
 }
 
 ul.inbox-nav {

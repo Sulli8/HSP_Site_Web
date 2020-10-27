@@ -462,6 +462,24 @@ function delete_patient($delete){
 
 }
 
+function service_messagerie(messagerie $messagerie,$id){
+  $db = $this->connexion_bd();
+
+  $request = $db->prepare('INSERT INTO message(message, mail_medecin,id_user) VALUES(:message,:mail_medecin,:id_user)');
+             $insert_utilisateur = $request->execute(array(
+                 'message' => $messagerie->getMessage(),
+                 'mail_medecin' => $messagerie->getDestinataire(),
+                 'id_user' => $messagerie->$id,
+               ));
+  if($request == true){
+    header("Location:../view/index.php");
+  }
+  else{
+    echo "erreur d'envoi";
+  }
+
+}
+
 }
 
 
