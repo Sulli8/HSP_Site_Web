@@ -1,6 +1,6 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/traitement/traitement_formulaire_inscription.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/model/user.php");
+
+
 class user {
   private $id,$nom,$prenom,$mail,$mutuelle,$admin,$mdp,$adresse,$image_profil;
 

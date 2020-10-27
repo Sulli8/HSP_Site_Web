@@ -14,11 +14,12 @@ require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php
    ?>
   <body>
 
-<form class="box" action="../../traitement/traitement_user_modification.php" method="post">
+<form class="box"  enctype="multipart/form-data" action="../../traitement/traitement_user_modification.php" method="post">
   <label for="file" class="label-file">Choisir une image</label>
   <label class="custom-file-upload"><i class="fas fa-upload"></i>
     <input type="file"  class="file" name="photo" id="photo" />
     <input type="hidden" value="b" name="env"/>
+  </label>
 <?php $manager = new Manager();
 $db = $manager->connexion_bd();
 $affiche_information_user = "SELECT nom,prenom,mail,mutuelle,mdp,adresse from user Where id='$id_user'";
