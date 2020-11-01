@@ -18,6 +18,11 @@ input{
     margin-top: 20px;
 }
 
+.message i{
+ color:white;
+ font-size: 75px;
+}
+
 table{
   display:flex;
   justify-content: center;

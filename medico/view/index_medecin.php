@@ -9,6 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/8a3192b16c.js" crossorigin="anonymous"></script>
 </head>
+<style>
+ .message i{
+  color:white;
+  font-size: 75px;
+}
+</style>
 <body>
 
 <?php
@@ -40,6 +46,11 @@ $information_patient= $request_patient->fetchall();
                 <a href="#my-appointments"><button id="see-appointments">
                     <img src="../img/eye-scan.png" alt="">
                     <p>Voir mes rendez-vous</p>
+                </button></a>
+
+                <a href="service_messagerie_medecin.php" class="message"><button id="m-account">
+                  <i class="fas fa-paper-plane"></i>
+                    <p>Service Messagerie</p>
                 </button></a>
             </div>
 

@@ -169,13 +169,8 @@ $tableau = $request->fetchall();
                   </aside>
                   <aside class="lg-side">
                       <div class="inbox-head">
-                          <h3>Service messagerie</h3>
-                          <form action="#" class="pull-right position">
-                              <div class="input-append">
-                                  <input type="text" class="sr-input" placeholder="Search Mail">
-                                  <button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
-                              </div>
-                          </form>
+                          <h3>Service messagerie (User)</h3>
+
                       </div>
 
 

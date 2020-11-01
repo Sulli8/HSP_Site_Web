@@ -16,7 +16,7 @@
 
                 <div id="links">
                     <ul>
-                        <li id="presentation">Bonjour : <?php echo $_SESSION['nom_medecin']  ?></li>
+                        <li style="color:white;"id="presentation">Bonjour : <?php echo $_SESSION['nom_medecin']  ?></li>
                         <li id="deconnection"><i class="fas fa-user"></i> <a href="../traitement/traitement_deconnexion.php">Déconnexion</a></li>
                     </ul>
                 </div>

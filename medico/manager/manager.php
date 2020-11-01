@@ -5,7 +5,7 @@ class manager {
   function connexion_bd(){
     try
         {
-            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','root');
+            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','');
         }
         catch(Exception $e)
         {
@@ -540,9 +540,22 @@ function delete_message($delete){
   }
 
 }
+
+function delete_message_medecin($delete){
+  $db = $this->connexion_bd();
+  $suppression = "DELETE from message_medecin Where id='$delete'";
+  $request = $db->query($suppression);
+  $tableau = $request->fetchall();
+  if(isset($tableau)){
+    header("Location:../view/service_messagerie_medecin.php");
+  }else{
+    echo "Erreur lors de la suppression";
+  }
+
+}
 function service_messagerie(messagerie $messagerie,$id){
   $db = $this->connexion_bd();
-  $request = $db->prepare('INSERT INTO message_user(message_envoye,objet,mail_medecin,id_user,message_recu,heure) VALUES(:message_envoye,:objet,:mail_medecin,:id_user,:message_recu,heure)');
+  $request = $db->prepare('INSERT INTO message_user(message_envoye,objet,mail_medecin,id_user,message_recu,heure) VALUES(:message_envoye,:objet,:mail_medecin,:id_user,:message_recu,:heure)');
              $insert_messagerie = $request->execute(array(
                  'message_envoye' => $messagerie->getMessage(),
                  'objet' => $messagerie->getObjet_message(),
@@ -563,7 +576,7 @@ if(isset($insert_messagerie)){
      }
    }
    echo $tab_mail[0];
-   $request_envoi = $db->prepare('INSERT INTO message_medecin(message_envoye,objet,mail_user,id_medecin,message_recu,heure) VALUES(:message_envoye,:objet,:mail_user,:id_medecin,:message_recu,heure)');
+   $request_envoi = $db->prepare('INSERT INTO message_medecin(message_envoye,objet,mail_user,id_medecin,message_recu,heure) VALUES(:message_envoye,:objet,:mail_user,:id_medecin,:message_recu,:heure)');
                          $request_envoi_tab = $request_envoi->execute(array(
                              'message_envoye' => 'NULL',
                              'objet' => $messagerie->getObjet_message(),
@@ -581,5 +594,47 @@ if(isset($insert_messagerie)){
                           }
 
 }
+
+function service_messagerie_medecin(messagerie $messagerie,$id){
+  $db = $this->connexion_bd();
+  $request = $db->prepare('INSERT INTO message_medecin(message_envoye,objet,mail_user,id_medecin,message_recu,heure) VALUES(:message_envoye,:objet,:mail_user,:id_medecin,:message_recu,:heure)');
+             $insert_messagerie = $request->execute(array(
+                 'message_envoye' => $messagerie->getMessage(),
+                 'objet' => $messagerie->getObjet_message(),
+                 'mail_user' => $messagerie->getDestinataire(),
+                 'id_medecin' => $id,
+                 'message_recu'=>$messagerie->getMessageRecu(),
+                 'heure'=>date("H:i")
+               ));
+$mail_user = $messagerie->getDestinataire();
+$tab_mail = [];
+if(isset($insert_messagerie)){
+  $request_recu = $this->connexion_bd()->query("SELECT id FROM user WHERE mail='$mail_user'");
+   $reception = $request_recu->fetchall();
+   for ($i=0; $i < count($reception) ; $i++) {
+     foreach (array_unique($reception[$i]) as $key => $value) {
+       array_push($tab_mail,$value);
+     }
+   }
+   echo $tab_mail[0];
+   $request_envoi = $db->prepare('INSERT INTO message_user(message_envoye,objet,mail_medecin,id_user,message_recu,heure) VALUES(:message_envoye,:objet,:mail_medecin,:id_user,:message_recu,:heure)');
+                         $request_envoi_tab = $request_envoi->execute(array(
+                             'message_envoye' => 'NULL',
+                             'objet' => $messagerie->getObjet_message(),
+                             'mail_user' => $_SESSION['mail_medecin'],
+                            'id_medecin' => $tab_mail[0],
+                            'message_recu'=>$messagerie->getMessage(),
+                            'heure'=>date("H:i")
+                           ));
+                         }
+                         if($request_envoi == true){
+                           header("Location:../view/service_messagerie_medecin.php");
+                         }
+                         else{
+                            echo "erreur d'envoi";
+                          }
+
+}
+
 }
 ?>

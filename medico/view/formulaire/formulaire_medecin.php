@@ -54,7 +54,7 @@
             </div>
           </div>
 
-          <input style="background-color: #0596de;margin-top:8px;"type="submit" value="Ajouter Médecin"class="btn btn-primary"></input>
+          <input style="background-color: #007bff;margin-top:8px;"type="submit" value="Ajouter Médecin"class="btn btn-primary"></input>
 
           <a class="return-home" href="../interface_admin/index.php">Retour à l'accueil</a>
 </div>
