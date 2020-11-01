@@ -178,22 +178,28 @@ function barre_de_recherche($recherche){
     $search = "SELECT * from medecin Where nom Like '%$recherche'";
     $request = $db->query($search);
     $tableau = $request->fetchall();
-    $index_key = ['nom','prenom','mail','departement','specialite'];
+    $index_key = ['nom','prenom','departement','specialite','mail'];
     session_start();
+
+
     if(isset($tableau[0])){
+          echo "<table class='table table-dark'>";
+          echo "  <th class='bg-primary'scope='col'>Coordonnées médecin</th>";
       foreach (array_unique($tableau[0]) as $key => $value) {
-        if(strlen($_SESSION['admin']) != 0){
-            echo $key.": ".$value.'<br />';
-        } else {
+        echo "<tr>";
           for ($i=0; $i < count($index_key) ; $i++) {
+            if($i%2 != 0){$class= 'bg-primary';}else{$class='orange';}
             if($key == $index_key[$i]){
-              echo $key.": ".$value.'<br />';
+            echo "<td class='$class'>".ucwords($key)." : ".$value.'</td>';
             }
           }
+          echo "</tr>";
 
         }
+        echo "<table>";
+        echo "<a href='../view/index.php'class='btn btn-primary'>Retour à l'accueil</a>";
       }
-    }else{
+      else{
       echo "WARNING: ce médecin n'existe pas";
     }
 

@@ -18,6 +18,6 @@ $manager = new Manager();
 
  ?>
 <div class="search">
-  <a href='../view/formulaire/formulaire_rdv.php'> Prendre un rdv avec ce médecin ?</a>
+  <a href='../view/prise_rdv.php'> Prendre un rdv avec ce médecin ?</a>
 <?php $manager->affiche_medecin($_POST['specialite']); ?>
 </div>
