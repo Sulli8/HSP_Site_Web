@@ -37,13 +37,31 @@ if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["mail"]) && i
 if(isset($_POST["prenom"]) && isset($_POST["mail"]) &&  $_POST["mdp"] == "root"){
   require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
   require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/model/user.php");
+  if(isset($_POST["env"])){
+  $logo=$_FILES['photo']['name'];
+  echo $logo;
+  if($logo!=""){
+  require "uploadImage.php";
+  }
+  else {$logo="notdid";}
+  if($logo!="notdid"){
+  echo "upload reussi!!!";
+
+  }
+  else{
+  echo"recommence!!!";
+  }
+  }
+
   $inscription_admin = new user(["nom"=>"root",
   "prenom"=>$_POST["prenom"],
   "mail"=>$_POST["mail"],
   "mutuelle"=>"0",
   "mdp"=>$_POST["mdp"],
   "admin"=>"1",
-  "adresse"=>"NULL"]);
+  "adresse"=>"NULL",
+  "image_profil"=>$_FILES['photo']['name']]
+);
   $manager = new manager();
   $manager->inscription($inscription_admin);
 

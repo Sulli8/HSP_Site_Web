@@ -3,40 +3,61 @@
 <html lang="fr">
 
 
- <link rel="stylesheet" href="formulaire_inscription_style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Medecin</title>
+     <link rel="stylesheet" href="../../css/formulaire_inscription_style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
 <body>
 
 
-<form action="../../traitement/traitement_formulaire_inscription.php" method="post">
+<form  enctype="multipart/form-data"  action="../../traitement/traitement_formulaire_inscription.php" method="post">
+      <div class="form-group" style="  border: 3px solid orange;">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="nom">Entrez le Nom</label>
+                  <input type="text" name="nom_medecin" class="form-control"  placeholder="Entrez le nom medecin"/>
+            </div>
+            <div class="col-md-6">
+              <label for="exampleInputEmail1" >Entrez le Prénom</label>
+              <input type="text" name="prenom_medecin" class="form-control"  placeholder="Entrez votre prénom"/>
+            </div>
 
-  <div class="form-group">
-    <label for="exampleInputEmail1" >Entrez votre Nom</label>
-    <input type="text" name="nom_medecin" class="form-control"  placeholder="Entrez votre nom"/>
+            <div class="col-md-6">
+              <label for="exampleInputEmail1" >Entrez le Département </label>
+              <input type="text" name="departement_medecin" class="form-control"  placeholder="Département"/>
+            </div>
 
-    <label for="exampleInputEmail1" >Entrez votre Prénom</label>
-    <input type="text" name="prenom_medecin" class="form-control"  placeholder="Entrez votre prénom"/>
+            <div class="col-md-6">
+              <label for="mutuelle" >Renseignez la Spécialité</label>
+              <input type="text" name="specialite_medecin" class="form-control"  placeholder="Spécialité"/>
+            </div>
 
-    <label for="exampleInputEmail1" >Entrez votre Département </label>
-    <input type="text" name="departement_medecin" class="form-control"  placeholder="Département"/>
+              <div class="col-md-6">
+            <label for="adresse" >Entrez l' Email</label>
+            <input type="mail" name="mail_medecin" class="form-control"  aria-describedby="emailHelp" placeholder="Entrez votre adresse mail"/>
+            </div>
 
-    <label for="mutuelle" >Renseignez votre Spécialité</label>
-    <input type="text" name="specialite_medecin" class="form-control"  placeholder="Spécialité"/>
+            <div class="col-md-6">
+              <label for="file" class="label-file">Choisir une image</label>
+              <label class="custom-file-upload"><i class="fas fa-upload"></i>
+                <input type="file"  class="file" name="photo" id="photo" />
+                <input type="hidden" value="b" name="env"/>
+              </label>
+            </div>
 
+            <div class="col-md-6">
+              <label for="adresse" >Entrez le Mot de passe</label>
+              <input type="password" name="mdp_medecin" class="form-control"  minlength="8" aria-describedby="emailHelp" placeholder="Entrez votre mot de passe"/>
+            </div>
+          </div>
 
-    <label for="adresse" >Entrez votre Email</label>
-    <input type="mail" name="mail_medecin" class="form-control"  aria-describedby="emailHelp" placeholder="Entrez votre adresse mail"/>
+          <input style="background-color: #0596de;margin-top:8px;"type="submit" value="Ajouter Médecin"class="btn btn-primary"></input>
 
-
-    <label for="adresse" >Entrez votre Mot de passe</label>
-    <input type="password" name="mdp_medecin" class="form-control"  minlength="8" aria-describedby="emailHelp" placeholder="Entrez votre mot de passe"/>
-
-
-    <input type="submit" value="Ajout Médecin"class="btn btn-primary"></input>
-
-    <a class="return-home" href="../index.php">Retour à l'accueil</a>
-
-  </div>
-
-</form>
+          <a class="return-home" href="../interface_admin/index.php">Retour à l'accueil</a>
+</div>
+    </form>
 </body>
 </html>

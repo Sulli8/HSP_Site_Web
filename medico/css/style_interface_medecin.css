@@ -77,10 +77,10 @@ input[type="submit"]{
 input[type="submit"]:hover{
   transition-duration: 0.5s;
   color:orange;
-  background:#0596de;
+  background:#007bff;
 }
 .header {
-    background: #0596de;
+    background: #007bff;
     height: auto;
 }
 
@@ -140,7 +140,7 @@ li#deconnection i {
 
 .panel-section {
     height: auto;
-    background: #0596de;
+    background: #007bff;
 }
 
 .panel-section h1 {
@@ -162,7 +162,7 @@ li#deconnection i {
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid white;
-    background-color: #0596de;
+    background-color: #007bff;
     margin-bottom: 28px;
 }
 
@@ -204,7 +204,7 @@ h1#my-appointments {
 
 .account-part {
     height:900px;
-    background: #0596de;
+    background: #007bff;
     margin-bottom: 30px;
     padding-bottom: 18px;
 }

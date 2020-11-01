@@ -3,10 +3,17 @@
 <html lang="fr">
 
 
- <link rel="stylesheet" href="formulaire_inscription_style.css">
+ <link rel="stylesheet" href="../../css/formulaire_inscription_style.css">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Interface Medecin</title>
+      <link rel="stylesheet" href="../../css/formulaire_inscription_style.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+ </head>
 <body>
 
-<form action="../../traitement/traitement_formulaire_inscription.php" method="post">
+<form enctype="multipart/form-data" action="../../traitement/traitement_formulaire_inscription.php" method="post">
 
   <div class="form-group">
     <label for="exampleInputEmail1" >Entrez votre nom Admin</label>
@@ -18,13 +25,21 @@
     <label for="exampleInputEmail1" >Entrez votre adresse e-mail Admin</label>
     <input type="email" name="mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez votre adresse e-mail">
 
+      <label for="file" class="label-file">Choisir une image</label>
+      <label class="custom-file-upload"><i class="fas fa-upload"></i>
+        <input type="file"  class="file" name="photo" id="photo" />
+        <input type="hidden" value="b" name="env"/>
+      </label>
+
 
     <label for="mot_de_passe" >Entrez un mot de passe</label>
     <input type="password" name="mdp" value="root" class="form-control"  aria-describedby="emailHelp" placeholder="Entrez un mot de passe">
 
-    <input type="submit"class="btn btn-primary" value="Ajouter Admin"/>
 
-    <a href="formulaire_connexion.php">Vous avez déjà un compte admin ?</a>
+
+    <input style="margin-top:8px;" type="submit"class="btn btn-primary" value="Ajouter Admin"/>
+
+
 
 
     <a class="return-home" href="../index.php">Retour à l'accueil</a>

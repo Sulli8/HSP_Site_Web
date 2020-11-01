@@ -6,6 +6,7 @@
     width: 100%;
 }
 
+
 .mail-box aside {
     display: table-cell;
     float: none;
@@ -24,7 +25,7 @@
     width: 75%;
 }
 .mail-box .sm-side .user-head {
-    background: none repeat scroll 0 0 #0596de;
+    background: none repeat scroll 0 0 #007bff;
     border-radius: 4px 0 0;
     color: blue;
     min-height: 80px;
@@ -128,7 +129,7 @@ ul.labels-info li a i {
     padding: 0 22px;
 }
 .inbox-head {
-    background: none repeat scroll 0 0 #0596de;
+    background: none repeat scroll 0 0 #007bff;
     border-radius: 0 4px 0 0;
     color: #fff;
     min-height: 80px;
@@ -189,7 +190,7 @@ ul.inbox-pagination li {
     width: 100%;
 }
 table{
-  margin-top: 30px;
+  margin-top: 0px;
 }
 .mail-option .chk-all, .mail-option .btn-group {
     margin-right: 5px;

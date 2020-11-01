@@ -32,6 +32,7 @@ $tableau = $request->fetchall();
  <?php $destinataire = "SELECT mail from medecin";
  $request = $db->query($destinataire);
  $tab_destinataire = $request->fetchall();
+
  ?>
 <div class="container">
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
@@ -65,28 +66,31 @@ $tableau = $request->fetchall();
         </button>
       </div>
       <div class="modal-body">
-        <form action="../traitement/traitement_service_messagerie" method="post">
+        <form action="../traitement/traitement_service_messagerie.php" method="post">
           <div class="form-group">
-            <select class="" name="destinataire">
+            <select class="custom-select custom-select-sm" name="destinataire">
+                  <option selected>Selectionner un destinataire</option>
             <?php for ($i=0; $i < count($tab_destinataire) ; $i++) {?>
               <?php foreach (array_unique($tab_destinataire[$i]) as $key => $value){ ?>
-                  <option value=""><?php echo $value; ?></option>
+
+                  <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
               <?php } ?>
 
         <?php     } ?>
             </select>
           </br><label for="recipient-name" class="col-form-label">Objet :</label>
-            <input type="text" name="objet" class="form-control" id="recipient-name">
+            <input type="text" name="objet_message" class="form-control" id="recipient-name">
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Message:</label>
             <textarea class="form-control" name="message" id="message-text"></textarea>
           </div>
-        </form>
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-primary">Envoyer message</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+        <input type="submit" style="background-color:orange;color:white;" class="btn" value="Envoyer message"></input>
+          </form>
       </div>
     </div>
   </div>
@@ -96,15 +100,68 @@ $tableau = $request->fetchall();
                           </li>
                           <li>
                             <form action="#">
-                            <input type="submit" class="btn btn-primary" href="../view/ljknjù.php" value="Boîte de réception"></input>
+                            <input type="submit" class="btn btn-primary" href="../view/service_messagerie.php" value="Boîte de réception"></input>
                             </form>
                           </li>
                           <li>
-                            <form action="#">
-                                      <input type="submit" class="btn btn-danger" href="#" value="Corbeille"></input>
-                            </form>
+                            <button type="button" style="background-color:orange;color:white;" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+    Message envoyés
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <?php
+        $id = $_SESSION['id'];
+        $db = $manager->connexion_bd();
+        $voir_message = "SELECT message_envoye from message_user  WHERE id_user='$id'";
+        $btn_delete = "SELECT id from message_user WHERE id_user='$id'";
+        $suppression = $db->query($btn_delete);
+        $request = $db->query($voir_message);
+        $tab_message = $request->fetchall();
+        $tab_suppression = $suppression->fetchall();
+
+        if(count($tab_message) != "0"){
+
+
+        for ($i=0; $i < count($tab_message) ; $i++) {
+          foreach (array_unique($tab_message[$i]) as $key => $value) {?>
+
+            <div class="modal-body">
+            <?php echo $value."</br>"; ?>
+
+            </div>
+
+      <?php }
+      foreach (array_unique($tab_suppression[$i]) as $key => $value) {
+        echo "<a style='color:#fff;width:120px;margin-bottom:10px;margin-left:370px;'class='btn btn-primary' href='../traitement/traitement_suppression_message.php?delete=$value'>Supprimer</a>";
+      }
+        }
+          }
+          else{  ?>
+                <div class="modal-body">Vous n'avez pas envoyé de message !</div>
+  <?php        } ?>
+
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
                           </li>
+
+
                       </ul>
 
 
@@ -125,17 +182,31 @@ $tableau = $request->fetchall();
 
                           <table class="table table-inbox table-hover">
                             <tbody>
-                              <tr class="unread">
-                                  <td class="inbox-small-cells">
-                                      <input type="checkbox" class="mail-checkbox">
-                                  </td>
-                                  <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
-                                  <td class="view-message  dont-show"><a>PHPClass</a></td>
-                                  <td class="view-message ">Added a new class: Login Class Fast Site</td>
-                                  <td class="view-message  inbox-small-cells"><i class="fa fa-paperclip"></i></td>
-                                  <td class="view-message  text-right">9:27 AM</td>
-                              </tr>
-                              <tr class="unread">
+
+
+                                <?php   $affiche_message = $db->query("SELECT objet,message_recu,heure FROM message_user WHERE id_user='$id'");
+                                   $boite_reception = $affiche_message->fetchall();
+                                   for ($i=0; $i < count($boite_reception) ; $i++) {?>
+                                        <tr class="unread">
+                                           <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+                                <?php  foreach (array_unique($boite_reception[$i]) as $key => $value) {?>
+
+
+
+                                <?php
+                                if($key == 'message_recu'){echo "<td class='view-message'>$value</td>";}
+                                if($key == 'objet'){echo "<td class='view-message  dont-show'><a>$value</a></td>";}
+                                if($key == 'heure'){ echo "<td class='view-message  text-right'>$value</td>";}?>
+
+                              <?php  }?>
+                                </tr>
+                          <?php  }
+                             ?>
+
+
+
+
+                          <!--    <tr class="unread">
                                   <td class="inbox-small-cells">
                                       <input type="checkbox" class="mail-checkbox">
                                   </td>
@@ -145,7 +216,7 @@ $tableau = $request->fetchall();
                                   <td class="view-message inbox-small-cells"></td>
                                   <td class="view-message text-right">March 15</td>
                               </tr>
-                              <tr class="">
+                            <tr class="">
                                   <td class="inbox-small-cells">
                                       <input type="checkbox" class="mail-checkbox">
                                   </td>
@@ -154,7 +225,7 @@ $tableau = $request->fetchall();
                                   <td class="view-message">Last Chance: Upgrade to Pro for </td>
                                   <td class="view-message inbox-small-cells"></td>
                                   <td class="view-message text-right">March 15</td>
-                              </tr>
+                              </tr>-->
 
 
 

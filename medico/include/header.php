@@ -7,7 +7,7 @@ $manager = new Manager;?>
 <?php if(empty($_SESSION)){ ?>
             <div class="navbar">
 
-                <div id="logo"><a href="../view/index.php">HSP Sulli9</a></div>
+                <div id="logo"><a href="../view/index.php">HSP </a></div>
                 <div id="links">
                     <ul>
                         <li id="our-services"><i class="fas fa-list-ul"></i> <a href="#title-of-services-div">Nos services</a></li>
@@ -18,7 +18,7 @@ $manager = new Manager;?>
             <?php } else{ ?>
 
               <div class="navbar">
-                  <div id="logo"><a href="../view/index.php">HSP Sulli9</a></div>
+                  <div id="logo"><a href="../view/index.php">HSP </a></div>
                   <div id="links">
                       <ul>
                         <li id="our-services"><i class="fas fa-list-ul"></i> <a href="#title-of-services-div">Nos services</a></li><li>
@@ -39,7 +39,7 @@ $manager = new Manager;?>
                 <div class="column-one">
                     <h2>Réservez une consultation <br> chez un professionnel de santé</h2>
 
-                    <form action="../../traitement/traitement_recherche_medecin.php" method="post">
+                    <form action="../traitement/traitement_recherche_medecin.php" method="post">
                         <input type="search"name="recherche" placeholder="Chercher un medecin" id="search">
                         <input type="submit" value="Rechercher">
                     </form>

@@ -5,7 +5,7 @@ class manager {
   function connexion_bd(){
     try
         {
-            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','');
+            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','root');
         }
         catch(Exception $e)
         {
@@ -29,10 +29,14 @@ class manager {
                    'adresse'=>$inscription->getAdresse(),
                    'image_profil'=>$inscription->getImage_profil()
                  ));
-    if($request == true){
-      header('Location:../view/index.php');
+      if(isset($insert_utilisateur) && empty($inscription->getAdmin())){
+        header('Location:../view/index.php');
+      }
+      else {
+        header('Location:../view/interface_admin/index.php');
+      }
 
-    }
+
 }
 
 function inscription_medecin(Medecin $medecin){
@@ -49,7 +53,7 @@ function inscription_medecin(Medecin $medecin){
                ));
                $tableau = $request->fetch();
                if($insert_medecin == true){
-                  header('Location:../view/index.php');
+                  header('Location:../view/interface_admin/index.php');
                }
 
 }
@@ -67,21 +71,34 @@ function inscription_medecin(Medecin $medecin){
          $_SESSION['id'] = $response["id"];
          $_SESSION['nom'] = $response['nom'];
          $_SESSION['admin'] = "";
-         $_SESSION['rdv_indispo'] = "1";
-
-         if(isset($response['admin'])){
-           $_SESSION["admin"] = "root";
-         }
          //faire apparaitre pop up user
              header('Location:../view/index.php');
        }
-       else
-       {
+       if(isset($response['admin'])){
+         $search = "SELECT * from user Where mdp='$mdp' and mail='$mail'";
+         $request = $this->connexion_bd()->query($search);
+         $tab_connect = $request->fetch();
+         var_dump($tab_connect);
+         session_start();
+         $_SESSION["mdp"] = $mdp;
+         $_SESSION["mail"] = $mail;
+         $_SESSION['id'] = $tab_connect["id"];
+         $_SESSION['nom'] = $tab_connect['nom'];
+         $_SESSION['prenom'] = $tab_connect['prenom'];
+         $_SESSION['img_profil'] = $tab_connect['image_profil'];
+         $_SESSION['admin'] = "root";
+        if($tab_connect == true){
+          header("Location: ../view/interface_admin");
+        }
+      }
+      else
+      {
          //Vérifie si le user connectéest un médecin
          $this->connexion_medecin($mail,$mdp);
        }
-    }
-  }
+     }
+   }
+
   function connexion_medecin($mail,$mdp){
     if(isset($mail) && isset($mdp)){
       $request = $this->connexion_bd()->prepare('SELECT * FROM medecin WHERE mail=:mail and mdp=:mdp');
@@ -100,11 +117,13 @@ function inscription_medecin(Medecin $medecin){
        }
        else
        {
-         // Affiche une erreur de connexion
-         echo "Vous n'êtes pas authentifier sur ce site inscriver vous avant !";
+         echo "Erreur d'authentification";
+
        }
     }
   }
+
+
 
 
 
@@ -442,6 +461,8 @@ function delete($delete){
   $suppression = "DELETE from rdv Where id='$delete'";
   $request = $db->query($suppression);
   $tableau = $request->fetchall();
+
+
   if(isset($tableau)){
     header("Location:../view/index.php");
   }else{
@@ -449,6 +470,24 @@ function delete($delete){
   }
 
 }
+
+
+function delete_rdv_admin($delete){
+  $db = $this->connexion_bd();
+  $suppression = "DELETE from rdv Where id='$delete'";
+  $request = $db->query($suppression);
+  $tableau = $request->fetchall();
+
+
+  if(isset($tableau)){
+    header("Location:../view/interface_admin/index.php");
+  }else{
+    echo "Erreur lors de la suppression";
+  }
+
+}
+
+
 function delete_patient($delete){
   $db = $this->connexion_bd();
   $suppression = "DELETE from rdv Where id='$delete'";
@@ -462,26 +501,85 @@ function delete_patient($delete){
 
 }
 
+function delete_user($delete){
+  $db = $this->connexion_bd();
+  $suppression = "DELETE from user Where id='$delete'";
+  $request = $db->query($suppression);
+  $tableau = $request->fetch();
+  var_dump($tableau);
+  //if(isset($tableau)){
+  //  header("Location:../view/interface_admin/index.php");
+  //}else{
+    //echo "Erreur lors de la suppression";
+  //}
+
+}
+
+function delete_medecin($delete){
+  $db = $this->connexion_bd();
+  $suppression = "DELETE from medecin Where id='$delete'";
+  $request = $db->query($suppression);
+  $tableau = $request->fetchall();
+  if(isset($tableau)){
+    header("Location:../view/interface_admin/index.php");
+  }else{
+    echo "Erreur lors de la suppression";
+  }
+
+}
+
+function delete_message($delete){
+  $db = $this->connexion_bd();
+  $suppression = "DELETE from message_user Where id='$delete'";
+  $request = $db->query($suppression);
+  $tableau = $request->fetchall();
+  if(isset($tableau)){
+    header("Location:../view/service_messagerie.php");
+  }else{
+    echo "Erreur lors de la suppression";
+  }
+
+}
 function service_messagerie(messagerie $messagerie,$id){
   $db = $this->connexion_bd();
-
-  $request = $db->prepare('INSERT INTO message(message, mail_medecin,id_user) VALUES(:message,:mail_medecin,:id_user)');
-             $insert_utilisateur = $request->execute(array(
-                 'message' => $messagerie->getMessage(),
+  $request = $db->prepare('INSERT INTO message_user(message_envoye,objet,mail_medecin,id_user,message_recu,heure) VALUES(:message_envoye,:objet,:mail_medecin,:id_user,:message_recu,heure)');
+             $insert_messagerie = $request->execute(array(
+                 'message_envoye' => $messagerie->getMessage(),
+                 'objet' => $messagerie->getObjet_message(),
                  'mail_medecin' => $messagerie->getDestinataire(),
-                 'id_user' => $messagerie->$id,
+                 'id_user' => $id,
+                 'message_recu'=>$messagerie->getMessageRecu(),
+                 'heure'=>date("H:i")
                ));
-  if($request == true){
-    header("Location:../view/index.php");
-  }
-  else{
-    echo "erreur d'envoi";
-  }
+
+$mail_medecin = $messagerie->getDestinataire();
+$tab_mail = [];
+if(isset($insert_messagerie)){
+  $request_recu = $this->connexion_bd()->query("SELECT id FROM medecin WHERE mail='$mail_medecin'");
+   $reception = $request_recu->fetchall();
+   for ($i=0; $i < count($reception) ; $i++) {
+     foreach (array_unique($reception[$i]) as $key => $value) {
+       array_push($tab_mail,$value);
+     }
+   }
+   echo $tab_mail[0];
+   $request_envoi = $db->prepare('INSERT INTO message_medecin(message_envoye,objet,mail_user,id_medecin,message_recu,heure) VALUES(:message_envoye,:objet,:mail_user,:id_medecin,:message_recu,heure)');
+                         $request_envoi_tab = $request_envoi->execute(array(
+                             'message_envoye' => 'NULL',
+                             'objet' => $messagerie->getObjet_message(),
+                             'mail_user' => $_SESSION['mail'],
+                            'id_medecin' => $tab_mail[0],
+                            'message_recu'=>$messagerie->getMessage(),
+                            'heure'=>date("H:i")
+                           ));
+                         }
+                         if($request_envoi == true){
+                           header("Location:../view/service_messagerie.php");
+                         }
+                         else{
+                            echo "erreur d'envoi";
+                          }
 
 }
-
 }
-
-
-
 ?>
