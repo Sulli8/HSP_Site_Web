@@ -33,7 +33,7 @@
       <hr>
 
       <div class="new">
-          <h4>Nouveau sur HSP Sulli9 ?</h4>
+          <h4>Nouveau sur HSP  ?</h4>
           <p id="p-c-inscription">S'inscrire</p>
       </div>
 
@@ -72,7 +72,7 @@
 
     </div>
 <?php include "../include/header.php";?>
-    <h2 id="title-of-explain-div">Pourquoi prendre rendez-vous avec HSP Sulli9 ?</h2>
+    <h2 id="title-of-explain-div">Pourquoi prendre rendez-vous avec HSP  ?</h2>
 
     <div class="explain">
 

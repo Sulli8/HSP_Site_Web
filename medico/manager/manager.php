@@ -63,6 +63,7 @@ function inscription_medecin(Medecin $medecin){
       $request = $this->connexion_bd()->prepare('SELECT * FROM user WHERE mail=:mail and mdp=:mdp');
        $request->execute(array('mdp'=>$mdp, 'mail'=>$mail));
        $response = $request->fetch();
+    //   var_dump($response);
        if ($response == true)
        {
          session_start();
@@ -72,14 +73,19 @@ function inscription_medecin(Medecin $medecin){
          $_SESSION['nom'] = $response['nom'];
          $_SESSION['admin'] = "";
          //faire apparaitre pop up user
-             header('Location:../view/index.php');
+           header('Location:../view/index.php');
+       }
+
+      else
+      {
+         //Vérifie si le user connectéest un médecin
+         $this->connexion_medecin($mail,$mdp);
        }
        if(isset($response['admin'])){
          $search = "SELECT * from user Where mdp='$mdp' and mail='$mail'";
          $request = $this->connexion_bd()->query($search);
          $tab_connect = $request->fetch();
          var_dump($tab_connect);
-         session_start();
          $_SESSION["mdp"] = $mdp;
          $_SESSION["mail"] = $mail;
          $_SESSION['id'] = $tab_connect["id"];
@@ -91,11 +97,7 @@ function inscription_medecin(Medecin $medecin){
           header("Location: ../view/interface_admin");
         }
       }
-      else
-      {
-         //Vérifie si le user connectéest un médecin
-         $this->connexion_medecin($mail,$mdp);
-       }
+
      }
    }
 
@@ -117,7 +119,11 @@ function inscription_medecin(Medecin $medecin){
        }
        else
        {
-         echo "Erreur d'authentification";
+         echo "<script>window.alert('Erreur authentification');
+   document.location.href='../view/index.php';
+
+         </script>";
+
 
        }
     }
@@ -200,7 +206,10 @@ function barre_de_recherche($recherche){
         echo "<a href='../view/index.php'class='btn btn-primary'>Retour à l'accueil</a>";
       }
       else{
-      echo "WARNING: ce médecin n'existe pas";
+      echo "<script>window.alert('Erreur de recherche médecin');
+document.location.href='../view/index.php';
+
+      </script>";
     }
 
 
@@ -263,7 +272,10 @@ function gestion_rdv($id_medecin,$id_user,$date,$heure,$nom_medecin,$nom_patient
   if(isset($tableau)){
         header('Location:../view/index.php');
   }else{
-    echo "erreur";
+    echo "<script>window.alert('Erreur de gestion de rdv');
+document.location.href='../view/index.php';
+
+    </script>";
   }
 
 }
@@ -308,7 +320,10 @@ function ajout_rdv($array){
       header("Location:../view/index_medecin.php");
   }
   else{
-    echo "erreur d'ajout";
+    echo "<script>window.alert('Erreur  ajout ');
+document.location.href='../view/index.php';
+
+    </script>";
   }
 }
 
@@ -472,7 +487,10 @@ function delete($delete){
   if(isset($tableau)){
     header("Location:../view/index.php");
   }else{
-    echo "Erreur lors de la suppression";
+    echo "<script>window.alert('Erreur suppression');
+document.location.href='../view/index.php';
+
+    </script>";
   }
 
 }

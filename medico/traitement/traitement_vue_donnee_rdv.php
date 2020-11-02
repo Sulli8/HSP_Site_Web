@@ -36,7 +36,7 @@ $tab_connect = $request->fetchall();
         }else { $class = 'orange';}
         ?>
           <td class=<?php echo $class; ?>><?php echo $value; ?></td>
-        <?php     if($key == 'id'){ echo "<td class=".$class."><a href='traitement_suppression_rdv.php?delete=$value'class='btn btn-danger'>Supprimer<a/></td>";}?>
+        <?php     if($key == 'id'){ echo "<td class=".$class."><a href='traitement_suppression_admin_rdv.php?delete=$value'class='btn btn-danger'>Supprimer<a/></td>";}?>
   <?php  } ?>
 </tr>
    <?php
