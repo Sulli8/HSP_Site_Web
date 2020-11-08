@@ -424,7 +424,6 @@ function heure($rdv){
   $jours = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
   $mois = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Décembre'];
   echo '<div class="form">';
-  echo '<h3>Docteur '.$_SESSION["nom_medecin"].'</h3>';
   echo '<form  action='.$path.' method=post>';
 
 //Annee

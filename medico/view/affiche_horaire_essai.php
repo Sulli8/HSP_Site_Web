@@ -9,12 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/8a3192b16c.js" crossorigin="anonymous"></script>
-
-    <style>
-.orange{
-  background-color: orange;
-}
-    </style>
 </head>
 <body>
   <!-- Optional JavaScript; choose one of the two! -->
@@ -26,7 +20,6 @@
 
  <?php require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
  $manager = new Manager();
- include "../include/header.php";
  $db = $manager->connexion_bd();
  $affiche = "SELECT nom,prenom,departement,specialite,mail,image_profil from medecin";
  $request = $db->query($affiche);
@@ -34,32 +27,36 @@
  $variable = 'Prendre rdv';
  $class = 'btn';
 ?>
-    <div class="container mt-5 mb-5 orange rounded">
-<?php   for ($i=0; $i < count($tableau) ; $i++) {?>
+<div class="dropdown-menu">
+<form class="px-4 py-3">
+<div class="form-group">
+  <label for="exampleDropdownFormEmail1">Email address</label>
+  <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+</div>
+<div class="form-group">
+  <label for="exampleDropdownFormPassword1">Password</label>
+  <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+</div>
+<div class="form-check">
+  <input type="checkbox" class="form-check-input" id="dropdownCheck">
+  <label class="form-check-label" for="dropdownCheck">
+    Remember me
+  </label>
+</div>
+<button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">New around here? Sign up</a>
+<a class="dropdown-item" href="#">Forgot password?</a>
+</div>
 
-  <div class="card text-center">
-    <div class="card-header">
-      Featured
-    </div>
-    <div class="row justify-content-between">
-    <div class="card-body align-items-center">
 
-            <div class="text-center"> <div class="img-thumbnail"><img  width="200" height="200"src="../img/images_profils/<?php  echo $tableau[$i]['image_profil'];?>"></img></div>
 
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">       <?php  echo "Prénom : ".ucwords($tableau[$i]['prenom'])."</br>";?>
-             <?php  echo "Département : ".$tableau[$i]['departement']."</br>";?>
-             <?php  echo "Mail : ".$tableau[$i]['mail']."</br>";?></p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
-    </div>
-    <div class="card-footer text-muted">
-         <?php  echo "Domaine : ".$tableau[$i]['specialite']."</br>";?>
-    </div>
-  </div>
-  <?php  // echo  "<a class='$class'  href='../traitement/traitement_affiche_horaire_rdv.php?rdv=$value'>$variable</a>"."<br/>"; ?>
-<?php }?>
-     </div>
+
+
+
+
+
 </body>
+
 </html>
