@@ -85,7 +85,7 @@ function inscription_medecin(Medecin $medecin){
          $search = "SELECT * from user Where mdp='$mdp' and mail='$mail'";
          $request = $this->connexion_bd()->query($search);
          $tab_connect = $request->fetch();
-         var_dump($tab_connect);
+        
          $_SESSION["mdp"] = $mdp;
          $_SESSION["mail"] = $mail;
          $_SESSION['id'] = $tab_connect["id"];

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 09 nov. 2020 à 13:29
+-- Généré le :  lun. 09 nov. 2020 à 16:11
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -36,6 +36,30 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
   `email` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `creneau`
+--
+
+DROP TABLE IF EXISTS `creneau`;
+CREATE TABLE IF NOT EXISTS `creneau` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `creneau_1` varchar(40) NOT NULL,
+  `creneau_2` varchar(40) NOT NULL,
+  `creneau_3` varchar(40) NOT NULL,
+  `creneau_4` varchar(40) NOT NULL,
+  `creneau_5` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `creneau`
+--
+
+INSERT INTO `creneau` (`id`, `creneau_1`, `creneau_2`, `creneau_3`, `creneau_4`, `creneau_5`) VALUES
+(1, '9h00-10h00', '10h00-11h00', '11h00-12h00', '14h00-15h00', '15h00-16h00');
 
 -- --------------------------------------------------------
 
@@ -149,8 +173,17 @@ CREATE TABLE IF NOT EXISTS `prise_rdv` (
   `creneau_3` int(11) NOT NULL,
   `creneau_4` int(11) NOT NULL,
   `creaneau_5` int(11) NOT NULL,
+  `date` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `prise_rdv`
+--
+
+INSERT INTO `prise_rdv` (`id`, `nom_medecin`, `creneau_1`, `creneau_2`, `creneau_3`, `creneau_4`, `creaneau_5`, `date`) VALUES
+(1, 'Sullivan', 1, 0, 0, 0, 0, '04-04-2020'),
+(2, 'Sullivan', 1, 0, 0, 0, 0, '05-04-2020');
 
 -- --------------------------------------------------------
 
