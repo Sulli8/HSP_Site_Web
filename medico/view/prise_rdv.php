@@ -34,7 +34,7 @@
  $variable = 'Prendre rdv';
  $class = 'btn';
 ?>
-    <div class="container mt-5 mb-5 orange rounded">
+    <div class="container mt-5 mb-5 rounded">
 <?php   for ($i=0; $i < count($tableau) ; $i++) {?>
 
   <div class="card text-center">
@@ -42,7 +42,7 @@
       Featured
     </div>
     <div class="row justify-content-between">
-    <div class="card-body align-items-center">
+    <div class="mt-5 card-body align-items-center">
 
             <div class="text-center"> <div class="img-thumbnail"><img  width="200" height="200"src="../img/images_profils/<?php  echo $tableau[$i]['image_profil'];?>"></img></div>
 
@@ -50,7 +50,8 @@
       <p class="card-text">       <?php  echo "Prénom : ".ucwords($tableau[$i]['prenom'])."</br>";?>
              <?php  echo "Département : ".$tableau[$i]['departement']."</br>";?>
              <?php  echo "Mail : ".$tableau[$i]['mail']."</br>";?></p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+             <?php $medecin = $tableau[$i]["nom"]; ?>
+      <a href="formulaire/formulaire_rdv?nom_medecin=<?php echo $medecin; ?>.php" class="btn btn-primary">Prendre Rendez-vous</a>
     </div>
   </div>
     </div>
