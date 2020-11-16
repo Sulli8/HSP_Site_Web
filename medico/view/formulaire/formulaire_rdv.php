@@ -24,56 +24,67 @@
     $medecin = "Sullivan";
     $search = "SELECT creneau_1,creneau_2,creneau_3,creneau_4,creneau_5 from creneau";
     $request = $db->query($search);
-    $tab_creneau = $request->fetch();
 
     $creneau_1 = "SELECT count(date) from prise_rdv where creneau_1='1'";
     $creneau_2 = "SELECT count(date) from prise_rdv where creneau_2='1'";
     $creneau_3 = "SELECT count(date) from prise_rdv where creneau_3='1'";
     $creneau_4 = "SELECT count(date) from prise_rdv where creneau_4='1'";
-    $creneau_5 = "SELECT count(date) from prise_rdv where creneau_5='1'";
+    $creneau_5 = "SELECT count(date) from prise_rdv where creaneau_5='1'";
 
     $prise_1 = $db->query($creneau_1);
-  //  $prise_2 = $db->query($creneau_2);
-  //  $prise_3 = $db->query($creneau_3);
-  //  $prise_4= $db->query($creneau_4);
-  //  $prise_5 = $db->query($creneau_5);
+    $prise_2 = $db->query($creneau_2);
+    $prise_3 = $db->query($creneau_3);
+    $prise_4= $db->query($creneau_4);
+    $prise_5 = $db->query($creneau_5);
 
     $tab_prise_1 = $prise_1->fetch();
-  //  $tab_prise_2 = $prise_2->fetch();
-  //  $tab_prise_3 = $prise_3->fetch();
-  //  $tab_prise_4 = $prise_4->fetch();
-  //  $tab_prise_5 = $prise_5->fetch();
-var_dump($tab_prise_1);
-     ?>
-    <form class="" action="" method="post">
+    $tab_prise_2 = $prise_2->fetch();
+    $tab_prise_3 = $prise_3->fetch();
+    $tab_prise_4 = $prise_4->fetch();
+    $tab_prise_5 = $prise_5->fetch();
+
+    $horaire = [];
+    array_push($horaire,$tab_prise_1[0]);
+    array_push($horaire,$tab_prise_2[0]);
+    array_push($horaire,$tab_prise_3[0]);
+    array_push($horaire,$tab_prise_4[0]);
+    array_push($horaire,$tab_prise_5[0]);
+    var_dump($horaire);
+
+?>
+
         <?php
+            $tab_creneau = $request->fetch();
+            $new_tab = [];
+            ?>
+            <form class="" action="" method="post">
 
-        if(isset($tab_prise_1)){
-
-            if($tab_prise_1[0] < '3'){?>
-              <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-            <?php  for ($i=0; $i < 5; $i++) {?>
-
-            <option value="<?php echo $tab_creneau[$i]; ?>"><?php echo $tab_creneau[$i]; ?></option>
-
-          <?php echo "ok";  }?>
-            </select>
-          <?php   }
-          else{
-              $element = "9h00-10h00";
-              unset($tab_creneau[array_search($element, $tab_creneau)]);
-              var_dump($tab_creneau);
-               ?>
-              <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                <?php   for ($i=0; $i < 5 ; $i++) {?>
-                  <option value="<?php echo $tab_creneau[$i]; ?>"><?php echo $tab_creneau[$i]; ?></option>
-                <?php } ?>
-              </select>
-            <?php echo "5"; }
-          } else {
-            echo "Problème de table";
+          <?php  foreach ($horaire as $key => $value) {
+            if($value >= 3){
+              array_push($new_tab,$key);
+            }
           }
+          var_dump($new_tab);
+          var_dump($tab_creneau);
+          $array = [];
+           echo $tab_creneau[0];
+
+            if(in_array("9h00-10h00",$tab_creneau[$new_tab[0]])){
+              array_push($array,$tab_creneau[0]);
+            }
+
+
+
+            var_dump($array);
+
+
           ?>
+
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option value="<?php //echo $tab_creneau[$i]; ?>"><?php //echo $tab_creneau[$i]; ?></option>
+            </select>
+          </form>
+
 
 
 

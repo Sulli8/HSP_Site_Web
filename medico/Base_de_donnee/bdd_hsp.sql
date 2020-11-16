@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 09 nov. 2020 à 16:11
+-- Généré le :  lun. 16 nov. 2020 à 16:13
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -175,15 +175,18 @@ CREATE TABLE IF NOT EXISTS `prise_rdv` (
   `creaneau_5` int(11) NOT NULL,
   `date` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `prise_rdv`
 --
 
 INSERT INTO `prise_rdv` (`id`, `nom_medecin`, `creneau_1`, `creneau_2`, `creneau_3`, `creneau_4`, `creaneau_5`, `date`) VALUES
-(1, 'Sullivan', 1, 0, 0, 0, 0, '04-04-2020'),
-(2, 'Sullivan', 1, 0, 0, 0, 0, '05-04-2020');
+(1, 'Sullivan', 0, 1, 1, 0, 0, '04-04-2020'),
+(2, 'Sullivan', 0, 1, 1, 0, 0, '04-04-2020'),
+(4, 'Sullivan', 1, 0, 1, 0, 0, '04-04-2020'),
+(3, 'Sullivan', 1, 0, 1, 0, 0, '04-04-2020'),
+(5, 'Sullivan', 1, 0, 0, 0, 0, '04-04-2020');
 
 -- --------------------------------------------------------
 
