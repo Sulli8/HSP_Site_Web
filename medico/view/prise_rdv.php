@@ -51,7 +51,7 @@
              <?php  echo "Département : ".$tableau[$i]['departement']."</br>";?>
              <?php  echo "Mail : ".$tableau[$i]['mail']."</br>";?></p>
              <?php $medecin = $tableau[$i]["nom"]; ?>
-      <a href="formulaire/formulaire_rdv.php?nom_medecin=<?php echo $medecin; ?>" class="btn btn-primary">Prendre Rendez-vous</a>
+      <a href="formulaire_rdv.php?nom_medecin=<?php echo $medecin; ?>" class="btn btn-primary">Prendre Rendez-vous</a>
     </div>
   </div>
     </div>

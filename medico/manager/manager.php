@@ -5,7 +5,7 @@ class manager {
   function connexion_bd(){
     try
         {
-            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','');
+            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','root');
         }
         catch(Exception $e)
         {
@@ -85,7 +85,7 @@ function inscription_medecin(Medecin $medecin){
          $search = "SELECT * from user Where mdp='$mdp' and mail='$mail'";
          $request = $this->connexion_bd()->query($search);
          $tab_connect = $request->fetch();
-        
+
          $_SESSION["mdp"] = $mdp;
          $_SESSION["mail"] = $mail;
          $_SESSION['id'] = $tab_connect["id"];
@@ -257,27 +257,40 @@ function affiche_medecin($specialite){
 
 }
 
-function gestion_rdv($id_medecin,$id_user,$date,$heure,$nom_medecin,$nom_patient){
+function gestion_rdv($date_rdv,$creneau_rdv,$nom_medecin,$mail_patient){
   $db = $this->connexion_bd();
-  $request = $db->prepare('INSERT INTO rdv(id_medecin, id_user, date, heure ,nom_medecin,nom_patient) VALUES(:id_medecin, :id_user, :date, :heure ,:nom_medecin,:nom_patient)');
+  $creneau_1 = 0;
+  $creneau_2 = 0;
+  $creneau_3 = 0;
+  $creneau_4 = 0;
+  $creneau_5 = 0;
+
+  if($creneau_rdv == "9h00-10h00"){ $creneau_1 = 1;}
+  else if($creneau_rdv == "10h00-11h00"){$creneau_2 = 1;}
+  else if($creneau_rdv == "11h00-12h00"){$creneau_3 = 1;}
+  else if($creneau_rdv == "14h00-15h00"){$creneau_4 = 1;}
+  else if($creneau_rdv == "15h00-16h00"){$creneau_5 = 1;}
+
+  $request = $db->prepare('INSERT INTO prise_rdv(nom_medecin,creneau_1,creneau_2,creneau_3,creneau_4,creneau_5,date_rdv,creneau_rdv,mail_patient) VALUES(:nom_medecin,:creneau_1,:creneau_2,:creneau_3,:creneau_4,:creneau_5,:date_rdv,:creneau_rdv,:mail_patient)');
              $insert_rdv = $request->execute(array(
-                 'id_medecin' => $id_medecin,
-                 'id_user' => $id_user,
-                 'date' => $date,
-                 'heure' => $heure,
                  'nom_medecin' => $nom_medecin,
-                 'nom_patient'=> $nom_patient
+                 'creneau_1' => $creneau_1,
+                 'creneau_2'=> $creneau_2,
+                 'creneau_3'=> $creneau_3,
+                 'creneau_4'=>$creneau_4,
+                 'creneau_5'=>$creneau_5,
+                 'date_rdv' => $date_rdv,
+                 'creneau_rdv' => $creneau_rdv,
+                 'mail_patient'=>$mail_patient
                ));
-  $tableau = $request->fetch();
-  if(isset($tableau)){
-        header('Location:../view/index.php');
+  if(isset($insert_rdv)){
+    header('Location:../view/index.php');
   }else{
     echo "<script>window.alert('Erreur de gestion de rdv');
-document.location.href='../view/index.php';
+    document.location.href='../view/index.php';
 
     </script>";
-  }
-
+}
 }
 
 //Fonction interface medecin
