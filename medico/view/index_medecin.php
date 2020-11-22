@@ -24,7 +24,7 @@ $manager = new Manager();
 
 $db = $manager->connexion_bd();
 $id_medecin = $_SESSION['id_medecin'];
-$affiche_information_patient = "SELECT nom_patient,date,heure,id from rdv Where id_medecin='$id_medecin'";
+$affiche_information_patient = "SELECT nom_patient,date_rdv,creneau_rdv,id from rdv Where id_medecin='$id_medecin'";
 $request_patient = $db->query($affiche_information_patient);
 $information_patient= $request_patient->fetchall();
 ?>
@@ -150,9 +150,9 @@ for ($i=0; $i < count($information_image); $i++) {
         </div>
     </div>
     <?php
-    $affiche = "SELECT heure from horaire";
+    $affiche = "SELECT creneau_1,creneau_2,creneau_3,creneau_4,creneau_5 from creneau";
     $request = $db->query($affiche);
-    $tableau = $request->fetchall();
+    $tableau = $request->fetch();
 
 
     $affiche_patient = "SELECT nom from user";
@@ -182,11 +182,9 @@ for ($i=0; $i < count($information_image); $i++) {
                 <select name="heure" id="">
                     <option >Selectionnez un créneaux horaire</option>
 
-                <?php    for ($i=0; $i < count($tableau); $i++) {
-                      foreach ($tableau[$i] as $key => $value) {?>
-                       <option value="<?php echo $value ?>"><?php   echo $value;  ?></option>
-              <?php         }
-                    }?>
+                <?php    for ($i=0; $i < 5; $i++) {?>
+                       <option value="<?php echo $tableau[$i] ?>"><?php   echo $tableau[$i];  ?></option>
+              <?php         } ?>
 
 
                 </select>

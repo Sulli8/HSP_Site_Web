@@ -13,10 +13,10 @@ try{
   $newExportation = $sth->fetchAll();
 
   $excel = "";
-  $excel .=  "ID\tId_médecin\tId_user\tDate\tHeure\tNom_médecin\tNom_patient\n";
+  $excel .=  "ID\tId_médecin\tId_user\tDate_rdv\tCreneau_rdv\tNom_médecin\tNom_patient\n";
 
   foreach($newExportation as $row) {
-    $excel .= "$row[id]\t$row[id_medecin]\t$row[id_user]\t$row[date]\t$row[heure]\t$row[nom_medecin]\t$row[nom_patient]\n";
+    $excel .= "$row[id]\t$row[id_medecin]\t$row[id_user]\t$row[date_rdv]\t$row[creneau_rdv]\t$row[nom_medecin]\t$row[nom_patient]\n";
   }
 
   header("Content-type: application/vnd.ms-excel");
