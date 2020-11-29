@@ -1,0 +1,460 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/** Modal **/
+
+.modal-body {
+    padding: 28px;
+}
+
+.modal-body p {
+    padding: 0;
+    margin: 0;
+}
+
+.modal-body input {
+    width: 100%;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding-left: 14px;
+}
+
+.navbar-brand {
+    font-family: 'Lobster', cursive;
+}
+
+.modal-co-button {
+    margin-top: 18px;
+}
+
+.close-co-button {
+    background: #c65039;
+    color: white;
+}
+
+.co-co-button {
+    background: #0596de;
+    color: white;
+}
+
+a.mdp-co-button {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a.mdp-co-button:before {
+    content: '|';
+    color: #c65039;
+    padding-right: 10px;
+}
+
+a.acc-co-button {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a.acc-co-button:before {
+    content: '|';
+    color: #c65039;
+    padding-right: 10px;
+}
+
+/** Under Navbar **/
+
+.under-navbar-area {
+    height: 400px;
+    background: #0596de;
+}
+
+h1#title-under-navbar-area {
+    color: white;
+    margin-top: 5%;
+    margin-left: 5%;
+    transition: .2s linear;
+    font-weight: 600;
+}
+
+.first-searchbar {
+    margin-top: 18px;
+    margin-left: 5%;
+}
+
+.first-searchbar form {
+    padding: 6px;
+    border-radius: 25px;
+    background: white;
+}
+
+.first-searchbar input {
+    width: 350px;
+    border: none;
+    padding-left: 6px;
+    background: white;
+}
+
+.first-searchbar button {
+    border: none;
+    background: white;
+    padding-right: 6px;
+    color: #e67e22;
+}
+
+.first-searchbar input:focus {
+    outline: none;
+}
+
+.second-searchbar {
+    margin-top: 18px;
+    margin-left: 5%;
+}
+
+.second-searchbar form {
+    padding: 6px;
+    border-radius: 25px;
+    background: white;
+}
+
+.second-searchbar select {
+    width: 350px;
+    border: none;
+    padding-left: 6px;
+    background: white;
+}
+
+.second-searchbar button {
+    border: none;
+    background: white;
+    padding-right: 6px;
+    color: #e67e22;
+}
+
+.second-searchbar select:focus {
+    outline: none;
+}
+
+.under-navbar-img {
+    height: 400px;
+    overflow: hidden;
+}
+
+/** Explain Area **/
+
+.explain-area {
+    margin-bottom: 60px;
+}
+
+.explain-area 
+    h1#title-explain-area {
+        font-size: 28px;
+        margin-top: 60px;
+        margin-bottom: 28px;
+        font-weight: 600;
+    }
+
+    .first-images {
+        transition: .2s linear;
+    }
+    .second-images {
+        transition: .2s linear;
+    }
+    .third-images {
+        transition: .2s linear;
+    }
+
+    .first-images img {
+        width: 200px;
+        height: 200px;
+    }
+    .second-images img {
+        width: 200px;
+        height: 200px;
+    }
+    .third-images img {
+        width: 200px;
+        height: 200px;
+    }
+
+/** Our Services **/
+
+.our-services {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.our-services 
+
+    .card-container {
+        position: relative;
+        width: 18rem;
+        perspective: 200rem;
+        height: 280px;
+    }
+
+    .card-container:hover .card-front {
+        transform: rotateY(180deg);
+    }
+    .card-container:hover .card-back {
+        transform: rotateY(0deg);
+    }
+
+    .card-back {
+        transform: rotateY(180deg);
+    }
+
+    .card-conio {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        transition: all 0.9s;
+        backface-visibility: hidden;
+        border-radius: 50px;
+    }
+
+    .card-back .card-body {
+        position: relative;
+    }
+
+    h1#title-of-our-services {
+        font-size: 28px;
+        margin-bottom: 60px;
+        font-weight: 600;
+    }
+
+    .our-services img {
+        margin-top: 40px;
+        width: 180px;
+        height: 180px;
+    }
+
+/** Visio **/
+
+.my-container {
+    padding-right: 120px;
+    padding-left: 120px;
+    margin-right: auto;
+    margin-left: auto;
+    transition: .2s linear;
+}
+
+.visio {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: center;
+    height: 314px;
+    border-radius: 6px;
+    background: url(../img/visio.png) no-repeat;
+    background-color: #0596de;
+    padding-top: 18px;
+    transition: .2s linear;
+}
+
+.visio 
+    .my-absolute-element {
+        position: absolute;
+        background: #f99a0d;
+        padding: 4px;
+        font-size: 14px;
+        border-radius: 6px;
+        width: 93px;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        margin-top: -30px;
+    }
+
+    .visio p {
+        color: white;
+        transition: .2s linear;
+    }
+
+/** Footer **/
+
+footer p {
+    color: #999;
+    line-height: 25px;
+}
+
+.footer-top h2, h3 {
+    color: white;
+}
+
+.footer-top h2 {
+    font-size: 18px;
+}
+
+.footer-top {
+    background: #111;
+    padding: 80px 0;
+}
+
+.segment-one h3 {
+    color: white;
+    letter-spacing: 3px;
+    margin: 10px 0;
+}
+
+.segment-two h2 {
+    color: white;
+    text-transform: uppercase;
+}
+
+.segment-two h2:before {
+    content: '|';
+    color: #c65039;
+    padding-right: 10px;
+}
+
+.segment-two ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.segment-two ul li {
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    line-height: 40px;
+}
+
+.segment-two ul li a {
+    color: #999;
+    text-decoration: none;
+}
+
+.segment-three h2 {
+    color: white;
+    text-transform: uppercase;
+}
+
+.segment-three h2:before {
+    content: '|';
+    color: #c65039;
+    padding-right: 10px;
+}
+
+.segment-three a {
+    background: #494848;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.segment-three a i {
+    font-size: 20px;
+    color: white;
+    padding: 10px 12px;
+}
+
+.segment-four h2 {
+    color: white;
+    text-transform: uppercase;
+}
+
+.segment-four h2:before {
+    content: '|';
+    color: #c65039;
+    padding-right: 10px;
+}
+
+.segment-four form input[type=submit] {
+    background: #c65039;
+    border: none;
+    padding: 3px 15px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.footer-bottom-text {
+    text-align: center;
+    background: #000;
+    line-height: 75px;
+}
+
+@media (max-width: 575.98px) { 
+    h1#title-under-navbar-area {
+        margin-top: 0%;
+        margin-left: 0%;
+    }
+    .first-searchbar {
+        margin-left: 0%;
+    }
+
+    .first-searchbar input {
+        width: 250px;
+    }
+
+    .second-searchbar select {
+        width: 250px;
+    }
+
+    .under-navbar-img {
+        display: none;
+    }
+
+    .my-container {
+        padding-right: 20px;
+        padding-left: 20px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .visio p {
+        color: black;
+    }
+
+}
+
+@media (max-width: 767.98px) { 
+    h1#title-under-navbar-area {
+        margin-top: 0%;
+        margin-left: 0%;
+    }
+    .second-searchbar {
+        margin-left: 0%;
+    }
+
+    .first-searchbar input {
+        width: 250px;
+    }
+
+    .second-searchbar select {
+        width: 250px;
+    }
+
+    .under-navbar-img {
+        display: none;
+    }
+
+    .my-container {
+        padding-right: 40px;
+        padding-left: 40px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+}
+
+@media (max-width: 991.98px) { 
+
+    .under-navbar-img {
+        display: none;
+    }
+
+}
+
+@media (max-width: 1199.98px) { 
+
+}
