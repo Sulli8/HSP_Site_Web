@@ -1,7 +1,7 @@
 <?php
 
 try{
-  require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
+  require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
   $manager = new Manager();
   $dbco = $manager->connexion_bd();
   $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -16,7 +16,7 @@ try{
   $excel .=  "ID\tNom\tPrénom\tMail\tMutuelle\tAdmin\tMdp\tAdresse\tImage_profil\n";
 
   foreach($newExportation as $row) {
-    $excel .= "$row[id]\t$row[nom]\t$row[prenom]\t$row[mail]\t$row[mutuelle]\t$row[admin]\t$row[mdp]\t$row[adresse]\t$row[image_profil]\n";
+    $excel .= "$row[id]\t$row[nom]\t$row[prenom]\t$row[adresse]\t$row[ville]\t$row[mailn]\t$row[pass]\t$row[mutuelle]\t$row[verified]\t$row[pass]\t$row[verified]\t$row[vkey]\t$row[admin]\n";
   }
 
   header("Content-type: application/vnd.ms-excel");

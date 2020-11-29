@@ -1,7 +1,7 @@
 <?php
 
 try{
-  require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
+  require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
   $manager = new Manager();
   $dbco = $manager->connexion_bd();
   $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -13,10 +13,10 @@ try{
   $newExportation = $sth->fetchAll();
 
   $excel = "";
-  $excel .=  "ID\tNom\tPrénom\tDépartement\tSpécialité\tMail\tMdp\n";
+  $excel .=  "ID\tNom\tPrénom\tDépartement\tSpécialité\tMail\tPass\n";
 
   foreach($newExportation as $row) {
-    $excel .= "$row[id]\t$row[nom]\t$row[prenom]\t$row[departement]\t$row[specialite]\t$row[mail]\t$row[mdp]\n";
+    $excel .= "$row[id]\t$row[nom]\t$row[prenom]\t$row[departement]\t$row[specialite]\t$row[mail]\t$row[pass]\n";
   }
 
   header("Content-type: application/vnd.ms-excel");

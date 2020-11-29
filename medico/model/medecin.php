@@ -1,5 +1,5 @@
 <?php
-  require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/model/user.php");
+  require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/model/user.php");
 class medecin extends user {
   private $departement,$specialite;
 

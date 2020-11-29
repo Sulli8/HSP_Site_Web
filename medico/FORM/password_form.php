@@ -19,7 +19,7 @@
         $old_password = $row['pass'];
 
         //Send mail
-                    
+
         $mailto = $email;
 
         // Load Composer's autoloader

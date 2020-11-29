@@ -8,10 +8,10 @@
 </style>
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
 $manager = new Manager();
 $db = $manager->connexion_bd();
-$medecin = "SELECT nom,prenom,departement,specialite,mail,mdp,id from medecin";
+$medecin = "SELECT nom,prenom,departement,specialite,mail,pass,id from medecin";
 $request = $db->query($medecin);
 $tab_connect = $request->fetchall();
  ?>
@@ -23,7 +23,7 @@ $tab_connect = $request->fetchall();
        <th scope="col">Département</th>
        <th scope="col">Spécialité</th>
        <th scope="col">Mail</th>
-       <th scope="col">Mdp</th>
+       <th scope="col">pass</th>
          <th scope="col">Id</th>
           <th scope="col">Suppression</th>
      </tr>
@@ -34,13 +34,11 @@ $tab_connect = $request->fetchall();
          <tr>
 
       <?php  foreach (array_unique($tab_connect[$i]) as $key => $value) {
-        if($i%2 ==0){
-          $class = 'bg-primary';
-        }else { $class = 'orange';}
+
         ?>
 
-          <td class=<?php echo $class; ?>><?php echo $value; ?></td>
-  <?php       if($key == 'id'){ echo "<td class=".$class."><a href='traitement_suppression_medecin.php?delete=$value'class='btn btn-danger'>Supprimer<a/></td>";} } ?> </tr>
+          <td class='bg bg-dark'><?php echo $value; ?></td>
+  <?php       if($key == 'id'){ echo "<td class='bg bg-dark'><a href='traitement_suppression_medecin.php?delete=$value'class='btn btn-danger'>Supprimer<a/></td>";} } ?> </tr>
 
    <?php if($i%6 == 0){   echo "<tr></tr>";}
 

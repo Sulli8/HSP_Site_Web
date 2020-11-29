@@ -15,10 +15,10 @@
     $mutuelle = $_POST['mutuelle'];
 
     //Connect DB
-    $mysqli = mysqli_connect("localhost:3308", "root", "", "bdd_hsp");
+      $mysqli = mysqli_connect("localhost:3308", "root", "", "bdd_hsp");
 
     //Check if var are not empty
-    if(!empty($nom) && !empty($prenom) && !empty($addr) && 
+    if(!empty($nom) && !empty($prenom) && !empty($addr) &&
     !empty($ville) && !empty($email) && !empty($pass) && !empty($pass2) &&
     !empty($mutuelle)) {
         //Check if password are ok
@@ -47,12 +47,12 @@
 
                 //Insert Account into the database
                 $pass = md5($pass);
-                $insert = $mysqli->query("INSERT INTO user(nom, prenom, adresse, ville, mail, pass, mutuelle, vkey)
-                VALUES('$nom', '$prenom', '$addr', '$ville', '$email', '$pass', '$mutuelle', '$vkey')");
+                $insert = $mysqli->query("INSERT INTO user(nom, prenom, adresse, ville, mail, pass, mutuelle, vkey,admin)
+                VALUES('$nom', '$prenom', '$addr', '$ville', '$email', '$pass', '$mutuelle', '$vkey','0')");
 
                 if($insert) {
                     //Send mail
-                    
+
                     $mailto = $email;
 
                     // Load Composer's autoloader

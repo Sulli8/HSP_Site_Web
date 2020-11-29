@@ -11,7 +11,7 @@
     $pass = md5($pass);
 
     //Query the database
-    $resultSet = $mysqli->query("SELECT * FROM user WHERE mail = '$email' AND 
+    $resultSet = $mysqli->query("SELECT * FROM user WHERE mail = '$email' AND
     pass = '$pass' LIMIT 1");
 
     if($resultSet->num_rows != 0) {

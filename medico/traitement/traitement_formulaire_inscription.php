@@ -6,28 +6,13 @@ if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["mail"]) && i
 //Redirection manager
   require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
   require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/model/user.php");
-  if(isset($_POST["env"])){
-  $logo=$_FILES['photo']['name'];
-  echo $logo;
-  if($logo!=""){
-  require "uploadImage.php";
-  }
-  else {$logo="notdid";}
-  if($logo!="notdid"){
-  echo "upload reussi!!!";
 
-  }
-  else{
-  echo"recommence!!!";
-  }
-  }
   $inscription = new user(["nom"=>$_POST["nom"],
   "prenom"=>$_POST["prenom"],
   "mail"=>$_POST["mail"],
   "mutuelle"=>$_POST["mutuelle"],
   "mdp"=>$_POST["mdp"],
-  "adresse"=>$_POST["adresse"],
-"image_profil"=>$_FILES['photo']['name']]);
+  "adresse"=>$_POST["adresse"]]);
   $manager = new manager();
   $manager->inscription($inscription);
 }
@@ -37,21 +22,6 @@ if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["mail"]) && i
 if(isset($_POST["prenom"]) && isset($_POST["mail"]) &&  $_POST["mdp"] == "root"){
   require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
   require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/model/user.php");
-  if(isset($_POST["env"])){
-  $logo=$_FILES['photo']['name'];
-  echo $logo;
-  if($logo!=""){
-  require "uploadImage.php";
-  }
-  else {$logo="notdid";}
-  if($logo!="notdid"){
-  echo "upload reussi!!!";
-
-  }
-  else{
-  echo"recommence!!!";
-  }
-  }
 
   $inscription_admin = new user(["nom"=>"root",
   "prenom"=>$_POST["prenom"],

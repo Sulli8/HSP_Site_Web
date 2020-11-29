@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/8a3192b16c.js" crossorigin="anonymous"></script>
 </head>
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
 
 include "../include/header.php";
 $manager = new Manager();
