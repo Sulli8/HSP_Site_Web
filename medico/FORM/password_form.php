@@ -3,9 +3,10 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
-
+    require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
     //Connect DB
-    $mysqli = mysqli_connect("localhost:3308", "root", "", "bdd_hsp");
+    $manager = new Manager();
+    $mysqli = $manager->connexion_mysqli();
 
     //Get form DATA
     $email = $mysqli->real_escape_string($_POST['email']);

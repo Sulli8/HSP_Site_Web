@@ -1,10 +1,11 @@
 <?php
-
+require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
     if(isset($_GET['vkey'])) {
         //Process Verification
         $vkey = $_GET['vkey'];
 
-        $mysqli = mysqli_connect("localhost:3308", "root", "", "bdd_hsp");
+        $manager = new Manager();
+        $mysqli = $manager->connexion_mysqli();
         $resultSet = $mysqli->query("SELECT verified, vkey FROM user WHERE verified = 0 AND vkey = '$vkey' LIMIT 1");
         if($resultSet->num_rows == 1) {
             //Validate The email

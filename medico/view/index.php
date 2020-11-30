@@ -44,6 +44,28 @@
         $wrong = "Adresse e-mail invalide";
     }
 
+    // ------------------------ ------------------------ //
+
+    $cancel_rdv = NULL;
+    if(isset($_GET['key']) && $_GET['key'] == "4dv-5a2c3l") { //RDV canceled
+        $cancel_rdv = "Votre rendez-vous a bien été annulé !";
+    }
+    if(isset($_GET['key']) && $_GET['key'] == "4dv-n0-5a2c3l") { //Error with RDV canceled
+        $cancel_rdv = "Une erreur s'est produite lors de la suppression de votre rendez-vous !!";
+    }
+    if(isset($_GET['key']) && $_GET['key'] == "4dv-n0-3x15t") { //Error canceled, RDV id not exist
+        $cancel_rdv = "Une erreur s'est produite lors de la suppression de votre rendez-vous !!";
+    }
+
+    // ------------------------ ------------------------ //
+    $error_rdv = NULL;
+    if(isset($_GET['key']) && $_GET['key'] == "n0-ch0053") { //No choice on RDV
+        $error_rdv = "Merci de selectionner un médecin !";
+    }
+    if(isset($_GET['key']) && $_GET['key'] == "y0u-v3-y0u4-4DV") { //You've your RDV
+        $error_rdv = "Nouveau rendez-vous pris avec succès !";
+    }
+
 
 ?>
 <html lang="fr">
@@ -78,11 +100,24 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Accueil</a>
+                        <a class="nav-link" href="index.php">Accueil</a>
                     </li>
+                    <?php if(isset($_SESSION['email'])) {
+                        echo '
+                        <li class="nav-item">
+                        <a href="" class="nav-link" data-toggle="modal" data-target="#exampleModalPr">Prende rendez-vous</a>
+                        </li>
+                        <li class="nav-item">
+                        <a href="" class="nav-link" data-toggle="modal" data-target="#exampleModalGr">Gérer mes rendez-vous</a>
+                        </li>
+                        <li class="nav-item">
+                        <a href="" class="nav-link" data-toggle="modal" data-target="#exampleModalPARA">Mon compte</a>
+                        </li>
+                        ';
+                    } ?>
                     <li class="nav-item">
                         <a href="#our-services-id" class="nav-link">Nos Services</a>
-                    </li>   
+                    </li>
                     <li class="nav-item">
                         <a href="" class="nav-link" data-toggle="modal" data-target="#exampleModalC">Contact</a>
                     </li>
@@ -106,6 +141,8 @@
         <strong><?php echo $error;?></strong>
         <strong><?php echo $wrong;?></strong>
         <strong><?php echo $password_reset; ?></strong>
+        <strong><?php echo $cancel_rdv; ?></strong>
+        <strong><?php echo $error_rdv; ?></strong>
     </div>
 
     <div class="under-navbar-area">
@@ -114,8 +151,8 @@
                 <h1 id="title-under-navbar-area">Réservez une consultation <br> chez un professionnel de santé</h1>
                 <div class="first-searchbar d-flex">
                     <form class="shadow" action="">
-                        <input type="text" placeholder="Chercher un médecin">
-                        <button type="submit">
+                        <input type="text" placeholder="Chercher un médecin" disabled>
+                        <button type="submit" disabled>
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
                                 <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
@@ -125,14 +162,14 @@
                 </div>
                 <div class="second-searchbar d-flex">
                     <form class="shadow" action="">
-                        <select name="" id="">
+                        <select name="" id="" disabled>
                             <option value="">Chercher une spécialité</option>
                             <option value="">Nutritionniste</option>
                             <option value="">Ophtalmologues</option>
                             <option value="">Psychiatres</option>
                             <option value="">Dermathologues</option>
                         </select>
-                        <button type="submit">
+                        <button type="submit" disabled>
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
                                 <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
@@ -267,7 +304,7 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-xs-12 segment-one">
                         <h3>MonHôpital</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, dolore obcaecati? 
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, dolore obcaecati?
                             Eius iusto vel impedit consequuntur, praesentium corporis. Impedit, neque.</p>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 segment-two">
@@ -282,7 +319,7 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 segment-three">
                         <h2>Follow Us</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus aliquid rerum impedit 
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus aliquid rerum impedit
                             laudantium hic porro sit ipsa magnam labore ex!</p>
                         <a href="https://www.instagram.com/guizmolabanquise/?hl=fr" target="_blank"><i class="fa fa-instagram"></i></a>
                         <a href="https://twitter.com/GuizLaBanquise?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -300,7 +337,7 @@
         </div>
         <p class="footer-bottom-text">All Right reserved by &copy;MonHôpital</p>
     </footer>
-  
+
   <!-- Modal Connexion -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -422,11 +459,182 @@
             <hr>
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-telephone-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M2.267.98a1.636 1.636 0 0 1 2.448.152l1.681 2.162c.309.396.418.913.296 1.4l-.513 2.053a.636.636 0 0 0 .167.604L8.65 9.654a.636.636 0 0 0 .604.167l2.052-.513a1.636 1.636 0 0 1 1.401.296l2.162 1.681c.777.604.849 1.753.153 2.448l-.97.97c-.693.693-1.73.998-2.697.658a17.47 17.47 0 0 1-6.571-4.144A17.47 17.47 0 0 1 .639 4.646c-.34-.967-.035-2.004.658-2.698l.97-.969z"/>
-            </svg> 06 52 00 99 87 
+            </svg> 06 52 00 99 87
         </div>
       </div>
     </div>
   </div>
-    
+
+  <!-- Modal Prendre rendez-vous -->
+  <div class="modal fade" id="exampleModalPr" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Prendre rendez-vous</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+                <?php
+                //Connect DB
+                require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
+                $manager = new Manager();
+                $mysqli = $manager->connexion_mysqli();
+
+                //Query the database
+                $resultMED = $mysqli->query("SELECT * FROM medecin");
+                $Pr_id_medecin = array();
+                $Pr_nom_medecin = array();
+                $Pr_prenom_medecin = array();
+                $Pr_specialite = array();
+                $Pr_error = NULL;
+                if($resultMED->num_rows != 0) {
+                    while($row_Pr = $resultMED->fetch_assoc()) {
+                        array_push($Pr_id_medecin, $row_Pr['id']);
+                        array_push($Pr_nom_medecin, $row_Pr['nom']);
+                        array_push($Pr_prenom_medecin, $row_Pr['prenom']);
+                        array_push($Pr_specialite, $row_Pr['specialite']);
+                    }
+                }else {
+                    $Pr_error = "Aucun médecin disponible pour le moment.";
+                }
+                ?>
+
+            <form action="../FORM/prise_rendez_vous.php" method="POST">
+                <input class="text-center" type="text" value="<?php echo $_SESSION['nom'].' '.$_SESSION['prenom'];?>" disabled>
+                <p>Choisir votre médecin</p>
+                <select name="name_medecin" id="">
+                    <option value="0">Choisir votre médecin</option>
+                    <?php
+                    for ($i=0; $i < sizeof($Pr_nom_medecin); $i++) {
+                        echo '
+                        <option value="'.$Pr_id_medecin[$i].'">'.$Pr_nom_medecin[$i].' '.$Pr_prenom_medecin[$i].' ('.$Pr_specialite[$i].')</option>
+                        ';
+                    }
+                    ?>
+                    <?php echo $Pr_error; ?>
+                </select> <br> <br>
+                <p>Créneaux horraires</p>
+                <select name="creneaux" id="">
+                    <option value="09h00 - 10h00">09h00 - 10h00</option>
+                    <option value="10h00 - 11h00">10h00 - 11h00</option>
+                    <option value="11h00 - 12h00">11h00 - 12h00</option>
+                    <option value="14h00 - 15h00">14h00 - 15h00</option>
+                    <option value="15h00 - 16h00">15h00 - 16h00</option>
+                </select>
+                <div class="d-flex justify-content-between modal-co-button">
+                    <button type="button" class="btn btn-custom close-co-button" data-dismiss="modal">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>Fermer</button>
+                    <button type="submit" class="btn btn-custom co-co-button">Envoyer</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Gérer mes rendez-vous -->
+  <div class="modal fade" id="exampleModalGr" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Gérer mes rendez-vous</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+            <?php
+
+                //Connect DB
+                require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
+                $manager = new Manager();
+                $mysqli = $manager->connexion_mysqli();
+
+                $id_user = $_SESSION['id'];
+
+                //Query the database
+                $resultRDV = $mysqli->query("SELECT * FROM rdv WHERE id_user = '$id_user'");
+                $id_consultation = array();
+                $nom_medecin = array();
+                $date_rdv = array();
+                $heure_rdv = array();
+
+                if($resultRDV->num_rows != 0) {
+
+                    while($row = $resultRDV->fetch_assoc()) {
+                        array_push($id_consultation, $row['id']);
+                        array_push($nom_medecin, $row['nom_medecin']);
+                        array_push($date_rdv, $row['date_rdv']);
+                        array_push($heure_rdv, $row['creneau_rdv']);
+                    }
+                    for ($i=0; $i < sizeof($nom_medecin); $i++) {
+                        echo '
+                        <table width="100%" border="1" cellspacing="1" cellpadding="5">
+                            <tr>
+                                <td>Nom du medecin</td>
+                                <td>Date du rendez-vous</td>
+                                <td>Créneaux horraire du rendez-vous</td>
+                                <td>Annuler</td>
+                            </tr>
+                            <tr>
+                                <td>'.$nom_medecin[$i].'</td>
+                                <td>'.$date_rdv[$i].'</td>
+                                <td>'.$heure_rdv[$i].'</td>
+                                <td><a href="../FORM/annulation_form.php?key='.$id_consultation[$i].'">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                                    </svg>
+                                </a></td>
+                            </tr>
+                        </table>
+                        ';
+                    }
+                }else {
+                    echo "Vous n'avez aucun rendez-vous !!";
+                }
+
+            ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Paramètres -->
+  <div class="modal fade" id="exampleModalPARA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Paramètre de mon compte</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+            <small>Si vous souhaitez modifier vos informations personnelles, modifiez simplement les informations ici présente
+            puis valider.</small>
+            <form action="../FORM/modification_form.php" method="POST">
+                <div class="d-flex">
+                    <input class="mr-2" type="text" name="nom" value="<?php echo $_SESSION['nom'];?>" required>
+                    <input type="text" name="prenom" value="<?php echo $_SESSION['prenom'];?>" required>
+                </div>
+                <div class="d-flex">
+                    <input class="mr-2" type="text" name="adresse" value="<?php echo $_SESSION['addr'];?>" required>
+                    <input type="text" name="ville" value="<?php echo $_SESSION['ville'];?>" required>
+                </div>
+                <div class="d-flex text-center">
+                    <input type="text" name="mutuelle" value="<?php echo $_SESSION['mutuelle'];?>" required>
+                </div>
+                <button type="submit" class="btn btn-custom co-co-button">Modifier</button> <br>
+                <small>Vous serez par la suite déconnecté.</small>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

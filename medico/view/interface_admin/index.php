@@ -44,7 +44,7 @@ if(isset($_GET['key']) && $_GET['key'] == "w40n6-6iop") { //Wrong Password
         </li>
 
         <li class="item">
-          <a class="btn" href="#"><i class="fas fa-sign-out-alt"></i>Logout</a>
+            <a class="btn" href="../../FORM/deconnexion_form.php"><i class="fas fa-sign-out-alt"></i>Déconnexion</a>
         </li>
       </div>
     </div>

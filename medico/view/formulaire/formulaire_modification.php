@@ -22,7 +22,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php
   </label>
 <?php $manager = new Manager();
 $db = $manager->connexion_bd();
-$affiche_information_user = "SELECT nom,prenom,mail,mutuelle,mdp,adresse from user Where id='$id_user'";
+$affiche_information_user = "SELECT nom,prenom,mail,mutuelle,pass,adresse from user Where id='$id_user'";
 $request_user = $db->query($affiche_information_user);
 $information_user = $request_user->fetchall();
 for ($i=0; $i < count($information_user); $i++) {

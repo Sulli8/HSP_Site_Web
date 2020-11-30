@@ -3,7 +3,9 @@
     session_start();
 
     //Connect DB
-    $mysqli = mysqli_connect("localhost:3308", "root", "", "bdd_hsp");
+    require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
+    $manager = new Manager();
+    $mysqli = $manager->connexion_mysqli();
 
     //Get form DATA
     $email = $mysqli->real_escape_string($_POST['email']);
@@ -25,6 +27,8 @@
         $email = $row['mail'];
         $mutuelle = $row['mutuelle'];
         $verified = $row['verified'];
+        $medecin = $row['medecin'];
+        $admin = $row['admin'];
 
         if($verified == 1){
             //Continue Processing
@@ -37,7 +41,13 @@
             $_SESSION['email'] = $email;
             $_SESSION['mutuelle'] = $mutuelle;
             $_SESSION['verified'] = $verified;
-            header('location: ../view/index.php');
+            if($medecin == 1){
+                header('location: ../view/interface_medecin/index.php'); //Go to medecin index
+            }else if($admin == 1){
+                header('location: ../view/interface_admin/index.php'); //Go to admin index
+            }else {
+                header('location: ../view/index.php');
+            }
         }else {
             header('location: ../view/index.php?key=n0t-v341f');
         }

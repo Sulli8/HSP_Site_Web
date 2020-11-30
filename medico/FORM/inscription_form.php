@@ -13,9 +13,10 @@
     $pass = $_POST['pass'];
     $pass2 = $_POST['pass2'];
     $mutuelle = $_POST['mutuelle'];
-
+    require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
     //Connect DB
-      $mysqli = mysqli_connect("localhost:3308", "root", "", "bdd_hsp");
+    $manager = new Manager();
+    $mysqli = $manager->connexion_mysqli();
 
     //Check if var are not empty
     if(!empty($nom) && !empty($prenom) && !empty($addr) &&

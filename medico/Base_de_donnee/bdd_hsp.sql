@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 23 nov. 2020 à 16:22
--- Version du serveur :  5.7.26
--- Version de PHP :  7.2.18
+-- Hôte : 127.0.0.1:3308
+-- Généré le :  Dim 29 nov. 2020 à 22:22
+-- Version du serveur :  8.0.18
+-- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -60,10 +60,19 @@ CREATE TABLE IF NOT EXISTS `medecin` (
   `departement` varchar(40) NOT NULL,
   `specialite` varchar(40) NOT NULL,
   `mail` varchar(40) NOT NULL,
-  `mdp` varchar(40) NOT NULL,
-  `image_profil` text NOT NULL,
+  `pass` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `medecin`
+--
+
+INSERT INTO `medecin` (`id`, `nom`, `prenom`, `departement`, `specialite`, `mail`, `pass`) VALUES
+(1, 'SEXTIUS', 'Sullivan', 'Nutrition', 'Nutritionniste', 'nutrition@monhopital.fr', 'motdepassenondefinipourlinstant'),
+(2, 'YALAPOLICE', 'Thomas', 'Optique', 'Ophtalmologue', 'optique@monhopital.fr', 'motdepassenondefinipourlinstant'),
+(3, 'FONTAINUS', 'Ryan', 'Psychiatrie', 'Psychiatre', 'psychiatre@monhopital.fr', 'motdepassenondefinipourlinstant'),
+(4, 'Héééé', 'YANISHHHH', 'Dermathologie', 'Dermathologue', 'dermathologie@monhopital.fr', 'motdepassenondefinipourlinstant');
 
 -- --------------------------------------------------------
 
@@ -120,18 +129,7 @@ CREATE TABLE IF NOT EXISTS `prise_rdv` (
   `creneau_5` int(11) NOT NULL,
   `date` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `prise_rdv`
---
-
-INSERT INTO `prise_rdv` (`id`, `nom_medecin`, `creneau_1`, `creneau_2`, `creneau_3`, `creneau_4`, `creneau_5`, `date`) VALUES
-(1, 'Sullivan', 0, 1, 1, 0, 0, '04-04-2020'),
-(2, 'Sullivan', 0, 1, 1, 0, 0, '04-04-2020'),
-(4, 'Sullivan', 1, 0, 1, 0, 0, '04-04-2020'),
-(3, 'Sullivan', 1, 0, 1, 0, 0, '04-04-2020'),
-(5, 'Sullivan', 1, 0, 0, 0, 0, '04-04-2020');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -142,16 +140,21 @@ INSERT INTO `prise_rdv` (`id`, `nom_medecin`, `creneau_1`, `creneau_2`, `creneau
 DROP TABLE IF EXISTS `rdv`;
 CREATE TABLE IF NOT EXISTS `rdv` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_medecin` int(11) NOT NULL,
+  `nom_medecin` varchar(255) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `heure` time NOT NULL,
-  `nom_medecin` varchar(40) NOT NULL,
-  `nom_patient` varchar(40) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `has_medecin` (`id_medecin`),
-  KEY `has_user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
+  `id_medecin` int(11) NOT NULL,
+  `date_rdv` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `creneau_rdv` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `nom_patient` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `rdv`
+--
+
+INSERT INTO `rdv` (`id`, `nom_medecin`, `id_user`, `id_medecin`, `date_rdv`, `creneau_rdv`, `nom_patient`) VALUES
+(6, 'YALAPOLICE', 1, 2, '01-01-2021', '09h00 - 10h00', 'VASONE');
 
 -- --------------------------------------------------------
 
@@ -164,54 +167,24 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(60) NOT NULL,
   `prenom` varchar(60) NOT NULL,
-  `mail` varchar(255) NOT NULL,
-  `mutuelle` varchar(40) DEFAULT NULL,
-  `admin` int(4) DEFAULT NULL,
-  `mdp` varchar(60) NOT NULL,
-  `adresse` varchar(60) NOT NULL,
-  `image_profil` text NOT NULL,
+  `adresse` varchar(115) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `ville` varchar(45) NOT NULL,
+  `mail` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `pass` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `mutuelle` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `verified` tinyint(1) NOT NULL DEFAULT '0',
+  `vkey` varchar(75) NOT NULL,
+  `medecin` tinyint(1) NOT NULL DEFAULT '0',
+  `admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id`, `nom`, `prenom`, `mail`, `mutuelle`, `admin`, `mdp`, `adresse`, `image_profil`) VALUES
-(1, 'sextius', 'sulllivan', 'sullivan.sextius@gmail.com', '1234567', NULL, 'testnouveaupassword', '19 avenue jean jaures ', ''),
-(3, 'sextius', 'az', 'sullivan.sextius@gmail.com', '456UI', NULL, 'testnouveaupassword', '2 avenue du jean ', ''),
-(4, 'Admin', 'null', 'sullivan.sextius@gmail.com', '0', NULL, 'testnouveaupassword', '19 avenue jean jaurès', ''),
-(6, 'sullivan.sextius@gmail.com', 'admin', 'admin.sextius@gmail.com', '0', NULL, '1234', '19 avenue jean jaurès', ''),
-(7, 'sullivan.sextius@gmail.com', 'root', 'sullivan.sextius@gmail.com', '0', NULL, 'testnouveaupassword', '19 avenue jean jaurès', ''),
-(8, 'sullivan.sextius@gmail.com', 'Sullivan', 'sullivan.sextius@gmail.com', '0', NULL, 'testnouveaupassword', '19 avenue jean jaurès', ''),
-(9, 'sullivan.sextius@gmail.com', 'root', 'root.root@gmail.com', '0', NULL, 'root', 'root', ''),
-(10, 'root', 'root', 'root.root@gmail.com', '0', NULL, 'root', 'foqdff', ''),
-(11, 'sullivan.sextius@gmail.com', 'root', 'sullivan.sextius@gmail.com', '0', NULL, 'testnouveaupassword', '19 avenue jean jaurès', ''),
-(15, 'root', '', '', '0', 1, 'root', 'NULL', ''),
-(16, 'root', 'antouane', 'antouane.vasone@gmail.com', '0', 1, 'root', 'NULL', 'admin.jpg'),
-(17, 'root', 'Sullivan', 'sullivan.sextius@gmail.com', '0', 1, 'testnouveaupassword', 'NULL', ''),
-(21, 'sextius', 'sulllivan', 'sullivan.sextius@gmail.com', '123456710', NULL, 'testnouveaupassword', '19 avenue jean jaures ', ''),
-(22, 'sextius', 'sulllivan', 'sullivan.sextius@gmail.com', '209384', NULL, 'testnouveaupassword', '19 avenue jean jaures ', ''),
-(23, 'SextiusImage', 'Sullivan', 'sullivan.sextius@gmail.com', '1234567', NULL, 'azertyuiop', '19 avenue jean jaurès, studio', '118466283_316173416309038_851904084212286248_n.jpg'),
-(24, 'Sextius', 'Sullivantest', 'sullivan.sextius@gmail.com', '12345679', NULL, 'azertyuiop', '19 avenue jean jaurès, studio', 'doctor_1.png'),
-(25, 'Sextius', 'Sullivanimage', 'sullivan.sextius@gmail.com', '12345679', NULL, 'azertyuiopqsdfgh', '19 avenue jean jaurès, studio', 'IMG_20190618_091820.jpg'),
-(26, 'azert', 'Sullivan', 'sullivan.sextius@gmail.com', '1234567', NULL, 'azertyuiopqsdcvb', '19 avenue jean jaurès, studio', 'Capture d’écran 2020-10-15 à 16.37.17.png'),
-(27, 'Sextiusmodification', 'Sullivan', 'sullivan.sextius@gmail.com', '12345679', NULL, 'hhhhhhhhhh', '19 avenue jean jaurès, studio', 'cabane.jpg'),
-(28, 'test', 'matteÏ', 'sullivan.sextius@gmail.com', '1234567', NULL, 'oooooooooo', '19 allée des autistes', 'aliunix-0S1XOkS3Yig-unsplash.jpg'),
-(30, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg'),
-(31, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg'),
-(32, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg'),
-(33, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg'),
-(34, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg'),
-(35, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg'),
-(36, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg'),
-(37, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg'),
-(38, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg'),
-(39, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg'),
-(40, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg'),
-(41, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg'),
-(42, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg'),
-(43, 'root', 'delia', 'delia.sextius@gmail.com', '0', 1, 'root', 'NULL', 'invader2.jpg');
+INSERT INTO `user` (`id`, `nom`, `prenom`, `adresse`, `ville`, `mail`, `pass`, `mutuelle`, `verified`, `vkey`, `medecin`, `admin`) VALUES
+(1, 'VASONE', 'Antoine', '21 quai de l\'ourcq', 'Pantin', 'antoinevasone@outlook.com', 'a3aca2964e72000eea4c56cb341002a4', 'MutuelleClioAMG', 1, '3fb52a55c807929fa97ac018c807fc50', 0, 0);
 
 --
 -- Contraintes pour les tables déchargées
@@ -228,13 +201,6 @@ ALTER TABLE `message_medecin`
 --
 ALTER TABLE `message_user`
   ADD CONSTRAINT `id_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
-
---
--- Contraintes pour la table `rdv`
---
-ALTER TABLE `rdv`
-  ADD CONSTRAINT `has_medecin` FOREIGN KEY (`id_medecin`) REFERENCES `medecin` (`id`),
-  ADD CONSTRAINT `has_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

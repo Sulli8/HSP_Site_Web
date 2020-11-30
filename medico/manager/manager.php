@@ -13,9 +13,21 @@ class manager {
         return $bdd;
 
   }
+  function connexion_mysqli(){
+    try
+        {
+            $mysqli = mysqli_connect("localhost", "root", "root", "bdd_hsp");
+        }
+        catch(Exception $e)
+        {
+            die('ERREUR:'.$e->getMessage());
+        }
+        return $mysqli;
+
+  }
 
 function inscription_medecin($medecin){
-  $mysqli = mysqli_connect("localhost:3308", "root", "", "bdd_hsp");
+  $mysqli = $this->connexion_mysqli();
   $nom = $mysqli->real_escape_string($medecin['nom']);
   $prenom = $mysqli->real_escape_string($medecin['prenom']);
   $departement = $mysqli->real_escape_string($medecin['departement']);
@@ -26,8 +38,8 @@ function inscription_medecin($medecin){
   $pass = md5(time().$nom);
   //Insert Account into the database
   $pass = md5($pass);
-  $insert = $mysqli->query("INSERT INTO medecin(nom, prenom,departement, specialite, mail, pass)
-  VALUES('$nom', '$prenom', '$departement', '$specialite', '$mail', '$pass')");
+  $insert = $mysqli->query("INSERT INTO medecin(nom, prenom,departement, specialite, mail, pass,medecin,admin)
+  VALUES('$nom', '$prenom', '$departement', '$specialite', '$mail', '$pass','1','0')");
   if($insert != null ){
     header("Location:../view/interface_admin/index.php");
   }
@@ -38,7 +50,7 @@ function inscription_medecin($medecin){
 }
 
 function inscription_admin($admin){
-  $mysqli = mysqli_connect("localhost:3308", "root", "", "bdd_hsp");
+  $mysqli = $this->connexion_mysqli();
   $nom = $mysqli->real_escape_string($admin['nom']);
   $prenom = $mysqli->real_escape_string($admin['prenom']);
   $email = $mysqli->real_escape_string($admin['mail']);
@@ -51,8 +63,8 @@ function inscription_admin($admin){
   $pass = md5(time().$nom);
   //Insert Account into the database
   $pass = md5($pass);
-  $insert = $mysqli->query("INSERT INTO user(nom, prenom, adresse, ville, mail, pass, mutuelle, vkey,admin)
-  VALUES('$nom', '$prenom', '$addr', '$ville', '$email', '$pass', '$mutuelle', '$vkey','0')");
+  $insert = $mysqli->query("INSERT INTO user(nom, prenom, adresse, ville, mail, pass, mutuelle, vkey,medecin,admin)
+  VALUES('$nom', '$prenom', '$addr', '$ville', '$email', '$pass', '$mutuelle', '$vkey','0','1')");
   if($insert != null ){
     header("Location:../view/interface_admin/index.php");
   }
@@ -147,48 +159,38 @@ document.location.href='../view/index.php';
 
   }
 
-
-
-function specialite_medecin(){
-  //Permet d'afficher la spécialité des médecins
+function ajout_rdv($rdv){
+  $mysqli = $this->connexion_mysqli();
   $db = $this->connexion_bd();
-  $select = "SELECT specialite from medecin";
-  $request = $db->query($select);
-  $tableau = $request->fetchall();
-  $new_tab = [];
-  for ($i=0; $i < count($tableau) ; $i++) {
-    array_push($new_tab,$tableau[$i][0]);
-}
-$tab = array_unique($new_tab);
-$specialite = [];
-foreach ($tab as $key => $value) {
-  //Specialité des medecins
-  array_push($specialite,$value);
-}
+  session_start();
+  $id_medecin = $_SESSION['id'];
+  $date_rdv = $rdv['date_rdv'];
+  $creneau_rdv = $rdv['creneau_rdv'];
+  $nom_patient = $rdv['nom_patient'];
 
-for ($i=0; $i <count($specialite) ; $i++) {
-  echo '<option value='.$specialite[$i].'>'.$specialite[$i].'</option>';
-}
-
-}
-
-function affiche_medecin($specialite){
-  $db = $this->connexion_bd();
-  $affiche = "SELECT nom,prenom,departement,specialite,mail from medecin Where specialite='$specialite'";
-  $request = $db->query($affiche);
+  $search = "SELECT id from user Where nom='$nom_patient'";
+  $request = $db->query($search);
   $tableau = $request->fetch();
+  $id_user = $tableau[0];
 
-  $_SESSION["nom_medecin"] = $tableau['nom'];
-  $_SESSION["medecin_email"] = $tableau["mail"];
-//  $_SESSION["id_medecin"] = $tableau["id"];
-  $icone = ['fas fa-signature','fas fa-fingerprint','fas fa-house-user','fas fa-stethoscope','fas fa-at'];
-  for ($i=0; $i < 5; $i++) {
-    $new_icone = $icone[$i];
-  echo "</br><p><i class='$new_icone'></i>".$tableau[$i]."</p>";
+  var_dump($id_user);
+  var_dump($id_medecin);
+  $search_med = "SELECT nom from medecin Where id='$id_medecin'";
+  $request_2 = $db->query($search_med);
+  $tableau_med = $request_2->fetch();
+
+  $nom_medecin = $tableau_med[0];
+
+  $insert = $mysqli->query("INSERT INTO rdv(id_medecin, id_user,date_rdv, creneau_rdv, nom_medecin, nom_patient)
+  VALUES('$id_medecin', '$id_user', '$date_rdv', '$creneau_rdv', '$nom_medecin', '$nom_patient')");
+
+  if($insert != null){
+    header("Location:../view/interface_medecin/index.php");
+  }else {
+    echo "erreur";
+  }
+
 }
-
-}
-
 function gestion_rdv($date_rdv,$creneau_rdv,$nom_medecin,$mail_patient){
   $db = $this->connexion_bd();
   $creneau_1 = 0;
@@ -269,8 +271,8 @@ function delete_patient($delete){
   $suppression = "DELETE from rdv Where id='$delete'";
   $request = $db->query($suppression);
   $tableau = $request->fetchall();
-  if(isset($tableau)){
-    header("Location:../view/index_medecin.php");
+  if($tableau != null){
+    header("Location:../view/interface_medecin/index.php");
   }else{
     echo "Erreur lors de la suppression";
   }
