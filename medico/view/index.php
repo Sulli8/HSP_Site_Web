@@ -108,6 +108,9 @@
                         <a href="" class="nav-link" data-toggle="modal" data-target="#exampleModalPr">Prende rendez-vous</a>
                         </li>
                         <li class="nav-item">
+                        <a href="offres_emploies.php" class="nav-link">Offre emplois</a>
+                        </li>
+                        <li class="nav-item">
                         <a href="" class="nav-link" data-toggle="modal" data-target="#exampleModalGr">Gérer mes rendez-vous</a>
                         </li>
                         <li class="nav-item">

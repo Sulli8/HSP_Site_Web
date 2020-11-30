@@ -305,6 +305,30 @@ function delete_medecin($delete){
   }
 
 }
+function offres_emploies($id_user,$tab_job){
+  $bdd = $this->connexion_bd();
+  $select = "SELECT nom from user Where id='$id_user'";
+  $request_2 = $bdd->query($select);
+  $tableau_med = $request_2->fetch();
+  if($id_user != null && $tab_job != null){
+    $insert = $bdd->prepare('INSERT INTO candidature(metier,candidat,contrat,nom_entreprise) VALUES (:metier,:candidat,:contrat,:nom_entreprise)');
+    $insert->execute(array(
+        'metier' => $tab_job['metier'],
+        'contrat' => $tab_job['contrat'],
+        'candidat' => $tableau_med['nom'],
+        'nom_entreprise'=>$tab_job['nom_entreprise']
+    ));
+    if($insert != null){
+      header('Location:../../offres_emploies.php');
+    }
+    else{
+      echo '<div class="alert alert-danger" role="alert">
+      Erreur de candidature
+</div>';
+    }
+  //  header('Location:../../offres_emploies.php');
+  }
+}
 
 
 
