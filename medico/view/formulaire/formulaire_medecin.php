@@ -10,7 +10,7 @@
      <link rel="stylesheet" href="../../css/formulaire_inscription_style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
-<body style="background-color:#000000;">
+<body class="bg-light">
 
 
 <form  action="../../FORM/inscription_medecin_form.php" method="post">
@@ -47,9 +47,9 @@
             </div>
           </div>
 
-          <input style="background-color: #3498db;margin-top:8px;"type="submit" value="Ajouter Médecin"class="btn btn-primary"></input>
+          <input style="margin-top: 8px;background-color: #0596de;" class="mt-2 btn btn-primary" type="submit" value="Ajouter Médecin"></input>
 
-          <a class="return-home" href="../interface_admin/index_admin.php">Retour à l'accueil</a>
+          <a class="return-home" href="../interface_admin/index.php">Retour à l'accueil</a>
 </div>
     </form>
 </body>

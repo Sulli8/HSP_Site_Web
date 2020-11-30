@@ -76,7 +76,7 @@
           class="row bg-light justify-content-center align-items-center"
           style="height: 100vh">
           <div class="col-sm-10 text-center">
-            <h1 class="display-2 text-capitalize text-primary">Bienvenue Sur Mon hopital Pro</h1>
+            <h3 class="display-2 text-capitalize text-primary">Bienvenue Sur Mon hopital Pro</h3>
             <a href="#" class="btn btn-primary btn-lg px-4 m-2"  data-toggle="modal" data-target="#exampleModalJH" data-whatever="@mdo">Ajouter Rendez-vous</a>
             <a href="#" class="btn btn-primary btn-lg px-4 m-2"  data-toggle="modal" data-target="#exampleModalPARA" >Modifier informations</a>
             <a href="#" class="btn btn-primary btn-lg px-4 m-2"  data-toggle="modal" data-target="#exampleModal">Voir mes rendez-vous</a>

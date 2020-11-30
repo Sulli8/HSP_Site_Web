@@ -4,7 +4,7 @@ class manager {
   function connexion_bd(){
     try
         {
-            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','');
+            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','root');
         }
         catch(Exception $e)
         {
@@ -16,7 +16,7 @@ class manager {
   function connexion_mysqli(){
     try
         {
-            $mysqli = mysqli_connect("localhost", "root", "", "bdd_hsp");
+            $mysqli = mysqli_connect("localhost", "root", "root", "bdd_hsp");
         }
         catch(Exception $e)
         {
