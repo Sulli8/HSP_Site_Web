@@ -29,7 +29,7 @@
   $db = $manager->connexion_bd();
     $affiche = "SELECT creneau_1,creneau_2,creneau_3,creneau_4,creneau_5 from creneau";
     $request = $db->query($affiche);
-    $tableau = $request->fetch();
+    $tableau_creneau = $request->fetch();
 
 
     $affiche_patient = "SELECT nom from user";
@@ -153,7 +153,7 @@ $tableau = $request->fetch();
           <div class="form-group">
             <select name="creneau_rdv"class="custom-select" id="inputGroupSelect01">
               <?php    for ($i=0; $i < 5; $i++) {?>
-                     <option value="<?php echo $tableau[$i] ?>"><?php   echo $tableau[$i];  ?></option>
+                     <option value="<?php echo $tableau_creneau[$i] ?>"><?php   echo $tableau_creneau[$i];  ?></option>
             <?php         } ?>
   </select>
 
