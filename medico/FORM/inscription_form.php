@@ -13,7 +13,7 @@
     $pass = $_POST['pass'];
     $pass2 = $_POST['pass2'];
     $mutuelle = $_POST['mutuelle'];
-    require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
     //Connect DB
     $manager = new Manager();
     $mysqli = $manager->connexion_mysqli();

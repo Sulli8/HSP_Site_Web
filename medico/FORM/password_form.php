@@ -3,7 +3,7 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
-    require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
     //Connect DB
     $manager = new Manager();
     $mysqli = $manager->connexion_mysqli();

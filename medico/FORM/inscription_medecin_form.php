@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
 $inscription_medecin = ["nom"=>$_POST["nom_medecin"],
     "prenom"=>$_POST["prenom_medecin"],
     "departement"=>$_POST["departement_medecin"],

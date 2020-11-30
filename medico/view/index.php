@@ -478,7 +478,7 @@
         <div class="modal-body text-center">
                 <?php
                 //Connect DB
-                require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
+                require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
                 $manager = new Manager();
                 $mysqli = $manager->connexion_mysqli();
 
@@ -550,7 +550,7 @@
             <?php
 
                 //Connect DB
-                require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/manager/manager.php");
+                require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
                 $manager = new Manager();
                 $mysqli = $manager->connexion_mysqli();
 
