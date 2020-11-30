@@ -54,12 +54,9 @@ include "../include/import.php";
     array_push($horaire,$tab_prise_3[0]);
     array_push($horaire,$tab_prise_4[0]);
     array_push($horaire,$tab_prise_5[0]);
-?>
-<?php
-            $tab_creneau = $request->fetch();
+    $tab_creneau = $request->fetch();
             $new_tab = [];
-            ?>
-          <?php  foreach ($horaire as $key => $value) {
+           foreach ($horaire as $key => $value) {
             if($value < 3){
               array_push($new_tab,$key);
             }

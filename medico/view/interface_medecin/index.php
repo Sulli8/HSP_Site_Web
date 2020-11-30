@@ -27,27 +27,59 @@
     require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
   $manager = new Manager();
   $db = $manager->connexion_bd();
-    $affiche = "SELECT creneau_1,creneau_2,creneau_3,creneau_4,creneau_5 from creneau";
-    $request = $db->query($affiche);
-    $tableau_creneau = $request->fetch();
-
 
     $affiche_patient = "SELECT nom from user";
     $request = $db->query($affiche_patient);
     $nom_patient = $request->fetchall();
+
+  //  $medecin = $_GET['nom_medecin'];
+    $search = "SELECT creneau_1,creneau_2,creneau_3,creneau_4,creneau_5 from creneau";
+    $request = $db->query($search);
+
+    $creneau_1 = "SELECT count(date_rdv) from rdv where creneau_rdv='9h00-10h00'";
+    $creneau_2 = "SELECT count(date_rdv) from rdv where creneau_rdv='10h00-11h00'";
+    $creneau_3 = "SELECT count(date_rdv) from rdv where creneau_rdv='11h00-12h00'";
+    $creneau_4 = "SELECT count(date_rdv) from rdv where creneau_rdv='14h00-15h00'";
+    $creneau_5 = "SELECT count(date_rdv) from rdv where creneau_rdv='15h00-16h00'";
+
+    $prise_1 = $db->query($creneau_1);
+    $prise_2 = $db->query($creneau_2);
+    $prise_3 = $db->query($creneau_3);
+    $prise_4= $db->query($creneau_4);
+    $prise_5 = $db->query($creneau_5);
+
+    $tab_prise_1 = $prise_1->fetch();
+    $tab_prise_2 = $prise_2->fetch();
+    $tab_prise_3 = $prise_3->fetch();
+    $tab_prise_4 = $prise_4->fetch();
+    $tab_prise_5 = $prise_5->fetch();
+
+    $horaire = [];
+    array_push($horaire,$tab_prise_1[0]);
+    array_push($horaire,$tab_prise_2[0]);
+    array_push($horaire,$tab_prise_3[0]);
+    array_push($horaire,$tab_prise_4[0]);
+    array_push($horaire,$tab_prise_5[0]);
+    $tab_creneau = $request->fetch();
+            $new_tab = [];
+           foreach ($horaire as $key => $value) {
+            if($value < 3){
+              array_push($new_tab,$key);
+            }
+          }
 
     ?>
     <!-- BANNER -->
     <section>
       <div class="container-fluid">
         <div
-          class="row bg-primary justify-content-center align-items-center"
+          class="row bg-light justify-content-center align-items-center"
           style="height: 100vh">
           <div class="col-sm-10 text-center">
-            <h1 class="display-2 text-capitalize text-white">Bienvenue Sur Mon hopital Pro</h1>
-            <a href="#" class="btn btn-dark btn-lg px-4 m-2"  data-toggle="modal" data-target="#exampleModalJH" data-whatever="@mdo">Ajouter Rendez-vous</a>
-            <a href="#" class="btn btn-dark btn-lg px-4 m-2"  data-toggle="modal" data-target="#exampleModalPARA" >Modifier informations</a>
-            <a href="#" class="btn btn-dark btn-lg px-4 m-2"  data-toggle="modal" data-target="#exampleModal">Voir mes rendez-vous</a>
+            <h1 class="display-2 text-capitalize text-primary">Bienvenue Sur Mon hopital Pro</h1>
+            <a href="#" class="btn btn-primary btn-lg px-4 m-2"  data-toggle="modal" data-target="#exampleModalJH" data-whatever="@mdo">Ajouter Rendez-vous</a>
+            <a href="#" class="btn btn-primary btn-lg px-4 m-2"  data-toggle="modal" data-target="#exampleModalPARA" >Modifier informations</a>
+            <a href="#" class="btn btn-primary btn-lg px-4 m-2"  data-toggle="modal" data-target="#exampleModal">Voir mes rendez-vous</a>
             <a href="../../FORM/deconnexion_form.php" class="btn btn-danger btn-lg px-4 m-2">Déconnexion</a>
           </div>
         </div>
@@ -67,18 +99,29 @@
               <small>Si vous souhaitez modifier vos informations personnelles, modifiez simplement les informations ici présente
               puis valider.</small>
               <form action="../../FORM/modification_form.php" method="POST">
-                  <div class="d-flex">
-                      <input class="mr-2" type="text" name="nom" value="<?php echo $_SESSION['id'];?>" required>
-                      <input type="text" name="prenom" value="<?php echo $_SESSION['prenom'];?>" required>
+                  <div class="">
+                     <label for="exampleInputEmail1">Nom médecin </label>
+                      <input class=" bg bg-primary text-white form-control mt-2" type="text" name="nom" value="<?php echo $_SESSION['nom'];?>" required>
+                    </div>
+                    <div class="">
+                      <label for="exampleInputEmail1">Prénom </label>
+                      <input type="text" class="bg bg-primary text-white form-control mt-2" name="prenom" value="<?php echo $_SESSION['prenom'];?>" required>
+                    </div>
+
+
+                  <div class="">
+                    <label for="exampleInputEmail1">Adresse médecin </label>
+                      <input class=" bg bg-primary text-white form-control mt-2" type="text" name="adresse" value="<?php echo $_SESSION['addr'];?>" required>
+                      </div>
+                      <div>
+                          <label for="exampleInputEmail1">Ville</label>
+                          <input type="text" class=" bg bg-primary text-white form-control mt-2" name="ville" value="<?php echo $_SESSION['ville'];?>" required>
+                        </div>
+                  <div class="">
+                    <label for="exampleInputEmail1">Mutuelle </label>
+                      <input type="text" class="bg bg-primary text-white form-control mt-2" name="mutuelle" value="<?php echo $_SESSION['mutuelle'];?>" required>
                   </div>
-                  <div class="d-flex">
-                      <input class="mr-2" type="text" name="adresse" value="<?php echo $_SESSION['addr'];?>" required>
-                      <input type="text" name="ville" value="<?php echo $_SESSION['ville'];?>" required>
-                  </div>
-                  <div class="d-flex text-center">
-                      <input type="text" name="mutuelle" value="<?php echo $_SESSION['mutuelle'];?>" required>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Modifier</button> <br>
+                  <button type="submit" class="mt-2 btn btn-primary">Modifier</button> <br>
                   <small>Vous serez par la suite déconnecté.</small>
               </form>
           </div>
@@ -93,8 +136,8 @@
 $id_medecin = $_SESSION['id'];
 $search = "SELECT * from rdv Where id_medecin='$id_medecin'";
 $request = $db->query($search);
+$tableau = $request->fetchall();
 
-$tableau = $request->fetch();
  ?>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -107,21 +150,42 @@ $tableau = $request->fetch();
             </button>
           </div>
           <div class="modal-body">
-            <?php
-            if($tableau != null){
-              $supprr = $tableau['id'];
-              echo $tableau['nom_patient']." ".$tableau['date_rdv']." ".$tableau['creneau_rdv']."<a href='../../traitement/traitement_delete_patient.php?delete=$supprr' class='text-white mt-2 btn btn-danger'>Supprimer<a/>"."</br>";
-            }
-            else{
-              echo "Vous n'avez pas de rendez-vous";
-            }
+            <table class="table table-bordered bg-primary text-white">
+  <thead>
+    <tr>
+      <th scope="col">Patient</th>
+      <th scope="col">Date rdv</th>
+      <th scope="col">Creneau rdv</th>
+      <th scope="col">Supprimer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <?php
+      if($tableau != null){
+        for ($i=0; $i < count($tableau); $i++) {
+          $supprr = $tableau[$i]['id'];
+          echo "<th>".$tableau[$i]['nom_patient']."</th>";
+          echo "<th>".$tableau[$i]['date_rdv']."</th>";
+          echo "<th>".$tableau[$i]['creneau_rdv']."</th>";
+          echo "<th><a href='../../traitement/traitement_delete_patient.php?delete=$supprr' class='text-white mt-2 btn btn-danger'>Supprimer<a/>";
+          if($i%3 == 0){echo "<tr>
 
+            </tr>";} else{echo "<tr>
+              </tr>";}
+          }
+      }
+      else{
+        echo "Vous n'avez pas de rendez-vous";
+      }
+       ?>
+    </tr>
+  </tbody>
+</table>
 
-
-             ?>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -152,9 +216,9 @@ $tableau = $request->fetch();
           </div>
           <div class="form-group">
             <select name="creneau_rdv"class="custom-select" id="inputGroupSelect01">
-              <?php    for ($i=0; $i < 5; $i++) {?>
-                     <option value="<?php echo $tableau_creneau[$i] ?>"><?php   echo $tableau_creneau[$i];  ?></option>
-            <?php         } ?>
+              <?php for ($i=0; $i < count($new_tab); $i++) {?>
+                <option value="<?php echo $tab_creneau[$new_tab[$i]]; ?>"><?php echo $tab_creneau[$new_tab[$i]]; ?></option>
+  <?php    } ?>
   </select>
 
           </div>

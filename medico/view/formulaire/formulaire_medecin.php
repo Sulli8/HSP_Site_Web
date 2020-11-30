@@ -27,23 +27,23 @@
 
             <div class="col-md-6">
               <label for="exampleInputEmail1" >Entrez le Département </label>
-              <input type="text" name="departement_medecin" class="form-control"  placeholder="Département"/>
+              <input type="text" name="departement_medecin" class="form-control"  placeholder="Département" required/>
             </div>
 
             <div class="col-md-6">
               <label for="mutuelle" >Renseignez la Spécialité</label>
-              <input type="text" name="specialite_medecin" class="form-control"  placeholder="Spécialité"/>
+              <input type="text" name="specialite_medecin" class="form-control"  placeholder="Spécialité" required/>
             </div>
 
               <div class="col-md-6">
-            <label for="adresse" >Entrez l' Email</label>
-            <input type="mail" name="mail_medecin" class="form-control"  aria-describedby="emailHelp" placeholder="Entrez votre adresse mail"/>
+            <label for="mail" >Entrez l' Email</label>
+            <input type="mail" name="mail_medecin" class="form-control"  aria-describedby="emailHelp" placeholder="Entrez votre adresse mail" required/>
             </div>
 
 
             <div class="col-md-6">
-              <label for="adresse" >Entrez le Mot de passe</label>
-              <input type="password" name="mdp_medecin" class="form-control"  minlength="8" aria-describedby="emailHelp" placeholder="Entrez votre mot de passe"/>
+              <label for="password" >Entrez le Mot de passe</label>
+              <input type="password" name="mdp_medecin" class="form-control"  minlength="8" aria-describedby="emailHelp" placeholder="Entrez votre mot de passe" required/>
             </div>
           </div>
 

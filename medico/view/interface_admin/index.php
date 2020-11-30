@@ -4,8 +4,7 @@
 if(isset($_GET['key']) && $_GET['key'] == "w40n6-6iop") { //Wrong Password
     $error = "L'insertion est fausse !";
 }
-
- ?>
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -15,7 +14,7 @@ if(isset($_GET['key']) && $_GET['key'] == "w40n6-6iop") { //Wrong Password
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 
   </head>
-  <body style="background-color:#000000;">
+  <body style="background-color:#fff;">
     <div class="middle">
       <div class="menu">
         <li class="item" id='profile'>

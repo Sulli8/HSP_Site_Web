@@ -26,28 +26,28 @@ class manager {
 
   }
 
-function inscription_medecin($medecin){
-  $mysqli = $this->connexion_mysqli();
-  $nom = $mysqli->real_escape_string($medecin['nom']);
-  $prenom = $mysqli->real_escape_string($medecin['prenom']);
-  $departement = $mysqli->real_escape_string($medecin['departement']);
-  $specialite = $mysqli->real_escape_string($medecin['specialite']);
-  $mail = $mysqli->real_escape_string($medecin['mail']);
-  $pass = $mysqli->real_escape_string($medecin['pass']);
-  //Generate vkey
-  $pass = md5(time().$nom);
-  //Insert Account into the database
-  $pass = md5($pass);
-  $insert = $mysqli->query("INSERT INTO medecin(nom, prenom,departement, specialite, mail, pass,medecin,admin)
-  VALUES('$nom', '$prenom', '$departement', '$specialite', '$mail', '$pass','1','0')");
-  if($insert != null ){
-    header("Location:../view/interface_admin/index.php");
-  }
-  else{
-      header('location: ../view/interface_admin/index.php?w40n6-6iop');
-  }
+  function inscription_medecin($medecin){
+    $mysqli = $this->connexion_mysqli();
+    $nom = $mysqli->real_escape_string($medecin['nom']);
+    $prenom = $mysqli->real_escape_string($medecin['prenom']);
+    $departement = $mysqli->real_escape_string($medecin['departement']);
+    $specialite = $mysqli->real_escape_string($medecin['specialite']);
+    $mail = $mysqli->real_escape_string($medecin['mail']);
+    $pass = $mysqli->real_escape_string($medecin['pass']);
+    //Generate vkey
+    $pass = md5(time().$nom);
+    //Insert Account into the database
+    $pass = md5($pass);
+    $insert = $mysqli->query("INSERT INTO medecin(nom, prenom,departement, specialite, mail, pass)
+    VALUES('$nom', '$prenom', '$departement', '$specialite', '$mail', '$pass')");
+    if($insert != null ){
+      header("Location:../view/interface_admin/index.php");
+    }
+    else{
+        header('location: ../view/interface_admin/index.php?w40n6-6iop');
+    }
 
-}
+  }
 
 function inscription_admin($admin){
   $mysqli = $this->connexion_mysqli();
@@ -267,15 +267,14 @@ function delete_rdv_admin($delete){
 
 
 function delete_patient($delete){
-  $db = $this->connexion_bd();
-  $suppression = "DELETE from rdv Where id='$delete'";
-  $request = $db->query($suppression);
-  $tableau = $request->fetchall();
-  if($tableau != null){
-    header("Location:../view/interface_medecin/index.php");
-  }else{
-    echo "Erreur lors de la suppression";
-  }
+  $mysqli = $this->connexion_mysqli();
+   $tableau = $mysqli->query("DELETE FROM rdv WHERE id = '$delete'");
+   var_dump($tableau);
+   if($tableau != null){
+     header("Location:../view/interface_medecin/index.php");
+   }else{
+     echo "Erreur lors de la suppression";
+   }
 
 }
 
@@ -284,12 +283,11 @@ function delete_user($delete){
   $suppression = "DELETE from user Where id='$delete'";
   $request = $db->query($suppression);
   $tableau = $request->fetch();
-  var_dump($tableau);
-  //if(isset($tableau)){
-  //  header("Location:../view/interface_admin/index.php");
-  //}else{
-    //echo "Erreur lors de la suppression";
-  //}
+  if($tableau != null){
+    header("Location:../view/interface_admin/index.php");
+  }else{
+    echo "Erreur lors de la suppression";
+  }
 
 }
 
@@ -319,14 +317,13 @@ function offres_emploies($id_user,$tab_job){
         'nom_entreprise'=>$tab_job['nom_entreprise']
     ));
     if($insert != null){
-      header('Location:../../offres_emploies.php');
+      header('Location:../view/index.php');
     }
     else{
       echo '<div class="alert alert-danger" role="alert">
       Erreur de candidature
 </div>';
     }
-  //  header('Location:../../offres_emploies.php');
   }
 }
 

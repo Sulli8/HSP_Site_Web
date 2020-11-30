@@ -105,7 +105,7 @@
                     <?php if(isset($_SESSION['email'])) {
                         echo '
                         <li class="nav-item">
-                        <a href="" class="nav-link" data-toggle="modal" data-target="#exampleModalPr">Prende rendez-vous</a>
+                        <a href="" class="nav-link" data-toggle="modal" data-target="#exampleModalPr">Prendre rendez-vous</a>
                         </li>
                         <li class="nav-item">
                         <a href="offres_emploies.php" class="nav-link">Offre emplois</a>

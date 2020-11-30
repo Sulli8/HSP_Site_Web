@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3308
--- Généré le :  Dim 29 nov. 2020 à 22:22
--- Version du serveur :  8.0.18
--- Version de PHP :  7.3.12
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  lun. 30 nov. 2020 à 16:05
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,33 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `bdd_hsp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `candidature`
+--
+
+DROP TABLE IF EXISTS `candidature`;
+CREATE TABLE IF NOT EXISTS `candidature` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `metier` varchar(40) COLLATE utf8_bin NOT NULL,
+  `candidat` varchar(40) COLLATE utf8_bin NOT NULL,
+  `contrat` varchar(40) COLLATE utf8_bin NOT NULL,
+  `nom_entreprise` varchar(40) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `candidature`
+--
+
+INSERT INTO `candidature` (`id`, `metier`, `candidat`, `contrat`, `nom_entreprise`) VALUES
+(1, 'Orthodoncie', 'VASONE', 'CDD', 'SFR'),
+(2, 'Orthodoncie', 'VASONE', 'CDD', 'SFR'),
+(3, 'Orthodoncie', 'VASONE', 'CDD', 'SFR'),
+(4, 'Orthodoncie', 'az', 'CDD', 'SFR'),
+(5, 'Orthodoncie', 'az', 'CDD', 'SFR');
 
 -- --------------------------------------------------------
 
@@ -49,6 +76,32 @@ INSERT INTO `creneau` (`id`, `creneau_1`, `creneau_2`, `creneau_3`, `creneau_4`,
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `emploies`
+--
+
+DROP TABLE IF EXISTS `emploies`;
+CREATE TABLE IF NOT EXISTS `emploies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `metier` varchar(40) COLLATE utf8_bin NOT NULL,
+  `contrat` varchar(40) COLLATE utf8_bin NOT NULL,
+  `nom_entreprise` varchar(40) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `emploies`
+--
+
+INSERT INTO `emploies` (`id`, `metier`, `contrat`, `nom_entreprise`) VALUES
+(1, 'Ophtalmologue', 'CDI', 'Free'),
+(2, 'Orthodoncie', 'CDD', 'SFR'),
+(4, 'Ophtalmologue', 'CDI', 'Free'),
+(5, 'Orthodoncie', 'CDD', 'SFR'),
+(6, 'Orthodoncie', 'CDD', 'SFR');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `medecin`
 --
 
@@ -60,57 +113,20 @@ CREATE TABLE IF NOT EXISTS `medecin` (
   `departement` varchar(40) NOT NULL,
   `specialite` varchar(40) NOT NULL,
   `mail` varchar(40) NOT NULL,
-  `pass` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `pass` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `medecin`
 --
 
 INSERT INTO `medecin` (`id`, `nom`, `prenom`, `departement`, `specialite`, `mail`, `pass`) VALUES
-(1, 'SEXTIUS', 'Sullivan', 'Nutrition', 'Nutritionniste', 'nutrition@monhopital.fr', 'motdepassenondefinipourlinstant'),
-(2, 'YALAPOLICE', 'Thomas', 'Optique', 'Ophtalmologue', 'optique@monhopital.fr', 'motdepassenondefinipourlinstant'),
-(3, 'FONTAINUS', 'Ryan', 'Psychiatrie', 'Psychiatre', 'psychiatre@monhopital.fr', 'motdepassenondefinipourlinstant'),
-(4, 'Héééé', 'YANISHHHH', 'Dermathologie', 'Dermathologue', 'dermathologie@monhopital.fr', 'motdepassenondefinipourlinstant');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `message_medecin`
---
-
-DROP TABLE IF EXISTS `message_medecin`;
-CREATE TABLE IF NOT EXISTS `message_medecin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `message_envoye` varchar(1000) NOT NULL,
-  `objet` varchar(1000) NOT NULL,
-  `mail_user` varchar(1000) NOT NULL,
-  `id_medecin` int(11) NOT NULL,
-  `message_recu` varchar(1000) NOT NULL,
-  `heure` varchar(40) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_medecin` (`id_medecin`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `message_user`
---
-
-DROP TABLE IF EXISTS `message_user`;
-CREATE TABLE IF NOT EXISTS `message_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `message_envoye` varchar(1000) NOT NULL,
-  `objet` text NOT NULL,
-  `mail_medecin` varchar(40) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `message_recu` varchar(1000) NOT NULL,
-  `heure` varchar(40) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+(5, 'marc', 'qqqqqq', '93', 'Ophto', 'fadi.sextius@gmail.com', '5bc0b19b709c7a262ab56021b980d2bd'),
+(6, 'marc', 'qqqqqq', '93', 'Ophto', 'fadi.sextius@gmail.com', '2b1397d6d0b32b032842118cbf8cd44d'),
+(8, 'az', 'az', 'az', 'az', 'az', '9d4f9907c9e7c67b9d3935005cd23f15'),
+(9, 'az', 'az', 'az', 'az', 'az', '2c531b0f8bbdea00a347932b199f0e17'),
+(10, '', '', '', '', 'az', '6565c811f17ad6273b8961275cb1b584');
 
 -- --------------------------------------------------------
 
@@ -143,18 +159,21 @@ CREATE TABLE IF NOT EXISTS `rdv` (
   `nom_medecin` varchar(255) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_medecin` int(11) NOT NULL,
-  `date_rdv` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `creneau_rdv` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `date_rdv` varchar(255) NOT NULL,
+  `creneau_rdv` varchar(255) NOT NULL,
   `nom_patient` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `rdv`
 --
 
 INSERT INTO `rdv` (`id`, `nom_medecin`, `id_user`, `id_medecin`, `date_rdv`, `creneau_rdv`, `nom_patient`) VALUES
-(6, 'YALAPOLICE', 1, 2, '01-01-2021', '09h00 - 10h00', 'VASONE');
+(5, 'Vasone', 2, 1, '1-01-2021', '10h00-11h00', 'Sextius'),
+(7, 'YALAPOLICE', 1, 2, '01-01-2021', '10h00 - 11h00', 'VASONE'),
+(8, 'YALAPOLICE', 1, 2, '01-01-2021', '11h00 - 12h00', 'VASON'),
+(9, 'SEXTIUS', 1, 1, '2020-11-19', '10h00-11h00', 'VASON');
 
 -- --------------------------------------------------------
 
@@ -167,40 +186,28 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(60) NOT NULL,
   `prenom` varchar(60) NOT NULL,
-  `adresse` varchar(115) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `adresse` varchar(115) NOT NULL,
   `ville` varchar(45) NOT NULL,
-  `mail` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `pass` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `mutuelle` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `mail` varchar(255) NOT NULL,
+  `pass` varchar(255) NOT NULL,
+  `mutuelle` varchar(60) NOT NULL,
   `verified` tinyint(1) NOT NULL DEFAULT '0',
   `vkey` varchar(75) NOT NULL,
   `medecin` tinyint(1) NOT NULL DEFAULT '0',
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `nom`, `prenom`, `adresse`, `ville`, `mail`, `pass`, `mutuelle`, `verified`, `vkey`, `medecin`, `admin`) VALUES
-(1, 'VASONE', 'Antoine', '21 quai de l\'ourcq', 'Pantin', 'antoinevasone@outlook.com', 'a3aca2964e72000eea4c56cb341002a4', 'MutuelleClioAMG', 1, '3fb52a55c807929fa97ac018c807fc50', 0, 0);
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `message_medecin`
---
-ALTER TABLE `message_medecin`
-  ADD CONSTRAINT `id_medecin` FOREIGN KEY (`id_medecin`) REFERENCES `medecin` (`id`);
-
---
--- Contraintes pour la table `message_user`
---
-ALTER TABLE `message_user`
-  ADD CONSTRAINT `id_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
+(1, 'Vasone ', 'Antoine', '21 quai de l\'ourcq', 'Pantin', 'antoinevasone@outlook.com', 'a3aca2964e72000eea4c56cb341002a4', 'MutuelleClioAMG', 1, '3fb52a55c807929fa97ac018c807fc50', 0, 1),
+(2, 'root', 'az', 'aucune', 'aucune', 'az.az@gmail.com', '6a97d7999cdd427ce03656d0e2468526', 'aucune', 0, '672aaec62f8c32176612c25e1ff82762', 0, 1),
+(3, 'azdv', 'azds', 'azcv', 'azcv', 'az@az.fr', 'cc8c0a97c2dfcd73caff160b65aa39e2', 'azxcv', 1, '32bea98584c58a97d8a530e948b4407d', 0, 0),
+(4, '444', 'qs', 'qs', 'qs', 'qs@qs.fr', '304854e2e79de0f96dc5477fef38a18f', 'qs', 1, '94cd524c9ef3d1f0915135a16a84c29a', 0, 1),
+(5, 'root', 'aa', 'aucune', 'aucune', 'aa@aa.fr', 'a4b2677c04756fd917bcd038c79fe79c', 'aucune', 0, '4e12eb98d17f87a0d3ef424d2421a2de', 0, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

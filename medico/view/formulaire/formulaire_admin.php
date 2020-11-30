@@ -17,17 +17,17 @@
 
   <div class="form-group">
     <label for="exampleInputEmail1" >Entrez votre nom Admin</label>
-    <input type="text" name="nom" value="root" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+    <input type="text" name="nom" value="root" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
 
     <label for="exampleInputEmail1" >Entrez votre prénom Admin</label>
-    <input type="text" name="prenom" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez votre prénom">
+    <input type="text" name="prenom" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez votre prénom" required>
 
     <label for="exampleInputEmail1" >Entrez votre adresse e-mail Admin</label>
-    <input type="email" name="mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez votre adresse e-mail">
+    <input type="email" name="mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez votre adresse e-mail" required>
 
 
     <label for="mot_de_passe" >Entrez un mot de passe</label>
-    <input type="password" name="pass" value="root" class="form-control"  aria-describedby="emailHelp" placeholder="Entrez un mot de passe">
+    <input type="password" name="pass" value="root" class="form-control"  aria-describedby="emailHelp" placeholder="Entrez un mot de passe" required>
 
 
 
