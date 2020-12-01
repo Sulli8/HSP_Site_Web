@@ -10,11 +10,17 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 segment-two">
                     <h2>MonHôpital</h2>
                     <ul>
-                        <li><a href="">Event</a></li>
-                        <li><a href="">Support</a></li>
-                        <li><a href="">Hosting</a></li>
-                        <li><a href="">Career</a></li>
-                        <li><a href="">Blog</a></li>
+                      <?php if(isset($_SESSION['email'])){ ?>
+
+                        <li><a href=""  data-toggle="modal" data-target="#exampleModalPARA">Mon compte</a></li>
+                              <li><a href="" data-toggle="modal" data-target="#exampleModalGr">Gérer mes rendez-vous</a></li>
+                              <li><a href="" data-toggle="modal" data-target="#exampleModalPr">Prendre rendez-vous</a></li>
+                              <li><a href="" data-toggle="modal" data-target=".bd-example-modal-lg">Offre emploies</a></li>
+                      <?php } else { ?>
+                        <li><a href="index.php">Accueil</a></li>
+                        <li><a href="#our-services-id">Nos Services</a></li>
+                        <li><a href="" data-toggle="modal" data-target="#exampleModalC">Contact</a></li>
+                      <?php } ?>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12 segment-three">

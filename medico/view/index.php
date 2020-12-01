@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
 session_start();
-
     $error = NULL;
     //Get URL Key
     if(isset($_GET['key']) && $_GET['key'] == "w40n6-6a55") { //Wrong Password
@@ -85,7 +84,7 @@ session_start();
         <strong><?php echo $candidature; ?></strong>
     </div>
     <?php include "../include/page.php"; ?>
-    <?php include "../include/footer.php"; ?>
+
     <!-- Modal Connexion -->
     <?php include "../Modal/connexion.php"; ?>
     <!-- Modal Emploies -->
@@ -103,5 +102,6 @@ session_start();
     <?php include "../Modal/gerer_rdv.php"; ?>
     <!-- Modal Paramètres -->
     <?php include "../Modal/parametre.php"; ?>
+      <?php include "../include/footer.php"; ?>
 </body>
 </html>
