@@ -4,7 +4,7 @@ class manager {
   function connexion_bd(){
     try
         {
-            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','root');
+            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','');
         }
         catch(Exception $e)
         {
@@ -16,7 +16,7 @@ class manager {
   function connexion_mysqli(){
     try
         {
-            $mysqli = mysqli_connect("localhost", "root", "root", "bdd_hsp");
+            $mysqli = mysqli_connect("localhost", "root", "", "bdd_hsp");
         }
         catch(Exception $e)
         {
@@ -317,7 +317,7 @@ function offres_emploies($id_user,$tab_job){
         'nom_entreprise'=>$tab_job['nom_entreprise']
     ));
     if($insert != null){
-      header('Location:../view/index.php');
+      header('Location:../view/index.php?key=2R9Vrz8x/?');
     }
     else{
       echo '<div class="alert alert-danger" role="alert">

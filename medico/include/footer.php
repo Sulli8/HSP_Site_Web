@@ -1,54 +1,39 @@
-<footer class="footer-area">
-    <div class="footer section_padding">
+<footer>
+    <div class="footer-top">
         <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-xl-2 col-sm-6 col-md-4 single-footer-widget">
-                    <h4>Liens Rapide</h4>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12 segment-one">
+                    <h3>MonHôpital</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, dolore obcaecati?
+                        Eius iusto vel impedit consequuntur, praesentium corporis. Impedit, neque.</p>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 segment-two">
+                    <h2>MonHôpital</h2>
                     <ul>
-                        <li><a href="#">A propos de nous</a></li>
-                        <li><a href="#">Departement</a></li>
-                        <li><a href="#">Paiment en ligne</a></li>
+                        <li><a href="">Event</a></li>
+                        <li><a href="">Support</a></li>
+                        <li><a href="">Hosting</a></li>
+                        <li><a href="">Career</a></li>
+                        <li><a href="">Blog</a></li>
                     </ul>
                 </div>
-                <div class="col-xl-3 col-sm-6 col-md-6 single-footer-widget">
-                    <h4>Newsletter</h4>
-                    <p>Recevez des mails sur les dernière actualiter</p>
-                    <div class="form-wrap" id="mc_embed_signup">
-                        <form target="_blank"
-                            action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                            method="get" class="form-inline">
-                            <input class="form-control" name="EMAIL" placeholder="Votre adresse mail"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '"
-                                required="" type="email">
-                            <button class="click-btn btn btn-default text-uppercase"> <i class="ti-angle-right"></i>
-                            </button>
-                            <div style="position: absolute; left: -5000px;">
-                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value=""
-                                    type="text">
-                            </div>
-
-                            <div class="info"></div>
-                        </form>
-                    </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 segment-three">
+                    <h2>Follow Us</h2>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus aliquid rerum impedit
+                        laudantium hic porro sit ipsa magnam labore ex!</p>
+                    <a href="https://www.instagram.com/guizmolabanquise/?hl=fr" target="_blank"><i class="fa fa-instagram"></i></a>
+                    <a href="https://twitter.com/GuizLaBanquise?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"><i class="fa fa-twitter"></i></a>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 segment-four">
+                    <h2>Our Newletter</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, neque nostrum suscipit reiciendis veritatis voluptatem!</p>
+                    <form action="">
+                        <input type="email">
+                        <input type="submit" value="Subscribe">
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="copyright_part">
-        <div class="container">
-            <div class="row align-items-center">
-                <p class="footer-text m-0 col-lg-8 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</p>
-                <div class="col-lg-4 col-md-12 text-center text-lg-right footer-social">
-                    <a href="#"><i class="ti-facebook"></i></a>
-                    <a href="#"> <i class="ti-twitter"></i> </a>
-                    <a href="#"><i class="ti-instagram"></i></a>
-                    <a href="#"><i class="ti-skype"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <p class="footer-bottom-text">All Right reserved by &copy;MonHôpital</p>
 </footer>

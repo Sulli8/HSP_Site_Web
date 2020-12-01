@@ -10,5 +10,4 @@ var_dump($_SESSION);
 $id_user = $_SESSION['id'];
 $tab_job = array("metier"=>$metier,"contrat"=>$contrat,"nom_entreprise"=>$nom_entreprise);
 $manager->offres_emploies($id_user,$tab_job);
-
 ?>
