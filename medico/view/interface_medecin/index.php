@@ -21,11 +21,21 @@
   <body>
     <!-- NAV -->
     <?php
+    $error = NULL;
     if(isset($_GET['erreur_ajout']) && $_GET['erreur_ajout'] == "????"){
       $error = "Erreur d'ajout de rendez-vous";
     }
+    $error = NULL;
     if(isset($_GET['erreur_patient']) && $_GET['erreur_patient'] == "006OoLj6eeR") { //Wrong Delete
         $error = "Erreur de suppression Patient !";
+    }
+    $insert_rdv= NULL;
+    if(isset($_GET['key']) && $_GET['key'] == "02uFzc3oLB3") { //Wrong Delete
+        $insert_rdv = "Rendez-vous bien ajouté !";
+    }
+    $delete_patient = NULL;
+    if(isset($_GET['key']) && $_GET['key'] == "CKq32iuh61H") { //Wrong Delete
+        $delete_patient = "Patient bien supprimé !";
     }
      ?>
     <!-- END OF NAV -->
@@ -93,7 +103,9 @@
             <a href="#" class="btn btn-primary btn-lg px-4 m-2"  data-toggle="modal" data-target="#exampleModal">Voir mes rendez-vous</a>
             <a href="../../FORM/deconnexion_form.php" class="btn btn-danger btn-lg px-4 m-2">Déconnexion</a>
             <div class="text-center">
-                  <strong><?php echo $error; //On affiche une erreur si la clé existe ?></strong>
+                  <strong class="text-danger"><?php echo $error; //On affiche une erreur si la clé existe ?></strong>
+                  <strong class="text-success"><?php echo $insert_rdv; //On affiche une erreur si la clé existe ?></strong>
+                  <strong class="text-success"><?php echo $delete_patient; //On affiche une erreur si la clé existe ?></strong>
               </div>
           </div>
         </div>

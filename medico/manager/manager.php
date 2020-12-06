@@ -49,7 +49,7 @@ class manager {
     VALUES('$nom', '$prenom', '$departement', '$specialite', '$mail', '$pass')");
     if($insert != null ){
       //on redirige
-      header("Location:../view/interface_admin/index.php");
+      header("Location:../view/interface_admin/index.php?key=8m4MDO9sy0e");
     }
     else{
       //on redirige
@@ -87,41 +87,6 @@ function inscription_admin($admin){
 
 }
 
-function barre_de_recherche($recherche){
-  //on appelle la fcontion connexion_bd
-    $db = $this->connexion_bd();
-    //On déclare la variable $serach "SELECT * from medecin Where nom Like '%$recherche'";
-    $search = "SELECT * from medecin Where nom Like '%$recherche'";
-    $request = $db->query($search);
-    $tableau = $request->fetchall();
-    $index_key = ['nom','prenom','departement','specialite','mail'];
-    session_start();
-    //Si le tableau existe alors...
-    if(isset($tableau[0])){
-          echo "<table class='table table-dark'>";
-          echo "  <th class='bg-primary'scope='col'>Coordonnées médecin</th>";
-          //On parcours le tableau tableau[0]
-      foreach (array_unique($tableau[0]) as $key => $value) {
-        echo "<tr>";
-          for ($i=0; $i < count($index_key) ; $i++) {
-            if($i%2 != 0){$class= 'bg-primary';}else{$class='orange';}
-            if($key == $index_key[$i]){
-            echo "<td class='$class'>".ucwords($key)." : ".$value.'</td>';
-            }
-          }
-          echo "</tr>";
-
-        }
-        echo "<table>";
-        echo "<a href='../view/index.php'class='btn btn-primary'>Retour à l'accueil</a>";
-      }
-      else{
-      echo "<script>window.alert('Erreur de recherche médecin');
-document.location.href='../view/index.php';
-
-      </script>";
-    }
-  }
 
 function ajout_rdv($rdv){
   //on appelle la fonction connexion_mysqli();
@@ -152,7 +117,7 @@ function ajout_rdv($rdv){
   //Si le tableau existe alors ...
   if($insert != null){
       //on redirige
-    header("Location:../view/interface_medecin/index.php");
+    header("Location:../view/interface_medecin/index.php?key=02uFzc3oLB3");
   }else {
     //On affiche une erreur
     header("Location:../view/interface_medecin/index.php?erreur_ajout=????");;
@@ -247,7 +212,7 @@ function delete_patient($delete){
   //si le tableau exite alors..
    if($tableau != null){
      //on redirige
-     header("Location:../view/interface_medecin/index.php");
+     header("Location:../view/interface_medecin/index.php?key=CKq32iuh61H");
    }else{
      //On redirige
      header("Location:../view/interface_medecinindex.php?erreur_patient=006OoLj6eeR");
@@ -283,7 +248,7 @@ function delete_medecin($delete){
   //si le tableau exite alors..
   if(isset($tableau)){
     //on redirige
-    header("Location:../view/interface_admin/index.php");
+    header("Location:../view/interface_admin/index.php?key=Y4fIOu8g92f");
   }else{
     //On redirige
     header("Location:../view/interface_admin/index.php?erreur_medecin=9WwA0dhw66A");

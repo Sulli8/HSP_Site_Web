@@ -1,6 +1,7 @@
 
 <?php
 //Si la clé existe eet vaut "w40n6-6iop" alors ona ffiche une erreur
+$error = NULL;
 if(isset($_GET['key']) && $_GET['key'] == "w40n6-6iop") { //Wrong Password
     $error = "L'insertion est fausse !";
 }
@@ -19,8 +20,18 @@ if(isset($_GET['erreur_user']) && $_GET['erreur_user'] == "290uREkd6uG") { //Wro
 if(isset($_GET['erreur_medecin']) && $_GET['erreur_medecin'] == "9WwA0dhw66A") { //Wrong Delete
     $error = "Erreur de suppression !";
 }
+$ajoute_admin = NULL;
 if(isset($_GET['key']) && $_GET['key'] == "6k75viX9TOg") { //Wrong Delete
-    $ajoute = "Administrateur bien ajouté !";
+    $ajoute_admin = "Administrateur bien ajouté !";
+}
+$ajoute = NULL;
+if(isset($_GET['key']) && $_GET['key'] == "8m4MDO9sy0e") { //Wrong Delete
+    $ajoute = "Médecin bien ajouté !";
+}
+
+$suppression_medecin = NULL;
+if(isset($_GET['key']) && $_GET['key'] == "Y4fIOu8g92f") { //Wrong Delete
+    $suppression_medecin = "Médecin bien supprimé !";
 }
 ?>
 <!DOCTYPE html>
@@ -57,8 +68,10 @@ if(isset($_GET['key']) && $_GET['key'] == "6k75viX9TOg") { //Wrong Delete
             <div class="card" style="width: 18rem;">
             <div class="card-header" style="background-color: #0596de;">
               <h4 class=" text-capitalize text-white">Interface Admin</h4>
-              <h5 class="text-center text-dark"><?php echo $error; ?></h5>
-              <h5 class="text-center text-dark"><?php echo $ajoute; ?></h5>
+              <h5 class="text-white"><?php echo $error; ?></h5>
+              <h5 class="text-white"><?php echo $ajoute; ?></h5>
+              <h5 class="text-white"><?php echo $ajoute_admin; ?></h5>
+              <h5 class="text-white"><?php echo $suppression_medecin; ?></h5>
             </div>
             <!-- On affiche le menu de l'admin-->
             <ul class="list-group list-group-flush ">

@@ -30,7 +30,7 @@
                     <a href="#our-services-id" class="nav-link">Nos Services</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link" data-toggle="modal" data-target="#exampleModalC">Contact</a>
+                  <a class="nav-link" data-toggle="modal" data-target="#exampleModalC">Contact</a>
                 </li>
                   <!-- Si l'email existe alors...-->
                 <?php if(isset($_SESSION['email'])) {
@@ -42,7 +42,7 @@
                   //Sinon on affiche...
                     echo '
                     <li class="nav-item">
-                    <a href="" class="nav-link btn btn-warning text-white rounded" data-toggle="modal" data-target="#exampleModal">Connexion</a>
+                    <a href="" class="nav-link btn btn-warning text-white rounded" data-toggle="modal" data-target="#exampleModalo">Connexion</a>
                     </li>';
                 } ?>
             </ul>
