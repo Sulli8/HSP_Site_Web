@@ -2,7 +2,8 @@
 
 
 class user {
-  private $id,$nom,$prenom,$mail,$mutuelle,$admin,$mdp,$adresse,$image_profil;
+  //On déclare la variable $id,$nom,$prenom,$mail,$mutuelle,$admin,$mdp,$adresse,$image_profil;
+  private $id,$nom,$prenom,$mail,$mutuelle,$admin,$mdp,$adresse;
 
 
     /**
@@ -173,7 +174,7 @@ class user {
     {
         $this->id = $id;
     }
-  
+
 
 
 

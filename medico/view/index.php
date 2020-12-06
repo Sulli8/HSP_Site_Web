@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+//On démarre une session
 session_start();
     $error = NULL;
     //Get URL Key
@@ -76,13 +77,14 @@ session_start();
 <body>
   <?php include "../include/header.php"; ?>
   <div class="text-center">
-        <strong><?php echo $error;?></strong>
-        <strong><?php echo $wrong;?></strong>
-        <strong><?php echo $password_reset; ?></strong>
-        <strong><?php echo $cancel_rdv; ?></strong>
-        <strong><?php echo $error_rdv; ?></strong>
-        <strong><?php echo $candidature; ?></strong>
+        <strong><?php echo $error; //On affiche une erreur si la clé existe ?></strong>
+        <strong><?php echo $wrong;//On affiche une erreur si la clé existe ?></strong>
+        <strong><?php echo $password_reset; //On affiche une erreur si la clé existe ?></strong>
+        <strong><?php echo $cancel_rdv;//On affiche une erreur si la clé existe  ?></strong>
+        <strong><?php echo $error_rdv; //On affiche une erreur si la clé existe ?></strong>
+        <strong><?php echo $candidature; //On affiche une erreur si la clé existe ?></strong>
     </div>
+    <!-- On affiche la page d'acceuil-->
     <?php include "../include/page.php"; ?>
 
     <!-- Modal Connexion -->

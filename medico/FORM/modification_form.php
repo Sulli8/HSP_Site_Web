@@ -29,6 +29,7 @@
     mutuelle = '$mutuelle' WHERE id = '$user_id'");
 
     if($update) {
+      //On redirige
         header('location: ../FORM/deconnexion_form.php');
     }else {
         echo $mysqli->error;

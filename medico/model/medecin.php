@@ -1,5 +1,6 @@
 <?php
   require_once($_SERVER['DOCUMENT_ROOT']."/Monhopital/medico/model/user.php");
+  //On hérite la class user
 class medecin extends user {
   private $departement,$specialite;
 

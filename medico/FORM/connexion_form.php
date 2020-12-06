@@ -49,6 +49,7 @@
                 header('location: ../view/index.php');
             }
         }else {
+          //On redirige
             header('location: ../view/index.php?key=n0t-v341f');
         }
     }else {

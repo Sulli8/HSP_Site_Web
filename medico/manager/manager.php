@@ -77,51 +77,6 @@ function inscription_admin($admin){
 
 
 
-function update_user(medecin $tab_medecin,$id){
-  $db = $this->connexion_bd();
-  $updating = "UPDATE medecin set nom= :nom, prenom= :prenom, departement= :departement, specialite= :specialite, mail= :mail, mdp= :mdp, image_profil= :image_profil WHERE id='$id'";
-  $request = $db->prepare($updating);
-  $update_tab = $request->execute(array(
-    'nom'=>$tab_medecin->getNom(),
-    'prenom'=>$tab_medecin->getPrenom(),
-    'departement'=>$tab_medecin->getDepartement(),
-    'specialite'=>$tab_medecin->getSpecialite(),
-    'mail'=>$tab_medecin->getMail(),
-    'mdp'=>$tab_medecin->getMdp(),
-    'image_profil'=>$tab_medecin->getImage_profil()
-  ));
-
-  if($update_tab == true){
-    header('Location:../view/index_medecin.php');
-
-       }
-       else {
-         echo "erreur de modification";
-               }
-}
-
-function update_real_user(user $tab_user,$id){
-  $db = $this->connexion_bd();
-  $updating = "UPDATE user set nom= :nom, prenom= :prenom, mail= :mail, mutuelle= :mutuelle, mdp= :mdp, adresse= :adresse, image_profil= :image_profil WHERE id='$id'";
-  $request = $db->prepare($updating);
-  $update_tab = $request->execute(array(
-    'nom'=>$tab_user->getNom(),
-    'prenom'=>$tab_user->getPrenom(),
-    'mail'=>$tab_user->getMail(),
-    'mutuelle'=>$tab_user->getMutuelle(),
-    'mdp'=>$tab_user->getMdp(),
-    'adresse'=>$tab_user->getAdresse(),
-    'image_profil'=>$tab_user->getImage_profil()
-  ));
-
-  if($update_tab == true){
-    header('Location:../view/index.php');
-
-       }
-       else {
-         echo "erreur de modification";
-               }
-}
 
 function barre_de_recherche($recherche){
     $db = $this->connexion_bd();
@@ -130,11 +85,11 @@ function barre_de_recherche($recherche){
     $tableau = $request->fetchall();
     $index_key = ['nom','prenom','departement','specialite','mail'];
     session_start();
-
-
+    //Si le tableau existe alors...
     if(isset($tableau[0])){
           echo "<table class='table table-dark'>";
           echo "  <th class='bg-primary'scope='col'>Coordonnées médecin</th>";
+          //On parcours le tableau tableau[0]
       foreach (array_unique($tableau[0]) as $key => $value) {
         echo "<tr>";
           for ($i=0; $i < count($index_key) ; $i++) {

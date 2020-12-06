@@ -1,7 +1,7 @@
 
 <!doctype html>
 <html lang="fr">
-
+<!-- Formulaire d'insertion admin-->
 
  <link rel="stylesheet" href="../../css/formulaire_inscription_style.css">
  <head>

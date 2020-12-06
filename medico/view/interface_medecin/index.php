@@ -23,46 +23,50 @@
 
     <!-- END OF NAV -->
     <?php
+    //On démarre une session
     session_start();
     require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
-  $manager = new Manager();
-  $db = $manager->connexion_bd();
-
+    $manager = new Manager();
+    $db = $manager->connexion_bd();
+    //On déclare la requête qui permet d'afficher le nom des user
     $affiche_patient = "SELECT nom from user";
+    //On exécute la requête
     $request = $db->query($affiche_patient);
     $nom_patient = $request->fetchall();
-
-  //  $medecin = $_GET['nom_medecin'];
+    //  $medecin = $_GET['nom_medecin'];
     $search = "SELECT creneau_1,creneau_2,creneau_3,creneau_4,creneau_5 from creneau";
     $request = $db->query($search);
-
+    //On compte les date qui sont disponible par rapport au creneau de rdv pris pas le user
     $creneau_1 = "SELECT count(date_rdv) from rdv where creneau_rdv='9h00-10h00'";
     $creneau_2 = "SELECT count(date_rdv) from rdv where creneau_rdv='10h00-11h00'";
     $creneau_3 = "SELECT count(date_rdv) from rdv where creneau_rdv='11h00-12h00'";
     $creneau_4 = "SELECT count(date_rdv) from rdv where creneau_rdv='14h00-15h00'";
     $creneau_5 = "SELECT count(date_rdv) from rdv where creneau_rdv='15h00-16h00'";
-
+    //On exécute les requête qui comte les date
     $prise_1 = $db->query($creneau_1);
     $prise_2 = $db->query($creneau_2);
     $prise_3 = $db->query($creneau_3);
     $prise_4= $db->query($creneau_4);
     $prise_5 = $db->query($creneau_5);
-
+    //on intancie le tableau des ces requête
     $tab_prise_1 = $prise_1->fetch();
     $tab_prise_2 = $prise_2->fetch();
     $tab_prise_3 = $prise_3->fetch();
     $tab_prise_4 = $prise_4->fetch();
     $tab_prise_5 = $prise_5->fetch();
-
+    //On déclare le tableau horaire
     $horaire = [];
+    //ajoute la valeur dans le tableau
     array_push($horaire,$tab_prise_1[0]);
     array_push($horaire,$tab_prise_2[0]);
     array_push($horaire,$tab_prise_3[0]);
     array_push($horaire,$tab_prise_4[0]);
     array_push($horaire,$tab_prise_5[0]);
     $tab_creneau = $request->fetch();
+    //on déclare le tableau new Tab
             $new_tab = [];
            foreach ($horaire as $key => $value) {
+             //Si la valeur est inférieur à 3 alors on ajoute les clés dans le tableau
             if($value < 3){
               array_push($new_tab,$key);
             }
@@ -132,10 +136,12 @@
     <!-- Button trigger modal -->
 
 <?php
-
+//On déclare la variable $id_médecin
 $id_medecin = $_SESSION['id'];
+//On déclare la variable $search
 $search = "SELECT * from rdv Where id_medecin='$id_medecin'";
 $request = $db->query($search);
+//On déclare la tableau de tableau $tableau
 $tableau = $request->fetchall();
 
  ?>
@@ -162,20 +168,28 @@ $tableau = $request->fetchall();
   <tbody>
     <tr>
       <?php
+      //Si le tableau existe alors...
       if($tableau != null){
+        //On parcours le tableau
         for ($i=0; $i < count($tableau); $i++) {
           $supprr = $tableau[$i]['id'];
+          //On affiche les index du tableau
           echo "<th>".$tableau[$i]['nom_patient']."</th>";
           echo "<th>".$tableau[$i]['date_rdv']."</th>";
           echo "<th>".$tableau[$i]['creneau_rdv']."</th>";
           echo "<th><a href='../../traitement/traitement_delete_patient.php?delete=$supprr' class='text-white mt-2 btn btn-danger'>Supprimer<a/>";
-          if($i%3 == 0){echo "<tr>
+          //Si $i%3 == 0 alors....
+          if($i%3 == 0){
+            //On affiche une cellule
+            echo "<tr>
 
-            </tr>";} else{echo "<tr>
-              </tr>";}
+            </tr>";} else{
+                //On affiche une cellule
+                echo "<tr></tr>";}
           }
       }
       else{
+        //Sinon On affiche vous n'avez pas de rendez-vous
         echo "Vous n'avez pas de rendez-vous";
       }
        ?>
@@ -205,8 +219,12 @@ $tableau = $request->fetchall();
             <select name="nom_patient" class="custom-select" id="inputGroupSelect01">
               <option >Selectionnez un patient</option>
 
-          <?php    for ($i=0; $i < count($nom_patient); $i++) {
+          <?php
+          //O parcours le tableau
+            for ($i=0; $i < count($nom_patient); $i++) {
+              //On parcours les tableau du tableaux $nompatient
                 foreach ($nom_patient[$i] as $key => $value) {?>
+                  <!-- On afficheles valeur du tableeau --->
                  <option value="<?php echo $value ?>"><?php   echo $value;  ?></option>
         <?php         }
               }?>
@@ -216,7 +234,10 @@ $tableau = $request->fetchall();
           </div>
           <div class="form-group">
             <select name="creneau_rdv"class="custom-select" id="inputGroupSelect01">
-              <?php for ($i=0; $i < count($new_tab); $i++) {?>
+              <?php
+              //On parocurs la tableau new_tab
+              for ($i=0; $i < count($new_tab); $i++) {?>
+                <!-- On affiche les horaire disponible-->
                 <option value="<?php echo $tab_creneau[$new_tab[$i]]; ?>"><?php echo $tab_creneau[$new_tab[$i]]; ?></option>
   <?php    } ?>
   </select>

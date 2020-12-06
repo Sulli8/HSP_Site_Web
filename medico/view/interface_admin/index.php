@@ -1,6 +1,6 @@
 
 <?php
-
+//Si la clé existe eet vaut "w40n6-6iop" alors ona ffiche une erreur
 if(isset($_GET['key']) && $_GET['key'] == "w40n6-6iop") { //Wrong Password
     $error = "L'insertion est fausse !";
 }
@@ -27,11 +27,7 @@ if(isset($_GET['key']) && $_GET['key'] == "w40n6-6iop") { //Wrong Password
     <script src="https://kit.fontawesome.com/8a3192b16c.js" crossorigin="anonymous"></script>
 
 </head>
-
-
-
-
-
+<!-- On affiche dans une section les fonctionnalité de l'admin-->
     <section>
 
       <div class="container-fluid">
@@ -44,6 +40,7 @@ if(isset($_GET['key']) && $_GET['key'] == "w40n6-6iop") { //Wrong Password
             <div class="card-header" style="background-color: #0596de;">
               <h4 class=" text-capitalize text-white">Interface Admin</h4>
             </div>
+            <!-- On affiche le menu de l'admin-->
             <ul class="list-group list-group-flush ">
               <li class="list-group-item"><a style="color: #0596de;" href="../formulaire/formulaire_medecin.php">Ajouter Médecin</a></li>
               <li class="list-group-item"><a  style="color: #0596de;" href="../formulaire/formulaire_admin.php">Ajouter Administrateur</a></li>

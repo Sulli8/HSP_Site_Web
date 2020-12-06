@@ -11,7 +11,9 @@
               <?php
               //Connect DB
               require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
+              //On déclare la variable $manager de type new Manager();
               $manager = new Manager();
+              //On appelle la fonction connexion_mysqli();
               $mysqli = $manager->connexion_mysqli();
 
               //Query the database
@@ -23,12 +25,14 @@
               $Pr_error = NULL;
               if($resultMED->num_rows != 0) {
                   while($row_Pr = $resultMED->fetch_assoc()) {
+                    //On ajoute les colone dans les tableaux
                       array_push($Pr_id_medecin, $row_Pr['id']);
                       array_push($Pr_nom_medecin, $row_Pr['nom']);
                       array_push($Pr_prenom_medecin, $row_Pr['prenom']);
                       array_push($Pr_specialite, $row_Pr['specialite']);
                   }
               }else {
+                //On déclare la variable $Pr_error de valeur "Aucun médecin disponible pour le moment.";
                   $Pr_error = "Aucun médecin disponible pour le moment.";
               }
               ?>

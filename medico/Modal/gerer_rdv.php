@@ -13,8 +13,9 @@
               //Connect DB
               require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
               $manager = new Manager();
+              //On appelle la fonction connexion_mysqli()
               $mysqli = $manager->connexion_mysqli();
-
+              //On déclare la variable $id_user $_SESSION['id'];
               $id_user = $_SESSION['id'];
 
               //Query the database

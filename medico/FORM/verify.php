@@ -1,9 +1,11 @@
 <?php
+//on redirige
 require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php");
+//Si la clé existe alors....
     if(isset($_GET['vkey'])) {
         //Process Verification
         $vkey = $_GET['vkey'];
-
+        /
         $manager = new Manager();
         $mysqli = $manager->connexion_mysqli();
         $resultSet = $mysqli->query("SELECT verified, vkey FROM user WHERE verified = 0 AND vkey = '$vkey' LIMIT 1");
@@ -12,11 +14,13 @@ require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php
             $update = $mysqli->query("UPDATE user set verified = 1 WHERE vkey = '$vkey' LIMIT 1");
 
             if($update) {
+              //On redirige
                 header('location: ../view/index.php?key=acc-4341');
             }else {
                 echo $mysqli->error;
             }
         }else {
+          //On redirige
             header('location: ../view/index.php?key=a143ady');
         }
 
