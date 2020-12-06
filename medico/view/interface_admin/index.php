@@ -4,6 +4,24 @@
 if(isset($_GET['key']) && $_GET['key'] == "w40n6-6iop") { //Wrong Password
     $error = "L'insertion est fausse !";
 }
+if(isset($_GET['erreur_admin']) && $_GET['erreur_admin'] == "W4e4NjZz58p") { //Wrong Delete
+    $error = "Erreur de suppression !";
+}
+
+if(isset($_GET['erreur_admin']) && $_GET['erreur_admin'] == "006OoLj6eeR") { //Wrong Delete
+    $error = "Erreur de suppression !";
+}
+
+if(isset($_GET['erreur_user']) && $_GET['erreur_user'] == "290uREkd6uG") { //Wrong Delete
+    $error = "Erreur de suppression !";
+}
+
+if(isset($_GET['erreur_medecin']) && $_GET['erreur_medecin'] == "9WwA0dhw66A") { //Wrong Delete
+    $error = "Erreur de suppression !";
+}
+if(isset($_GET['key']) && $_GET['key'] == "6k75viX9TOg") { //Wrong Delete
+    $ajoute = "Administrateur bien ajouté !";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +57,8 @@ if(isset($_GET['key']) && $_GET['key'] == "w40n6-6iop") { //Wrong Password
             <div class="card" style="width: 18rem;">
             <div class="card-header" style="background-color: #0596de;">
               <h4 class=" text-capitalize text-white">Interface Admin</h4>
+              <h5 class="text-center text-dark"><?php echo $error; ?></h5>
+              <h5 class="text-center text-dark"><?php echo $ajoute; ?></h5>
             </div>
             <!-- On affiche le menu de l'admin-->
             <ul class="list-group list-group-flush ">

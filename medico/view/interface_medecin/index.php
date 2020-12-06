@@ -20,7 +20,14 @@
   </head>
   <body>
     <!-- NAV -->
-
+    <?php
+    if(isset($_GET['erreur_ajout']) && $_GET['erreur_ajout'] == "????"){
+      $error = "Erreur d'ajout de rendez-vous";
+    }
+    if(isset($_GET['erreur_patient']) && $_GET['erreur_patient'] == "006OoLj6eeR") { //Wrong Delete
+        $error = "Erreur de suppression Patient !";
+    }
+     ?>
     <!-- END OF NAV -->
     <?php
     //On démarre une session
@@ -85,6 +92,9 @@
             <a href="#" class="btn btn-primary btn-lg px-4 m-2"  data-toggle="modal" data-target="#exampleModalPARA" >Modifier informations</a>
             <a href="#" class="btn btn-primary btn-lg px-4 m-2"  data-toggle="modal" data-target="#exampleModal">Voir mes rendez-vous</a>
             <a href="../../FORM/deconnexion_form.php" class="btn btn-danger btn-lg px-4 m-2">Déconnexion</a>
+            <div class="text-center">
+                  <strong><?php echo $error; //On affiche une erreur si la clé existe ?></strong>
+              </div>
           </div>
         </div>
       </div>

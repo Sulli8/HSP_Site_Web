@@ -22,6 +22,9 @@ session_start();
     if(isset($_GET['key']) && $_GET['key'] == "a143ady") { //This account is invalid or already verified
         $error = "Ce compte est invalide ou déjà authentifié";
     }
+    if(isset($_GET['key']) && $_GET['key'] == "z2I6N7D2wzj") { //This account is invalid or already verified
+        $error = "Erreur lors de la candidature !";
+    }
 
     // ------------------------ ------------------------ //
 
@@ -70,7 +73,11 @@ session_start();
         $candidature = "Merci d'avoir postuler !";
     }
 
-
+    $suppression = NULL;
+    if(isset($_GET['erreur_suppresison']) && $_GET['erreur_suppression'] == "fY7qP4mK7") //Choice candidature
+    {
+        $suppression= "Erreur de suppresion !";
+    }
 ?>
 <html lang="fr">
 <?php include "../include/head.php"; ?>
@@ -83,6 +90,7 @@ session_start();
         <strong><?php echo $cancel_rdv;//On affiche une erreur si la clé existe  ?></strong>
         <strong><?php echo $error_rdv; //On affiche une erreur si la clé existe ?></strong>
         <strong><?php echo $candidature; //On affiche une erreur si la clé existe ?></strong>
+        <strong><?php echo $suppression; //On affiche une erreur si la clé existe ?></strong>
     </div>
     <!-- On affiche la page d'acceuil-->
     <?php include "../include/page.php"; ?>
