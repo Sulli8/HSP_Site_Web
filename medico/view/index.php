@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <?php
 //On démarre une session
 session_start();
@@ -80,9 +81,25 @@ session_start();
     }
 ?>
 <html lang="fr">
+<!-- Modal Lost Password -->
+    <?php include "../Modal/lost_password.php"; ?>
 <?php include "../include/head.php"; ?>
-<body>
   <?php include "../include/header.php"; ?>
+    <!-- On affiche la page d'acceuil-->
+    <?php include "../include/page.php"; ?>
+	 <!-- Modal Contact -->
+    <?php include "../Modal/contact.php"; ?>
+
+	<!-- Modal Inscription -->
+    <?php include "../Modal/modal_inscription.php"; ?>
+    <!-- Modal Connexion -->
+    <?php include "../Modal/connexion.php"; ?>
+    <!-- Modal Emploies -->
+    <!-- Button trigger modal -->
+    <?php include "../Modal/emploies.php"; ?>
+	<?php include "../include/footer.php"; ?>
+<body>
+
   <div class="text-center">
         <strong><?php echo $error; //On affiche une erreur si la clé existe ?></strong>
         <strong><?php echo $wrong;//On affiche une erreur si la clé existe ?></strong>
@@ -92,26 +109,16 @@ session_start();
         <strong><?php echo $candidature; //On affiche une erreur si la clé existe ?></strong>
         <strong><?php echo $suppression; //On affiche une erreur si la clé existe ?></strong>
     </div>
-    <!-- On affiche la page d'acceuil-->
-    <?php include "../include/page.php"; ?>
 
-    <!-- Modal Connexion -->
-    <?php include "../Modal/connexion.php"; ?>
-    <!-- Modal Emploies -->
-    <!-- Button trigger modal -->
-    <?php include "../Modal/emploies.php"; ?>
-    <!-- Modal Inscription -->
-    <?php include "../Modal/modal_inscription.php"; ?>
-    <!-- Modal Lost Password -->
-    <?php include "../Modal/lost_password.php"; ?>
-    <!-- Modal Contact -->
-    <?php include "../Modal/contact.php"; ?>
+    
+    
+   
     <!-- Modal Prendre rendez-vous -->
     <?php include "../Modal/prise_rdv.php" ?>
     <!-- Modal Gérer mes rendez-vous -->
     <?php include "../Modal/gerer_rdv.php"; ?>
     <!-- Modal Paramètres -->
     <?php include "../Modal/parametre.php"; ?>
-      <?php include "../include/footer.php"; ?>
+
 </body>
 </html>
