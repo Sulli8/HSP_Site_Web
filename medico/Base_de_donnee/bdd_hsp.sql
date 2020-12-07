@@ -1,14 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:8889
--- Généré le :  Dim 06 déc. 2020 à 17:03
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  lun. 07 déc. 2020 à 16:00
 -- Version du serveur :  5.7.26
--- Version de PHP :  7.3.8
+-- Version de PHP :  7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données :  `bdd_hsp`
@@ -20,13 +28,15 @@ SET time_zone = "+00:00";
 -- Structure de la table `candidature`
 --
 
-CREATE TABLE `candidature` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `candidature`;
+CREATE TABLE IF NOT EXISTS `candidature` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `metier` varchar(40) COLLATE utf8_bin NOT NULL,
   `candidat` varchar(40) COLLATE utf8_bin NOT NULL,
   `contrat` varchar(40) COLLATE utf8_bin NOT NULL,
-  `nom_entreprise` varchar(40) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `nom_entreprise` varchar(40) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `candidature`
@@ -40,7 +50,11 @@ INSERT INTO `candidature` (`id`, `metier`, `candidat`, `contrat`, `nom_entrepris
 (5, 'Orthodoncie', 'az', 'CDD', 'SFR'),
 (6, 'Orthodoncie', 'Vasone ', 'CDD', 'SFR'),
 (7, 'Orthodoncie', 'Vasone ', 'CDD', 'SFR'),
-(8, 'Orthodoncie', 'Antoine2', 'CDD', 'SFR');
+(8, 'Orthodoncie', 'Antoine2', 'CDD', 'SFR'),
+(9, 'Orthodoncie', 'Antoine2', 'CDD', 'SFR'),
+(10, 'Orthodoncie', 'Antoine2', 'CDD', 'SFR'),
+(11, 'Orthodoncie', 'Antoine2', 'CDD', 'SFR'),
+(12, 'Orthodoncie', 'Antoine2', 'CDD', 'Henri-Dunant');
 
 -- --------------------------------------------------------
 
@@ -48,14 +62,16 @@ INSERT INTO `candidature` (`id`, `metier`, `candidat`, `contrat`, `nom_entrepris
 -- Structure de la table `creneau`
 --
 
-CREATE TABLE `creneau` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `creneau`;
+CREATE TABLE IF NOT EXISTS `creneau` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `creneau_1` varchar(40) NOT NULL,
   `creneau_2` varchar(40) NOT NULL,
   `creneau_3` varchar(40) NOT NULL,
   `creneau_4` varchar(40) NOT NULL,
-  `creneau_5` varchar(40) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `creneau_5` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `creneau`
@@ -70,23 +86,25 @@ INSERT INTO `creneau` (`id`, `creneau_1`, `creneau_2`, `creneau_3`, `creneau_4`,
 -- Structure de la table `emploies`
 --
 
-CREATE TABLE `emploies` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `emploies`;
+CREATE TABLE IF NOT EXISTS `emploies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `metier` varchar(40) COLLATE utf8_bin NOT NULL,
   `contrat` varchar(40) COLLATE utf8_bin NOT NULL,
-  `nom_entreprise` varchar(40) COLLATE utf8_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `nom_entreprise` varchar(40) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `emploies`
 --
 
 INSERT INTO `emploies` (`id`, `metier`, `contrat`, `nom_entreprise`) VALUES
-(1, 'Ophtalmologue', 'CDI', 'Free'),
-(2, 'Orthodoncie', 'CDD', 'SFR'),
-(4, 'Ophtalmologue', 'CDI', 'Free'),
-(5, 'Orthodoncie', 'CDD', 'SFR'),
-(6, 'Orthodoncie', 'CDD', 'SFR');
+(1, 'Ophtalmologue', 'CDI', 'Rothschild'),
+(2, 'Orthodoncie', 'CDD', 'Saint-Antoine'),
+(4, 'Ophtalmologue', 'CDI', 'Villemin'),
+(5, 'Orthodoncie', 'CDD', 'Pasteur'),
+(6, 'Orthodoncie', 'CDD', 'Henri-Dunant');
 
 -- --------------------------------------------------------
 
@@ -94,15 +112,17 @@ INSERT INTO `emploies` (`id`, `metier`, `contrat`, `nom_entreprise`) VALUES
 -- Structure de la table `medecin`
 --
 
-CREATE TABLE `medecin` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `medecin`;
+CREATE TABLE IF NOT EXISTS `medecin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(40) NOT NULL,
   `prenom` varchar(40) NOT NULL,
   `departement` varchar(40) NOT NULL,
   `specialite` varchar(40) NOT NULL,
   `mail` varchar(40) NOT NULL,
-  `pass` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `pass` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `medecin`
@@ -121,15 +141,17 @@ INSERT INTO `medecin` (`id`, `nom`, `prenom`, `departement`, `specialite`, `mail
 -- Structure de la table `prise_rdv`
 --
 
-CREATE TABLE `prise_rdv` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `prise_rdv`;
+CREATE TABLE IF NOT EXISTS `prise_rdv` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_medecin` varchar(100) NOT NULL,
   `creneau_1` int(100) NOT NULL,
   `creneau_2` int(100) NOT NULL,
   `creneau_3` int(11) NOT NULL,
   `creneau_4` int(11) NOT NULL,
   `creneau_5` int(11) NOT NULL,
-  `date` varchar(40) NOT NULL
+  `date` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -138,15 +160,17 @@ CREATE TABLE `prise_rdv` (
 -- Structure de la table `rdv`
 --
 
-CREATE TABLE `rdv` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `rdv`;
+CREATE TABLE IF NOT EXISTS `rdv` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_medecin` varchar(255) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_medecin` int(11) NOT NULL,
   `date_rdv` varchar(255) NOT NULL,
   `creneau_rdv` varchar(255) NOT NULL,
-  `nom_patient` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `nom_patient` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `rdv`
@@ -164,8 +188,9 @@ INSERT INTO `rdv` (`id`, `nom_medecin`, `id_user`, `id_medecin`, `date_rdv`, `cr
 -- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(60) NOT NULL,
   `prenom` varchar(60) NOT NULL,
   `adresse` varchar(115) NOT NULL,
@@ -176,8 +201,9 @@ CREATE TABLE `user` (
   `verified` tinyint(1) NOT NULL DEFAULT '0',
   `vkey` varchar(75) NOT NULL,
   `medecin` tinyint(1) NOT NULL DEFAULT '0',
-  `admin` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `admin` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
@@ -188,96 +214,10 @@ INSERT INTO `user` (`id`, `nom`, `prenom`, `adresse`, `ville`, `mail`, `pass`, `
 (2, 'root', 'az', 'aucune', 'aucune', 'az.az@gmail.com', '6a97d7999cdd427ce03656d0e2468526', 'aucune', 0, '672aaec62f8c32176612c25e1ff82762', 0, 1),
 (3, 'azdv', 'azds', 'azcv', 'azcv', 'az@az.fr', 'cc8c0a97c2dfcd73caff160b65aa39e2', 'azxcv', 1, '32bea98584c58a97d8a530e948b4407d', 0, 0),
 (4, '444', 'qs', 'qs', 'qs', 'qs@qs.fr', '304854e2e79de0f96dc5477fef38a18f', 'qs', 1, '94cd524c9ef3d1f0915135a16a84c29a', 0, 1),
-(5, 'root', 'aa', 'aucune', 'aucune', 'aa@aa.fr', 'a4b2677c04756fd917bcd038c79fe79c', 'aucune', 0, '4e12eb98d17f87a0d3ef424d2421a2de', 0, 1);
+(5, 'root', 'aa', 'aucune', 'aucune', 'aa@aa.fr', 'a4b2677c04756fd917bcd038c79fe79c', 'aucune', 0, '4e12eb98d17f87a0d3ef424d2421a2de', 0, 1),
+(6, 'test', 'md', 'ts', 'rc', 'test@md.fr', '793914c9c583d9d86d0f4ed8c521b0c1', '1234', 0, '92ee59045722811855c045138a060f6e', 0, 0);
+COMMIT;
 
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `candidature`
---
-ALTER TABLE `candidature`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `creneau`
---
-ALTER TABLE `creneau`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `emploies`
---
-ALTER TABLE `emploies`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `medecin`
---
-ALTER TABLE `medecin`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `prise_rdv`
---
-ALTER TABLE `prise_rdv`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `rdv`
---
-ALTER TABLE `rdv`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `candidature`
---
-ALTER TABLE `candidature`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT pour la table `creneau`
---
-ALTER TABLE `creneau`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT pour la table `emploies`
---
-ALTER TABLE `emploies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT pour la table `medecin`
---
-ALTER TABLE `medecin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT pour la table `prise_rdv`
---
-ALTER TABLE `prise_rdv`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `rdv`
---
-ALTER TABLE `rdv`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
