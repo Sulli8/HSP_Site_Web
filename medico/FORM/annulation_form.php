@@ -12,12 +12,12 @@
     if($resultRDV->num_rows != 0) {
         $deleteRDV = $mysqli->query("DELETE FROM rdv WHERE id = '$my_key'");
         if($deleteRDV) {
-            header('location: ../view/index.php?key=4dv-5a2c3l'); //All is good
+            header('location: ../../index.php?key=4dv-5a2c3l'); //All is good
         }else {
-            header('location: ../view/index.php?key=4dv-n0-5a2c3l'); //An error
+            header('location: ../../index.php?key=4dv-n0-5a2c3l'); //An error
         }
     }else {
-        header('location: ../view/index.php?key=4dv-n0-3x15t'); //Return to index and echo error
+        header('location: ../../index.php?key=4dv-n0-3x15t'); //Return to index and echo error
     }
 
 ?>

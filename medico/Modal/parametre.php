@@ -10,7 +10,7 @@
       <div class="modal-body text-center">
           <small>Si vous souhaitez modifier vos informations personnelles, modifiez simplement les informations ici présente
           puis valider.</small>
-          <form action="../FORM/modification_form.php" method="POST">
+          <form action="medico/FORM/modification_form.php" method="POST">
               <div class="d-flex">
                   <input class="mr-2" type="text" name="nom" value="<?php echo $_SESSION['nom'];?>" required>
                   <input type="text" name="prenom" value="<?php echo $_SESSION['prenom'];?>" required>

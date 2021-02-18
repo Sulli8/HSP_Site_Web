@@ -15,13 +15,13 @@ require_once($_SERVER['DOCUMENT_ROOT']."/HSP_Site_Web/medico/manager/manager.php
 
             if($update) {
               //On redirige
-                header('location: ../view/index.php?key=acc-4341');
+                header('location: ../../index.php?key=acc-4341');
             }else {
                 echo $mysqli->error;
             }
         }else {
           //On redirige
-            header('location: ../view/index.php?key=a143ady');
+            header('location: ../../index.php?key=a143ady');
         }
 
     }else {

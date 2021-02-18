@@ -8,7 +8,7 @@
   </head>
   <body>
 
-    <form action="../../traitement/traitement_formulaire_emploies.php" method="post">
+    <form action="/traitement/traitement_formulaire_emploies.php" method="post">
   <div class="form-row">
     <div class="form-group col-md-3">
       <label for="inputName">nom</label>

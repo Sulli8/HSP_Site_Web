@@ -24,13 +24,13 @@
     !empty($mutuelle)) {
         //Check if password are ok
         if($pass != $pass2) {
-            header('location: ../view/index.php?key=w40n6-6a55');
+            header('location: ../../index.php?key=w40n6-6a55');
         }else {
             //Check if mail exist
             $sql_e = "SELECT * FROM user WHERE mail='$email'";
             $res_e = mysqli_query($mysqli, $sql_e);
             if(mysqli_num_rows($res_e) > 0){
-                header('location: ../view/index.php?key=w40n6-ma11');
+                header('location: ../../index.php?key=w40n6-ma11');
             }else {
                 //Form is valid
 
@@ -80,7 +80,7 @@
                             $mail->Body    = "<a href='http://localhost/HSP_Site_Web/medico/FORM/verify.php?vkey=$vkey'>Confirmer votre compte MonHopital.fr</a>";
                             $mail->AltBody = 'This is the body in plain text for non-HTML mail client';
                             $mail->send();
-                            header("Location:../view/index.php?key=auth3nt1");
+                            header("Location:../../index.php?key=auth3nt1");
                         }
                     }
                     catch (Exception $e) {
@@ -95,7 +95,7 @@
             }
         }
     }else {
-        header('location: ../view/index.php?key=9m6ty');
+        header('location: ../../index.php?key=9m6ty');
     }
 
 ?>

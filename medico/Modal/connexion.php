@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body text-center">
-          <form action="../FORM/connexion_form.php" method="POST">
+          <form action="medico/FORM/connexion_form.php" method="POST">
               <p>Adresse e-mail</p>
               <input type="email" name="email" required>
               <p>Mot de passe</p>

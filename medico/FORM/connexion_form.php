@@ -46,15 +46,15 @@
             }else if($admin == 1){
                 header('location: ../view/interface_admin/index.php'); //Go to admin index
             }else {
-                header('location: ../view/index.php');
+                header('location: ../../index.php');
             }
         }else {
           //On redirige
-            header('location: ../view/index.php?key=n0t-v341f');
+            header('location: ../../index.php?key=n0t-v341f');
         }
     }else {
         //Invalid credentials
-        header('location: ../view/index.php?key=1nva11d-c43d3nt1a15');
+        header('location: ../../index.php?key=1nva11d-c43d3nt1a15');
     }
 
 ?>

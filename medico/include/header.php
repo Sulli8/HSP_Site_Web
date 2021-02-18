@@ -36,7 +36,7 @@
                 <?php if(isset($_SESSION['email'])) {
                     echo '
                     <li class="nav-item">
-                    <a href="../FORM/deconnexion_form.php" class="nav-link btn btn-danger text-white rounded">Déconnexion</a>
+                    <a href="medico/FORM/deconnexion_form.php" class="nav-link btn btn-danger text-white rounded">Déconnexion</a>
                     </li>';
                 }else {
                   //Sinon on affiche...

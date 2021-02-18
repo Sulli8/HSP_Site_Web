@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body text-center">
-          <form action="../FORM/password_form.php" method="POST">
+          <form action="medico/FORM/password_form.php" method="POST">
               <p>Indiquer l'adresse e-mail de votre compte</p>
               <input type="email" name="email" required>
               <small>Votre nouveau mot de passe vous sera envoyé par e-mail, vous pourrez le changer dans vos paramètres par la suite.</small>

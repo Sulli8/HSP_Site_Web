@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body text-center">
-          <form action="../FORM/inscription_form.php" method="POST">
+          <form action="medico/FORM/inscription_form.php" method="POST">
               <p>Nom</p>
               <input type="text" name="nom" required>
               <p>Prénom</p>

@@ -4,7 +4,7 @@
     //Ensuite on détruie la session
     session_destroy();
     //On rédirige vers l'accueil
-    header("location: ../view/index.php");
+    header("location: ../../index.php");
     //Fin de programme
     exit();
 

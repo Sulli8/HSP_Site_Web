@@ -37,7 +37,7 @@
               }
               ?>
 
-          <form action="../FORM/prise_rendez_vous.php" method="POST">
+          <form action="medico/FORM/prise_rendez_vous.php" method="POST">
               <input class="text-center" type="text" value="<?php echo $_SESSION['nom'].' '.$_SESSION['prenom'];?>" disabled>
               <p>Choisir votre médecin</p>
               <select name="name_medecin" id="">

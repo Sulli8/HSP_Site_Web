@@ -47,7 +47,7 @@
                 $mail->Body    = "Voici votre Mot de Passe : $old_password <br> Pour le modifier, rendez-vous sur votre espace-client puis selectionnez \"Changer mon mot de passe\"";
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail client';
                 $mail->send();
-                header("Location:../view/index.php?key=r3g3n3r3d");
+                header("Location:../../index.php?key=r3g3n3r3d");
             }
         }
         catch (Exception $e) {
@@ -56,7 +56,7 @@
 
 
     }else {
-        header('location: ../view/index.php?key=n0-r3g3n3r3ed'); //Mail not exist
+        header('location: ../../index.php?key=n0-r3g3n3r3ed'); //Mail not exist
     }
 
 ?>

@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="col-sm-0 col-md-0 col-lg-6 col-xl-6 text-right under-navbar-img">
-            <img class="images-under-navbar" src="../img/under-navbar-area-images.png" alt="" width="100%">
+            <img class="images-under-navbar" src="medico/img/under-navbar-area-images.png" alt="" width="100%">
         </div>
     </div>
 </div>
@@ -41,19 +41,19 @@
     <h1 id="title-explain-area" class="text-center">Pourquoi prendre rendez-vous avec MonHôpital ?</h1>
     <div class="d-flex flex-wrap text-center justify-content-around">
         <div class="first-images">
-            <img src="../img/first-img.png" alt="">
+            <img src="medico/img/first-img.png" alt="">
             <p>Accédez aux disponibilités de <br>
                <strong>dizaines de milliers</strong> de <br>
                 professionnels de santé.</p>
         </div>
         <div class="second-images">
-            <img src="../img/second-img.png" alt="">
+            <img src="medico/img/second-img.png" alt="">
             <p>Prenez rendez vous en ligne,<br>
                 <strong>24h/24 et 7j/7</strong>, pour une <br>
                 consultation physique ou vidéo.</p>
         </div>
         <div class="third-images">
-            <img src="../img/third-img.png" alt="">
+            <img src="medico/img/third-img.png" alt="">
             <p>Retrouvez votre <strong>historique de <br>
                 rendez-vous </strong> et vos <strong>documents <br>
                 médicaux</strong>.</p>
@@ -69,7 +69,7 @@
         <div class="first-services">
             <div class="card-container">
                 <div class="card-conio card-img-top text-center shadow card-front">
-                    <img src="../img/health.png" class="card-img-top" alt="...">
+                    <img src="medico/img/health.png" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">Voir plus</h5>
                     </div>
@@ -88,7 +88,7 @@
         <div class="second-services">
             <div class="card-container">
                 <div class="card-conio card-img-top text-center shadow card-front">
-                    <img src="../img/eye-care.png" class="card-img-top" alt="...">
+                    <img src="medico/img/eye-care.png" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">Voir plus</h5>
                     </div>
@@ -105,7 +105,7 @@
         <div class="third-services">
             <div class="card-container">
                 <div class="card-conio card-img-top text-center shadow card-front">
-                    <img src="../img/psychiatrist.png" class="card-img-top" alt="...">
+                    <img src="medico/img/psychiatrist.png" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">Voir plus</h5>
                     </div>
@@ -122,7 +122,7 @@
         <div class="fourth-services">
             <div class="card-container">
                 <div class="card-conio card-img-top text-center shadow card-front">
-                    <img src="../img/dermatologist.png" class="card-img-top" alt="...">
+                    <img src="medico/img/dermatologist.png" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">Voir plus</h5>
                     </div>

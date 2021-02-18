@@ -154,10 +154,10 @@ function gestion_rdv($date_rdv,$creneau_rdv,$nom_medecin,$mail_patient){
                ));
   if(isset($insert_rdv)){
     //On redirige
-    header('Location:../view/index.php');
+    header('Location:../index.php');
   }else{
     echo "<script>window.alert('Erreur de gestion de rdv');
-    document.location.href='../view/index.php';
+    document.location.href='../index.php';
 
     </script>";
 }
@@ -177,10 +177,10 @@ function delete($delete){
   $tableau = $request->fetchall();
   //si le tableau existe alors on redirige
   if(isset($tableau)){
-    header("Location:../view/index.php");
+    header("Location:../index.php");
   }else{
     //on affiche une erreur
-    header("Location:../view/index.php?erreur_suppression=fY7qP4mK7");
+    header("Location:../index.php?erreur_suppression=fY7qP4mK7");
   }
 }
 
@@ -276,11 +276,11 @@ function offres_emploies($id_user,$tab_job){
     //Si insert existe alors...
     if($insert != null){
       //On redirige...
-      header('Location:../view/index.php?key=2R9Vrz8x/?');
+      header('Location:../../index.php?key=2R9Vrz8x/?');
     }
     else{
       //On redirige...
-      header('Location:../view/index.php?key=z2I6N7D2wzj');
+      header('Location:../index.php?key=z2I6N7D2wzj');
     }
   }
 }

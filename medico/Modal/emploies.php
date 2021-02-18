@@ -25,7 +25,7 @@
         </thead>
         <tbody>
           <tr>
-            <form action="../traitement/traitement_formulaire_emploies.php" method="post">
+            <form action="medico/traitement/traitement_formulaire_emploies.php" method="post">
               <!-- On parcours le tableau -->
             <?php for ($i=0; $i < count($tableau); $i++) { ?>
             <td><input name="metier" class=" btn btn-dark" type="text" value=<?php echo $tableau[$i]['metier']; ?>  ></input></td>

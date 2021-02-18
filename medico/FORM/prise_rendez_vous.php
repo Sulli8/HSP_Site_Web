@@ -14,7 +14,7 @@
     $creneau = $mysqli->real_escape_string($creneau);
 
      if($nom_medecin == 0) {
-         header('location: ../view/index.php?key=n0-ch0053'); //Choose your doctor
+         header('location: ../../index.php?key=n0-ch0053'); //Choose your doctor
      }else {
         //Continue Process
 
@@ -32,7 +32,7 @@
              VALUES('$nom', '$id_user', '$nom_medecin', '01-01-2021', '$creneau', '$nom_patient')");
 
          if($insert) {
-             header('location: ../view/index.php?key=y0u-v3-y0u4-4DV');
+             header('location: ../../index.php?key=y0u-v3-y0u4-4DV');
          }else {
              echo $mysqli->error;
          }
