@@ -80,7 +80,7 @@ session_start();
         $suppression= "Erreur de suppresion !";
     }
 ?>
-
+          <link rel="icon" type="image/png" sizes="16x16" href="medico/img/logo_hsp.png">
 <html lang="fr">
 <!-- Modal Lost Password -->
     <?php include "medico/Modal/lost_password.php"; ?>
