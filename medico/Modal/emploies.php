@@ -25,20 +25,22 @@
         </thead>
         <tbody>
           <tr>
-            <form action="medico/traitement/traitement_formulaire_emploies.php" method="post">
+
               <!-- On parcours le tableau -->
-            <?php for ($i=0; $i < count($tableau); $i++) { ?>
-            <td><input name="metier" class=" btn btn-dark" type="text" value=<?php echo $tableau[$i]['metier']; ?>  ></input></td>
-            <td><input name="contrat" class="btn btn-dark" type="text" value=<?php echo $tableau[$i]['contrat']; ?> ></input></td>
-              <td><input name="nom_entreprise" class="btn btn-dark" type="text" value=<?php echo $tableau[$i]['nom_entreprise']; ?> ></input></td>
+            <?php foreach($tableau as $value) { ?>
+                <form action="medico/traitement/traitement_formulaire_emploies.php" method="post">
+            <td><input name="metier" class=" btn btn-dark" type="text" value=<?php echo $value['metier']; ?>  ></input></td>
+            <td><input name="contrat" class="btn btn-dark" type="text" value=<?php echo $value['contrat']; ?> ></input></td>
+              <td><input name="nom_entreprise" class="btn btn-dark" type="text" value=<?php echo $value['nom_entreprise']; ?> ></input></td>
 
               <td class="modal-content"><input  type="submit" class="btn btn-primary" value="Postuler"></input></a></td>
               <?php
               //Si l'index%3 == 0 alors on affiche une cellule
-              if($i%3 == 0){ echo "<tr></tr>";}else{echo "<tr></tr>";} ?>
+              if(count($value)%3 == 0){ echo "<tr></tr>";}else{echo "<tr></tr>";} ?>
+                    </form>
             <?php  ?>
             <?php   }  ?>
-              </form>
+
           </tr>
         </tbody>
       </table>
