@@ -6,7 +6,7 @@ class manager {
     try
         {
           //on déclare la variable $bdd de valeur new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','');
-            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','root','root');
+            $bdd = new PDO('mysql:host=localhost;dbname=bdd_hsp;charset=utf8','sullivan','root');
         }
         catch(Exception $e)
         {
@@ -20,7 +20,7 @@ class manager {
     try
         {
           //on déclare la variable $myslqi de valeur mysqli_connect("localhost", "root", "", "bdd_hsp");
-            $mysqli = mysqli_connect("localhost", "root", "root", "bdd_hsp");
+            $mysqli = mysqli_connect("localhost", "sullivan", "root", "bdd_hsp");
         }
         catch(Exception $e)
         {
